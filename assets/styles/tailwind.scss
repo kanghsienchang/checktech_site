@@ -1,0 +1,21 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply antialiased text-base leading-normal tracking-normal font-normal text-gray-600 bg-gray-100;
+  }
+  h1 {
+    @apply text-4xl lg:text-5xl leading-none font-bold text-gray-700;
+  }
+  h2 {
+    @apply text-3xl lg:text-4xl leading-none font-bold text-gray-700;
+  }
+}
+
+@layer components {
+  .main-container {
+    @apply container px-4 md:px-6 lg:px-10 mx-auto;
+  }
+}
