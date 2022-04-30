@@ -4,7 +4,7 @@
 
 @layer base {
   body {
-    @apply antialiased text-base leading-normal tracking-normal font-normal text-gray-600 bg-gray-100;
+    @apply antialiased text-base leading-normal tracking-normal font-normal text-gray-600 bg-gray-50;
   }
   h1 {
     @apply text-4xl lg:text-5xl leading-none font-bold text-gray-700;

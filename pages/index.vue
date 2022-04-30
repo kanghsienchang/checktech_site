@@ -19,7 +19,7 @@
         </h1>
       </div>
     </section>
-    <section class="main-container my-12">
+    <section class="main-container my-20">
       <h2 class="mb-6 text-center">
         產品分類
       </h2>
@@ -28,11 +28,13 @@
       </p>
       <div class="flex justify-between mt-12">
         <div class="product-card">
-          <img
-            src="@/assets/images/product-1.png"
-            class="w-full h-full object-cover"
-            alt=""
-          >
+          <div class="product-card__image">
+            <img
+              src="@/assets/images/product-1.png"
+              class="w-full h-full object-cover"
+              alt=""
+            >
+          </div>
         </div>
         <div class="product-card">
           <img
@@ -65,7 +67,7 @@ export default {
 
 <style scoped lang="scss">
 .product-card {
-  @apply border border-gray-100 rounded-md shadow-md w-[32%];
+  @apply border border-gray-100 rounded-md shadow-md w-[32%] bg-white;
 }
 .company-log {
   @apply relative;
