@@ -1,6 +1,6 @@
 <template>
   <div class="default-layout">
-    <nav-menu class="main-container" />
+    <nav-menu />
     <div class="content-wrapper">
       <nuxt-child />
     </div>

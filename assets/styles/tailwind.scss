@@ -4,13 +4,34 @@
 
 @layer base {
   body {
-    @apply antialiased text-base leading-normal tracking-normal font-normal text-gray-600 bg-gray-50;
+    @apply antialiased text-base leading-normal tracking-normal font-normal text-main bg-light;
   }
+
   h1 {
-    @apply text-4xl lg:text-5xl leading-none font-bold text-gray-700;
+    @apply font-bold text-main-d text-4xl md:text-5xl;
   }
   h2 {
-    @apply text-3xl lg:text-4xl leading-none font-bold text-gray-700;
+    @apply font-bold text-main-d text-3xl md:text-4xl;
+  }
+  h3 {
+    @apply text-main-d text-2xl md:text-3xl;
+  }
+  h4 {
+    @apply text-main-d text-xl md:text-2xl;
+  }
+  h5 {
+    @apply text-main-d text-lg md:text-xl;
+  }
+  h6 {
+    @apply text-main-d text-base md:text-lg;
+  }
+
+  img {
+    image-rendering: -moz-crisp-edges; /* Firefox */
+    image-rendering: -o-crisp-edges; /* Opera */
+    image-rendering: crisp-edges;
+    image-rendering: -webkit-optimize-contrast; /* Webkit (non-standard naming) */
+    -ms-interpolation-mode: nearest-neighbor; /* IE (non-standard property) */
   }
 }
 
