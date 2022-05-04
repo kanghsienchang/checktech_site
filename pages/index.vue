@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     <home-header />
-    <div class="content py-20">
+    <div class="content">
       <clients />
       <products />
       <vendors />
@@ -32,8 +32,9 @@ export default {
 
 <style scoped lang="scss">
 .content {
+  @apply py-16 md:py-20;
   & > *:not(:first-child) {
-    @apply pt-20;
+    @apply pt-16 md:pt-20;
   }
 }
 </style>

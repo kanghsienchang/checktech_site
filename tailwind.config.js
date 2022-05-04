@@ -22,9 +22,9 @@ module.exports = {
         'primary-l': '#D1E2F4',
         'primary-d': '#2C71BD',
         light: '#fefefe',
-        main: colors.gray[600],
-        'main-d': colors.gray[700],
-        'main-l': colors.gray[500],
+        main: colors.gray[800],
+        'main-d': colors.gray[900],
+        'main-l': colors.gray[700],
         footer: '#3C4145'
       },
       borderColor: {
