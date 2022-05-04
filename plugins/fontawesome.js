@@ -4,14 +4,24 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
 import {
   faChevronDown,
-  faCaretRight
+  faCaretRight,
+  faCheck, faBusinessTime, faTruck, faClipboardCheck, faHandHoldingHeart, faPhone, faEnvelope, faLocationDot, faGlobe
 } from '@fortawesome/free-solid-svg-icons'
 
 config.autoAddCss = false
 
 library.add(
   faChevronDown,
-  faCaretRight
+  faCaretRight,
+  faCheck,
+  faBusinessTime,
+  faTruck,
+  faClipboardCheck,
+  faHandHoldingHeart,
+  faPhone,
+  faEnvelope,
+  faLocationDot,
+  faGlobe
 )
 
 Vue.component('FontAwesomeIcon', FontAwesomeIcon)

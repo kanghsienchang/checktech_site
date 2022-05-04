@@ -19,17 +19,23 @@ module.exports = {
     extend: {
       colors: {
         primary: '#488bd4',
+        'primary-l': '#D1E2F4',
+        'primary-d': '#2C71BD',
         light: '#fefefe',
         main: colors.gray[600],
         'main-d': colors.gray[700],
-        'main-l': colors.gray[500]
+        'main-l': colors.gray[500],
+        footer: '#3C4145'
+      },
+      borderColor: {
+        DEFAULT: colors.gray[100]
       }
     },
-    boxShadow: {
-      sm: '0 .25rem .75rem rgba(30,34,40,.02)',
-      md: '0 0 1.25rem rgba(30,34,40,.04)',
-      lg: '0 .25rem 1.75rem rgba(30,34,40,.07)'
-    },
+    // boxShadow: {
+    //   sm: '0 .25rem .75rem rgba(30,34,40,.02)',
+    //   md: '0 0 1.25rem rgba(30,34,40,.04)',
+    //   lg: '0 .25rem 1.75rem rgba(30,34,40,.07)'
+    // },
     fontFamily: {
       sans: ["'Noto Sans TC'", ...defaultTheme.fontFamily.sans]
     }

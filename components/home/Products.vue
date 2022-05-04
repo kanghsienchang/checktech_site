@@ -1,10 +1,11 @@
 <template>
   <section class="products main-container">
+    <h2>產品分類</h2>
     <div class="mt-8 grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 xl:gap-12">
       <div
         v-for="product of products"
         :key="product.key"
-        class="flex flex-col border shadow-md rounded-md overflow-hidden bg-white"
+        class="flex flex-col border shadow rounded-md overflow-hidden bg-white"
       >
         <figure class="h-1/2 flex-shrink-0 bg-gray-100 flex justify-center items-center rounded-sm">
           <img
@@ -14,9 +15,9 @@
           >
         </figure>
         <div class="flex-1 p-6 flex flex-col gap-2">
-          <h3>
+          <h4>
             {{ product.title }}
-          </h3>
+          </h4>
           <p class="flex-1">
             {{ product.description }}
           </p>

@@ -4,14 +4,16 @@
     <div class="content-wrapper">
       <nuxt-child />
     </div>
+    <app-footer />
   </div>
 </template>
 
 <script>
 import NavMenu from '~/layouts/components/NavMenu'
+import AppFooter from '~/layouts/components/AppFooter'
 export default {
   name: 'DefaultLayout',
-  components: { NavMenu }
+  components: { AppFooter, NavMenu }
 }
 </script>
 
