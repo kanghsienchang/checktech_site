@@ -7,7 +7,7 @@
           We bring solutions to make life easier for our customers
         </p>
       </div>
-      <div class="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-7 xl:grid-cols-10 gap-4">
+      <div class="grid grid-cols-3 md:grid-cols-5 lg:grid-cols-7 xl:grid-cols-10 gap-4">
         <figure v-for="company of companies" :key="company.image_alt" class="company-logo">
           <img :src="company.image" :alt="company.image_alt" class="max-w-full max-h-full w-full h-full">
         </figure>

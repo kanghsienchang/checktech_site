@@ -1,25 +1,27 @@
 <template>
   <div class="feature-and-services main-container">
     <h2>能力與服務</h2>
-    <div class="services mt-8 flex pb-4">
-      <div class="relative w-1/2">
-        <figure class="rounded-md overflow-hidden">
-          <img
-            src="@/assets/images/features.png"
-            alt="Features and Services"
-            class="max-w-full max-h-full object-cover"
-          >
-        </figure>
-        <div class="absolute content-[''] inset-0 bg-primary-l translate-y-4 translate-x-4 -z-10 rounded-md" />
+    <div class="services mt-8 flex flex-col md:flex-row gap-8">
+      <div class="pb-4 pr-4 md:w-1/2">
+        <div class="relative">
+          <figure class="rounded-md overflow-hidden">
+            <img
+              src="@/assets/images/features.png"
+              alt="Features and Services"
+              class="max-w-full max-h-full object-cover"
+            >
+          </figure>
+          <div class="absolute content-[''] inset-0 bg-primary-l translate-y-4 translate-x-4 -z-10 rounded-md" />
+        </div>
       </div>
-      <div class="w-1/2 flex justify-center">
+      <div class="md:w-1/2 flex md:justify-center">
         <div>
           <h3 class="mb-8">
             提供各式方案客製化專業建議
           </h3>
           <list
             type="check"
-            class="grid grid-cols-2 gap-8"
+            class="grid grid-cols-2 gap-4"
           >
             <list-item
               v-for="service of services"

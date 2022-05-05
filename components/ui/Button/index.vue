@@ -2,7 +2,7 @@
   <button
     :class="['btn', `btn--${color}`, `btn--${size}`, {
       'btn--pill': pill,
-      'hover:-translate-y-0.5': translateOnHover,
+      'hover:-translate-y-0.5 hover:shadow-md': translateOnHover,
       'btn--outline': outline,
     }]"
     @click.prevent="$emit('click')"
@@ -56,14 +56,14 @@ export default {
 }
 
 .btn {
-  @apply inline-flex items-center justify-center text-center leading-normal align-middle cursor-pointer select-none bg-transparent border border-solid border-transparent px-6 py-2.5 font-bold rounded-md transition-all duration-200 ease-in-out tracking-wide text-white;
+  @apply inline-flex items-center justify-center text-center leading-normal align-middle cursor-pointer select-none bg-transparent border border-solid border-transparent px-4 py-2 font-bold rounded-md transition-all duration-200 ease-in-out tracking-wide text-white;
 
   &:hover {
-    @apply shadow-lg text-white;
+    @apply text-white;
   }
 
   &--lg {
-    @apply text-lg px-8 py-3;
+    @apply text-lg px-6 py-3;
   }
 
   &--pill {
@@ -71,7 +71,7 @@ export default {
   }
 
   &--primary {
-    @apply bg-primary border-primary;
+    @apply bg-primary border-primary hover:bg-primary-d;
     @include outline('primary');
   }
 
@@ -79,7 +79,7 @@ export default {
     @apply bg-white text-main border-white;
     @include outline('white');
     &:hover {
-      @apply shadow-md text-main bg-white;
+      @apply text-main bg-white;
     }
   }
 }

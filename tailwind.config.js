@@ -28,14 +28,14 @@ module.exports = {
         footer: '#3C4145'
       },
       borderColor: {
-        DEFAULT: colors.gray[100]
+        DEFAULT: colors.gray[200]
       }
     },
-    // boxShadow: {
-    //   sm: '0 .25rem .75rem rgba(30,34,40,.02)',
-    //   md: '0 0 1.25rem rgba(30,34,40,.04)',
-    //   lg: '0 .25rem 1.75rem rgba(30,34,40,.07)'
-    // },
+    boxShadow: {
+      sm: '0 .25rem .75rem rgba(30, 40, 40, 0.07)',
+      DEFAULT: '0 0 1.25rem rgba(30, 34, 40, 0.1)',
+      md: '0 .25rem 1.75rem rgba(30, 34, 40, 0.15)'
+    },
     fontFamily: {
       sans: ["'Noto Sans TC'", ...defaultTheme.fontFamily.sans]
     }

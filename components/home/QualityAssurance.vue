@@ -1,8 +1,8 @@
 <template>
   <div class="quality-assurance main-container">
     <h2>品質要求</h2>
-    <div class="mt-8 flex gap-12">
-      <div class="w-1/2">
+    <div class="mt-8 flex flex-col md:flex-row gap-12">
+      <div class="md:w-1/2">
         <p class="text-lg">
           本公司致力於全球化佈局策略，尤以環保是市場所趨，生產需符合環保標準
         </p>
@@ -18,7 +18,7 @@
           </list-item>
         </list>
       </div>
-      <div class="w-1/2 flex flex-wrap relative">
+      <div class="md:w-1/2 flex flex-wrap relative">
         <figure class="z-10 w-[75%] rounded-md overflow-hidden">
           <img
             src="@/assets/images/quality-assurance-1.png"

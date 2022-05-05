@@ -3,7 +3,7 @@
     <h2>產品分類</h2>
     <swiper ref="mySwiper" class="mt-8" :options="swiperOptions">
       <swiper-slide v-for="product of products" :key="product.key">
-        <div class="relative border rounded-md flex flex-col h-full">
+        <div class="relative border rounded-md flex flex-col h-full overflow-hidden shadow-sm">
           <figure class="h-48 md:h-60 border-b bg-gray-50 flex justify-center items-center">
             <img
               :src="product.image"
@@ -27,7 +27,7 @@
             <p class="flex-1">
               {{ product.description || 'asd' }}
             </p>
-            <c-button size="xs">
+            <c-button class="mt-2">
               了解更多
             </c-button>
           </div>

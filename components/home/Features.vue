@@ -1,14 +1,14 @@
 <template>
-  <div class="features main-container flex justify-between gap-8">
+  <div class="features main-container grid md:grid-cols-2 lg:grid-cols-4 gap-10">
     <div
       v-for="feature of features"
       :key="feature.key"
-      class="flex flex-col items-center gap-4"
+      class="flex flex-col items-center gap-3"
     >
       <div class="bg-primary rounded-full flex justify-center items-center h-14 w-14">
         <font-awesome-icon :icon="feature.icon" class="text-white" size="lg" />
       </div>
-      <h3>{{ feature.label }}</h3>
+      <h4>{{ feature.label }}</h4>
       <p class="text-center">
         {{ feature.description }}
       </p>

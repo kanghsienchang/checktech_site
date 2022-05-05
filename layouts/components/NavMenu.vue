@@ -118,7 +118,7 @@ export default {
 }
 
 .nav-submenu {
-  @apply opacity-0 shadow-md block absolute bg-white py-3 px-4 text-gray-600 rounded min-w-[10rem] top-[120%] inset-x-0 h-auto w-full py-4 transition-all ease-out pointer-events-none;
+  @apply opacity-0 shadow block absolute bg-white py-3 px-4 text-gray-600 rounded min-w-[10rem] top-[120%] inset-x-0 h-auto w-full py-4 transition-all ease-out pointer-events-none;
   &:before {
     @apply absolute -top-4 inset-0 w-full h-full content-[""] block -z-10;
   }
