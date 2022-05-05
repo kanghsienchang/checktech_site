@@ -12,11 +12,7 @@ export default {
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       { hid: 'description', name: 'description', content: '' },
-      { name: 'format-detection', content: 'telephone=no' },
-      { hid: 'og-type', property: 'og:type', content: 'website' },
-      { hid: 'og-title', property: 'og:title', content: '大將科技' },
-      { hid: 'og-desc', property: 'og:description', content: '測試大將官網' },
-      { hid: 'og-image', property: 'og:image', content: './logo.png' }
+      { name: 'format-detection', content: 'telephone=no' }
     ],
     link: [
       { rel: 'apple-touch-icon', sizes: '180x180', type: 'image/png', href: '/favicon-180.png' },
