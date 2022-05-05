@@ -1,8 +1,11 @@
 <template>
   <section class="products main-container">
-    <h2 class="text-line">
+    <h2 class="mb-2">
       產品分類
     </h2>
+    <h3>
+      提供客戶一次購足服務
+    </h3>
     <swiper ref="mySwiper" class="mt-8" :options="swiperOptions">
       <swiper-slide v-for="product of products" :key="product.key">
         <div class="relative border rounded-md flex flex-col h-full overflow-hidden shadow-sm">
@@ -27,7 +30,7 @@
           <div class="flex-1 flex flex-col p-6 gap-4">
             <h4>{{ product.title }}</h4>
             <p class="flex-1">
-              {{ product.description || 'asd' }}
+              {{ product.description }}
             </p>
             <c-button class="mt-2">
               了解更多

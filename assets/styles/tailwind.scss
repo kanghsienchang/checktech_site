@@ -11,11 +11,14 @@
     @apply font-medium text-main-d text-3xl md:text-4xl;
   }
   h2 {
-    //@apply relative font-medium text-main-d text-base text-primary-d;
-    @apply font-medium text-main-d text-2xl md:text-3xl;
+    @apply relative pl-5 font-medium text-main-d text-lg md:text-xl text-transparent inline-block bg-clip-text bg-gradient-to-br from-primary-d to-primary;
+    &:before {
+      @apply absolute content-[''] w-3 h-[0.05rem] bg-gradient-to-br from-primary-d to-primary left-0 top-1/2 inline-block;
+    }
+    //@apply font-medium text-main-d text-2xl md:text-3xl;
   }
   h3 {
-    @apply font-medium text-main-d text-2xl md:text-3xl;
+    @apply font-medium text-main-d text-xl md:text-2xl;
   }
   h4 {
     @apply font-medium text-main-d text-lg md:text-xl;

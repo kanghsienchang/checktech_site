@@ -1,13 +1,13 @@
 <template>
   <section class="customers bg-white">
     <div class="main-container">
-      <div class="mb-6">
-        <h2>Trusted by over 2500+ clients</h2>
-        <p class="text-base md:text-lg mt-4">
-          We bring solutions to make life easier for our customers
-        </p>
+      <div class="mb-6 text-center">
+        <h2 class="mb-2">
+          Trusted by over 2500+ clients
+        </h2>
+        <h3>We bring solutions to make life easier for our customers</h3>
       </div>
-      <div class="grid grid-cols-3 md:grid-cols-5 lg:grid-cols-7 xl:grid-cols-10 gap-4">
+      <div class="mt-6 grid grid-cols-3 md:grid-cols-5 lg:grid-cols-7 xl:grid-cols-10 gap-4">
         <figure v-for="company of companies" :key="company.image_alt" class="company-logo">
           <img :src="company.image" :alt="company.image_alt" class="max-w-full max-h-full w-full h-full">
         </figure>

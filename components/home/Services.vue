@@ -1,9 +1,12 @@
 <template>
   <div class="feature-and-services">
     <div class="main-container">
-      <h2>
+      <h2 class="mb-2">
         能力與服務
       </h2>
+      <h3>
+        客製化的經營合作模式
+      </h3>
     </div>
     <div
       class="mt-8 relative z-0 bg-[url('@/assets/images/services.jpg')] bg-cover bg-no-repeat bg-center before:absolute before:inset-0 before:bg-[#1e222866] before:z-10"

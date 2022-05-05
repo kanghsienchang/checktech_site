@@ -32,9 +32,9 @@ export default {
 
 <style scoped lang="scss">
 .content {
-  @apply py-20 md:py-20;
+  @apply py-20 md:py-24;
   & > *:not(:first-child) {
-    @apply pt-20 md:pt-20;
+    @apply pt-20 md:pt-24;
   }
 }
 </style>

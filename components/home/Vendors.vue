@@ -1,6 +1,11 @@
 <template>
   <div class="vendors main-container">
-    <h2>代理品牌</h2>
+    <h2 class="mb-2">
+      代理品牌
+    </h2>
+    <h3>
+      Lorem ipsum dolor sit amet
+    </h3>
     <div
       class="mt-8 grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4"
     >
