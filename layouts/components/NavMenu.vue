@@ -60,7 +60,7 @@ export default {
   },
   computed: {
     logoImg () {
-      return this.navStickTop ? require('@/assets/images/logo.png') : require('@/assets/images/logo-white.png')
+      return this.navStickTop ? './logo.png' : require('@/assets/images/logo-white.png')
     }
   },
   mounted () {
