@@ -4,7 +4,7 @@
     <div class="mt-8 flex flex-col md:flex-row gap-12">
       <div class="md:w-1/2">
         <p class="text-lg">
-          本公司致力於全球化佈局策略，尤以環保是市場所趨，生產需符合環保標準
+          本公司致力於全球化佈局策略，尤以環保是市場所趨，生產皆符合環保標準
         </p>
         <list class="mt-8 flex flex-col gap-6" type="check">
           <list-item>

@@ -1,6 +1,8 @@
 <template>
   <section class="products main-container">
-    <h2>產品分類</h2>
+    <h2 class="text-line">
+      產品分類
+    </h2>
     <swiper ref="mySwiper" class="mt-8" :options="swiperOptions">
       <swiper-slide v-for="product of products" :key="product.key">
         <div class="relative border rounded-md flex flex-col h-full overflow-hidden shadow-sm">
@@ -32,29 +34,6 @@
             </c-button>
           </div>
         </div>
-        <!--<div class="flex flex-col border shadow rounded-md overflow-hidden bg-white">-->
-        <!--  <figure class="h-1/2 flex-shrink-0 bg-gray-100 flex justify-center items-center rounded-sm">-->
-        <!--    <img-->
-        <!--      :src="product.image"-->
-        <!--      class="max-w-full max-h-full h-full"-->
-        <!--      alt=""-->
-        <!--    >-->
-        <!--  </figure>-->
-        <!--  <div class="flex-1 p-6 flex flex-col gap-2">-->
-        <!--    <h4>-->
-        <!--      {{ product.title }}-->
-        <!--    </h4>-->
-        <!--    <p class="flex-grow">-->
-        <!--      {{ product.description }}-->
-        <!--    </p>-->
-        <!--    <c-button>Learn More</c-button>-->
-        <!--    &lt;!&ndash;<div class="text-right">&ndash;&gt;-->
-        <!--    &lt;!&ndash;  <a class="text-primary text-base">&ndash;&gt;-->
-        <!--    &lt;!&ndash;    Learn More <font-awesome-icon icon="caret-right" size="sm"></font-awesome-icon>&ndash;&gt;-->
-        <!--    &lt;!&ndash;  </a>&ndash;&gt;-->
-        <!--    &lt;!&ndash;</div>&ndash;&gt;-->
-        <!--  </div>-->
-        <!--</div>-->
       </swiper-slide>
       <div slot="pagination" class="swiper-pagination"></div>
     </swiper>
@@ -62,7 +41,6 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
 import { Swiper, SwiperSlide } from 'vue-awesome-swiper'
 import 'swiper/swiper.scss'
 import defaultTheme from 'tailwindcss/defaultTheme'
@@ -95,12 +73,11 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(['platform']),
     swiperOptions () {
       return {
         slidesPerView: 1.15,
         spaceBetween: 24,
-        cssMode: this.platform === 'mobile',
+        cssMode: this.$device.isMobile,
         pagination: {
           el: '.swiper-pagination'
         },

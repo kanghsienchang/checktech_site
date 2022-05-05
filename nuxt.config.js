@@ -33,8 +33,7 @@ export default {
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
-    { src: '~/plugins/fontawesome.js' },
-    { src: '~/plugins/before-routes.js', mode: 'client' }
+    { src: '~/plugins/fontawesome.js' }
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -44,7 +43,8 @@ export default {
   buildModules: [
     // https://go.nuxtjs.dev/eslint
     '@nuxtjs/eslint-module',
-    '@nuxt/postcss8'
+    '@nuxt/postcss8',
+    '@nuxtjs/device'
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules

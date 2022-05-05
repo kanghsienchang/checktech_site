@@ -13,7 +13,8 @@ import {
   faPhone,
   faEnvelope,
   faLocationDot,
-  faGlobe
+  faGlobe,
+  faCircleArrowRight
 } from '@fortawesome/free-solid-svg-icons'
 
 config.autoAddCss = false
@@ -29,7 +30,8 @@ library.add(
   faPhone,
   faEnvelope,
   faLocationDot,
-  faGlobe
+  faGlobe,
+  faCircleArrowRight
 )
 
 Vue.component('FontAwesomeIcon', FontAwesomeIcon)

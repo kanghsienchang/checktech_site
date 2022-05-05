@@ -1,5 +1,5 @@
 <template>
-  <section id="home-header" class="header min-h-[100vh] relative">
+  <section id="home-header" class="header min-h-[70vh] relative">
     <video
       src="@/assets/videos/header.mp4"
       class="max-w-full w-full h-full object-cover absolute top-0 left-0"
@@ -19,7 +19,7 @@
         </h1>
       </div>
       <p ref="header2" class="mt-6 text-base lg:text-lg">
-        提供您「一次購足」的電子零組件開發與客制化專業建議
+        提供您「一次購足」的電子零組件開發與客製化專業建議
       </p>
       <div ref="header3" class="mt-6">
         <c-button
@@ -48,7 +48,7 @@ export default {
         {
           rel: 'preload',
           as: 'video',
-          href: 'https://www.sinbon.com/img/video/video.mp4'
+          href: require('@/assets/videos/header.mp4')
         }
       ]
     }
