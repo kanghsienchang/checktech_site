@@ -1,7 +1,7 @@
 <template>
   <div class="feature-and-services main-container">
     <h2>能力與服務</h2>
-    <div class="services mt-8 flex flex-col md:flex-row gap-8">
+    <div class="services mt-8 flex flex-col md:flex-row gap-12">
       <div class="pb-4 pr-4 md:w-1/2">
         <div class="relative">
           <figure class="rounded-md overflow-hidden">
@@ -14,7 +14,7 @@
           <div class="absolute content-[''] inset-0 bg-primary-l translate-y-4 translate-x-4 -z-10 rounded-md" />
         </div>
       </div>
-      <div class="md:w-1/2 flex md:justify-center">
+      <div class="md:w-1/2 flex">
         <div>
           <h3 class="mb-8">
             提供各式方案客製化專業建議

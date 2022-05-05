@@ -4,7 +4,7 @@ export default {
 
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    title: 'checktech_site',
+    title: '大將科技',
     htmlAttrs: {
       lang: 'zh-Hant'
     },
@@ -15,7 +15,10 @@ export default {
       { name: 'format-detection', content: 'telephone=no' }
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+      { rel: 'apple-touch-icon', sizes: '180x180', type: 'image/png', href: '/favicon-180.png' },
+      { rel: 'apple-touch-icon', sizes: '32x32', type: 'image/png', href: '/favicon-32.png' },
+      { rel: 'apple-touch-icon', sizes: '16x16', type: 'image/png', href: '/favicon-16.png' },
+      { rel: 'shortcut icon', href: '/favicon.ico' },
       { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
       { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossorigin: '' },
       { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700;900&display=swap' }
