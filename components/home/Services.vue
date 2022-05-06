@@ -11,7 +11,7 @@
     <div
       class="mt-8 relative z-0 bg-[url('@/assets/images/services.jpg')] bg-cover bg-no-repeat bg-center before:absolute before:inset-0 before:bg-[#1e222866] before:z-10"
       :class="[{
-        'bg-fixed': !$device.isMobileOrTablet
+        'bg-fixed': fixedBg
       }]"
     >
       <div class="absolute border-l-[100vw] border-l-transparent bottom-0 right-0 border-b-[2rem] border-b-light z-20"></div>
@@ -49,6 +49,7 @@ export default {
   components: { ListItem, List },
   data () {
     return {
+      fixedBg: false,
       services: [
         { key: 'connector', label: '連結器' },
         { key: 'switch', label: '開關' },
@@ -56,6 +57,9 @@ export default {
         { key: 'electronic_components', label: '電子零組件' }
       ]
     }
+  },
+  mounted () {
+    this.fixedBg = !this.$device.isMobileOrTablet
   }
 }
 </script>
