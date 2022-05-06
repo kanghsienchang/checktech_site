@@ -14,8 +14,9 @@ import {
   faEnvelope,
   faLocationDot,
   faGlobe,
-  faCircleArrowRight
+  faCircleArrowRight, faBars
 } from '@fortawesome/free-solid-svg-icons'
+import { faCircleXmark } from '@fortawesome/free-regular-svg-icons'
 
 config.autoAddCss = false
 
@@ -31,7 +32,9 @@ library.add(
   faEnvelope,
   faLocationDot,
   faGlobe,
-  faCircleArrowRight
+  faCircleArrowRight,
+  faBars,
+  faCircleXmark
 )
 
 Vue.component('FontAwesomeIcon', FontAwesomeIcon)
