@@ -83,14 +83,11 @@
 </template>
 
 <script>
-import { gsap } from 'gsap'
-import { ScrollTrigger } from 'gsap/dist/ScrollTrigger'
 import { Portal } from '@linusborg/vue-simple-portal'
 import { mapGetters } from 'vuex'
 import AppMenu from '~/layouts/components/AppMenu'
 import AppMenuItem from '~/layouts/components/AppMenuItem'
 import AppSubmenu from '~/layouts/components/AppSubmenu'
-gsap.registerPlugin(ScrollTrigger)
 
 export default {
   name: 'NavMenu',
@@ -114,7 +111,7 @@ export default {
     }
   },
   mounted () {
-    const animation = gsap.timeline({ paused: true })
+    const animation = this.$gsap.timeline({ paused: true })
       .set(this.$refs.nav, {
         y: '-100%',
         opacity: 0,
@@ -126,7 +123,7 @@ export default {
         y: 0
       }).progress(-1)
 
-    ScrollTrigger.create({
+    this.$ScrollTrigger.create({
       id: 'header-scroll-trigger',
       trigger: '#home-header',
       animation,
@@ -137,7 +134,7 @@ export default {
     })
   },
   beforeUnmount () {
-    const st = ScrollTrigger.getById('header-scroll-trigger')
+    const st = this.$ScrollTrigger.getById('header-scroll-trigger')
     if (st) { st.kill() }
   }
 }

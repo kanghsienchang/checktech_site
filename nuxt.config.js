@@ -33,7 +33,8 @@ export default {
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
-    { src: '~/plugins/fontawesome.js' }
+    { src: '~/plugins/fontawesome.js' },
+    { src: '~/plugins/gsap.js', mode: 'client' }
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -66,7 +67,10 @@ export default {
         tailwindcss: {},
         autoprefixer: {}
       }
-    }
+    },
+    transpile: [
+      'gsap'
+    ]
   },
 
   server: {

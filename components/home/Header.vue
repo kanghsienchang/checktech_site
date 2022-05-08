@@ -37,7 +37,6 @@
 </template>
 
 <script>
-import { gsap } from 'gsap'
 import CButton from '~/components/ui/Button'
 export default {
   name: 'Header',
@@ -54,7 +53,7 @@ export default {
     }
   },
   mounted () {
-    const tl = gsap.timeline({ defaults: { duration: 0.5, opacity: 0, stagger: 1 } })
+    const tl = this.$gsap.timeline({ defaults: { duration: 0.5, opacity: 0, stagger: 1 } })
     tl.from(this.$refs.header1, { y: '-100%' })
       .from(this.$refs.header2, { x: '25%' })
       .from(this.$refs.header3, { y: '100%' })
