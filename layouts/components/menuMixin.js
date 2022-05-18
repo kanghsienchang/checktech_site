@@ -1,7 +1,7 @@
 export default {
   inject: ['rootMenu'],
   computed: {
-    indexPath () {
+    indexPath() {
       const path = [this.index]
       let parent = this.$parent
       while (parent.$options.componentName !== 'Menu') {
@@ -12,7 +12,7 @@ export default {
       }
       return path
     },
-    parentMenu () {
+    parentMenu() {
       let parent = this.$parent
       while (
         parent &&
@@ -22,8 +22,10 @@ export default {
       }
       return parent
     },
-    paddingStyle () {
-      if (this.rootMenu.mode !== 'vertical') { return {} }
+    paddingStyle() {
+      if (this.rootMenu.mode !== 'vertical') {
+        return {}
+      }
 
       let padding = 0
       let parent = this.$parent

@@ -34,23 +34,23 @@ export default {
     }
   },
   computed: {
-    active () {
+    active() {
       return this.index === this.rootMenu.activeIndex
     },
-    mode () {
+    mode() {
       return this.rootMenu.mode
     }
   },
-  mounted () {
+  mounted() {
     this.parentMenu.addItem(this)
     this.rootMenu.addItem(this)
   },
-  beforeDestroy () {
+  beforeDestroy() {
     this.parentMenu.removeItem(this)
     this.rootMenu.removeItem(this)
   },
   methods: {
-    handleClick () {
+    handleClick() {
       if (!this.disabled) {
         this.dispatch('Menu', 'item-click', this)
         this.$emit('click', this)
@@ -64,11 +64,11 @@ export default {
 .menu {
   &--horizontal {
     .menu-item {
-      @apply px-6
+      @apply px-6;
     }
   }
 }
 .menu-item {
-  @apply py-1.5 cursor-pointer select-none;
+  @apply cursor-pointer select-none py-1.5;
 }
 </style>

@@ -5,7 +5,7 @@
       {
         'menu--horizontal': mode === 'horizontal',
         'menu--vertical': mode === 'vertical'
-      },
+      }
     ]"
     role="menubar"
   >
@@ -17,7 +17,7 @@
 export default {
   name: 'Menu',
   componentName: 'Menu',
-  provide () {
+  provide() {
     return {
       rootMenu: this
     }
@@ -36,7 +36,7 @@ export default {
       default: false
     }
   },
-  data () {
+  data() {
     return {
       activeIndex: this.defaultActive,
       openedMenus: [],
@@ -44,37 +44,39 @@ export default {
       submenus: {}
     }
   },
-  mounted () {
+  mounted() {
     // this.initOpenedMenu();
     // this.$on('item-click', this.handleItemClick)
     this.$on('submenu-click', this.handleSubmenuClick)
     // this.$watch('items', this.updateActiveIndex)
   },
   methods: {
-    addItem (item) {
+    addItem(item) {
       this.$set(this.items, item.index, item)
     },
-    removeItem (item) {
+    removeItem(item) {
       delete this.items[item.index]
     },
-    addSubmenu (item) {
+    addSubmenu(item) {
       this.$set(this.submenus, item.index, item)
     },
-    removeSubmenu (item) {
+    removeSubmenu(item) {
       delete this.submenus[item.index]
     },
-    openMenu (index) {
+    openMenu(index) {
       const openedMenus = this.openedMenus
-      if (openedMenus.includes(index)) { return }
+      if (openedMenus.includes(index)) {
+        return
+      }
       this.openedMenus.push(index)
     },
-    closeMenu (index) {
+    closeMenu(index) {
       const i = this.openedMenus.indexOf(index)
       if (i !== -1) {
         this.openedMenus.splice(i, 1)
       }
     },
-    handleSubmenuClick (submenu) {
+    handleSubmenuClick(submenu) {
       const { index, indexPath } = submenu
       const isOpened = this.openedMenus.includes(index)
 

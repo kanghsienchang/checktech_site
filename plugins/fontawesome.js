@@ -14,7 +14,8 @@ import {
   faEnvelope,
   faLocationDot,
   faGlobe,
-  faCircleArrowRight, faBars
+  faCircleArrowRight,
+  faBars
 } from '@fortawesome/free-solid-svg-icons'
 import { faCircleXmark } from '@fortawesome/free-regular-svg-icons'
 

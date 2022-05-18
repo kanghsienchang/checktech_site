@@ -1,10 +1,15 @@
 <template>
   <button
-    :class="['btn', `btn--${color}`, `btn--${size}`, {
-      'btn--pill': pill,
-      'hover:-translate-y-0.5 hover:shadow-md': translateOnHover,
-      'btn--outline': outline,
-    }]"
+    :class="[
+      'btn',
+      `btn--${color}`,
+      `btn--${size}`,
+      {
+        'btn--pill': pill,
+        'hover:-translate-y-0.5 hover:shadow-md': translateOnHover,
+        'btn--outline': outline
+      }
+    ]"
     @click.prevent="$emit('click')"
   >
     <slot />
@@ -42,13 +47,12 @@ export default {
 <style scoped lang="scss">
 @mixin outline($color) {
   &.btn--outline {
-    @apply bg-transparent text-#{$color};
+    @apply text-#{$color} bg-transparent;
     &:hover {
       @apply bg-#{$color};
       @if $color == 'white' {
         @apply text-main;
-      }
-      @else {
+      } @else {
         @apply text-white;
       }
     }
@@ -56,14 +60,14 @@ export default {
 }
 
 .btn {
-  @apply inline-flex items-center justify-center text-center leading-normal align-middle cursor-pointer select-none bg-transparent border border-solid border-transparent px-4 py-2 font-bold rounded-md transition-all duration-200 ease-in-out tracking-wide text-white;
+  @apply inline-flex cursor-pointer select-none items-center justify-center rounded-md border border-solid border-transparent bg-transparent px-4 py-2 text-center align-middle font-bold leading-normal tracking-wide text-white transition-all duration-200 ease-in-out;
 
   &:hover {
     @apply text-white;
   }
 
   &--lg {
-    @apply text-lg px-6 py-3;
+    @apply px-6 py-3 text-lg;
   }
 
   &--pill {
@@ -71,15 +75,15 @@ export default {
   }
 
   &--primary {
-    @apply bg-primary border-primary hover:bg-primary-d;
+    @apply border-primary bg-primary hover:bg-primary-d;
     @include outline('primary');
   }
 
   &--white {
-    @apply bg-white text-main border-white;
+    @apply border-white bg-white text-main;
     @include outline('white');
     &:hover {
-      @apply text-main bg-white;
+      @apply bg-white text-main;
     }
   }
 }

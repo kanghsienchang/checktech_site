@@ -17,11 +17,7 @@
       <font-awesome-icon icon="chevron-down" size="xs" class="ml-2" />
     </div>
     <div>
-      <ul
-        v-show="opened"
-        role="menu"
-        class="el-menu el-menu--inline"
-      >
+      <ul v-show="opened" role="menu" class="el-menu el-menu--inline">
         <slot />
       </ul>
     </div>
@@ -43,20 +39,20 @@ export default {
     },
     disabled: Boolean
   },
-  data () {
+  data() {
     return {
       items: {},
       submenus: {}
     }
   },
   computed: {
-    opened () {
+    opened() {
       return this.rootMenu.openedMenus.includes(this.index)
     },
-    mode () {
+    mode() {
       return this.rootMenu.mode
     },
-    active () {
+    active() {
       let isActive = false
       const submenus = this.submenus
       const items = this.items
@@ -73,31 +69,31 @@ export default {
       return isActive
     }
   },
-  mounted () {
+  mounted() {
     this.parentMenu.addSubmenu(this)
     this.rootMenu.addSubmenu(this)
   },
-  beforeDestroy () {
+  beforeDestroy() {
     this.parentMenu.removeSubmenu(this)
     this.rootMenu.removeSubmenu(this)
   },
   methods: {
-    addItem (item) {
+    addItem(item) {
       this.$set(this.items, item.index, item)
     },
-    removeItem (item) {
+    removeItem(item) {
       delete this.items[item.index]
     },
-    addSubmenu (item) {
+    addSubmenu(item) {
       this.$set(this.submenus, item.index, item)
     },
-    removeSubmenu (item) {
+    removeSubmenu(item) {
       delete this.submenus[item.index]
     },
-    handleClick () {
+    handleClick() {
       const { rootMenu, disabled } = this
       if (
-        (rootMenu.mode === 'horizontal') ||
+        rootMenu.mode === 'horizontal' ||
         (rootMenu.collapse && rootMenu.mode === 'vertical') ||
         disabled
       ) {
@@ -110,11 +106,10 @@ export default {
 </script>
 
 <style scoped lang="scss">
-
 .menu {
   &--horizontal {
     .submenu__title {
-      @apply px-6
+      @apply px-6;
     }
   }
 }
@@ -128,7 +123,7 @@ export default {
     }
   }
   &__title {
-    @apply py-1.5 cursor-pointer select-none flex justify-between items-center;
+    @apply flex cursor-pointer select-none items-center justify-between py-1.5;
   }
 }
 </style>

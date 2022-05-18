@@ -1,13 +1,16 @@
 <template>
-  <li class="py-1 relative flex items-center">
+  <li class="relative flex items-center py-1">
     <span class="absolute -left-5">
       <slot name="icon">
-        <span v-if="type === 'check'" class="bg-primary-l h-5 w-5 inline-flex rounded-full items-center justify-center">
+        <span
+          v-if="type === 'check'"
+          class="inline-flex h-5 w-5 items-center justify-center rounded-full bg-primary-l"
+        >
           <font-awesome-icon icon="check" size="xs" class="text-primary" />
         </span>
       </slot>
     </span>
-    <span class="ml-1.5">
+    <span class="ml-2">
       <slot></slot>
     </span>
   </li>
@@ -18,13 +21,11 @@ export default {
   name: 'ListItem',
   inject: ['list'],
   computed: {
-    type () {
+    type() {
       return this.list.type
     }
   }
 }
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

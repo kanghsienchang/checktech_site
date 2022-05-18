@@ -1,33 +1,24 @@
 <template>
   <div class="feature-and-services">
-    <div class="main-container">
-      <h2 class="mb-2">
-        能力與服務
-      </h2>
-      <h3>
-        客製化的經營合作模式
-      </h3>
-    </div>
     <div
-      class="mt-8 relative z-0 bg-[url('@/assets/images/services.jpg')] bg-cover bg-no-repeat bg-center before:absolute before:inset-0 before:bg-[#1e222866] before:z-10"
-      :class="[{
-        'bg-fixed': fixedBg
-      }]"
+      class="relative z-10 mt-8 bg-[url('@/assets/images/services.jpg')] bg-cover bg-center bg-no-repeat before:absolute before:inset-0 before:z-10 before:bg-[#1e222866]"
+      :class="[
+        {
+          'bg-fixed': fixedBg
+        }
+      ]"
+      style="clip-path: polygon(0 2rem, 100% 0, 100% calc(100% - 2rem), 0 100%)"
     >
-      <div class="absolute border-l-[100vw] border-l-transparent bottom-0 right-0 border-b-[2rem] border-b-light z-20"></div>
-      <div class="relative main-container py-32 text-white z-20">
+      <div class="main-container relative z-20 py-32 text-white">
         <div class="w-80">
-          <h3 class="mb-8 text-white">
-            提供各式方案客製化專業建議
-          </h3>
-          <list
-            type="check"
-            class="grid grid-cols-2 gap-4"
+          <h2
+            class="mb-4 bg-none bg-clip-content text-white before:bg-white before:bg-none"
           >
-            <list-item
-              v-for="service of services"
-              :key="service.key"
-            >
+            能力與服務
+          </h2>
+          <h4 class="mb-6 text-white">提供各式方案客製化專業建議</h4>
+          <list type="check" class="grid auto-cols-max grid-cols-2 gap-4">
+            <list-item v-for="service of services" :key="service.key">
               <template #icon>
                 <font-awesome-icon icon="circle-arrow-right" />
               </template>
@@ -47,7 +38,7 @@ import ListItem from '~/components/ui/ListItem'
 export default {
   name: 'Services',
   components: { ListItem, List },
-  data () {
+  data() {
     return {
       fixedBg: false,
       services: [
@@ -58,13 +49,10 @@ export default {
       ]
     }
   },
-  mounted () {
+  mounted() {
     this.fixedBg = !this.$device.isMobileOrTablet
   }
 }
 </script>
 
-<style scoped
-       lang="scss"
->
-</style>
+<style scoped lang="scss"></style>
