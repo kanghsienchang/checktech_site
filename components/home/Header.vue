@@ -12,14 +12,14 @@
     <div
       class="header__content main-container absolute inset-0 z-10 flex flex-col items-start justify-center text-white"
     >
-      <div ref="header1">
+      <div class="header__top">
         <h1 class="text-current">專業與創新</h1>
         <h1 class="mt-3 text-current">我們是您最好的選擇</h1>
       </div>
-      <p ref="header2" class="mt-6 text-base lg:text-lg">
+      <p class="header__middle mt-6 text-base lg:text-lg">
         提供您「一次購足」的電子零組件開發與客製化專業建議
       </p>
-      <div ref="header3" class="mt-6">
+      <div class="header__bottom mt-6">
         <c-button color="white" size="lg" pill translate-on-hover outline>
           聯絡我們
         </c-button>
@@ -46,11 +46,23 @@ export default {
   },
   mounted() {
     const tl = this.$gsap.timeline({
-      defaults: { duration: 0.5, opacity: 0, stagger: 1 }
+      scrollTrigger: {
+        trigger: '#home-header',
+        start: 'top bottom',
+        markers: this.$showScrollMarker
+      }
     })
-    tl.from(this.$refs.header1, { y: '-100%' })
-      .from(this.$refs.header2, { x: '25%' })
-      .from(this.$refs.header3, { y: '100%' })
+    tl.from('.header__top', { y: '-100%', duration: 0.7, opacity: 0 })
+      .from(
+        '.header__middle',
+        { x: '25%', duration: 0.7, opacity: 0 },
+        '<+=50%'
+      )
+      .from(
+        '.header__bottom',
+        { y: '100%', duration: 0.7, opacity: 0 },
+        '<+=50%'
+      )
   }
 }
 </script>

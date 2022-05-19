@@ -2,7 +2,7 @@
   <div
     class="quality-assurance main-container flex flex-col gap-12 md:flex-row"
   >
-    <div class="md:w-1/2">
+    <div class="quality-assurance__content md:w-1/2">
       <h2 class="mb-3">品質要求</h2>
       <h4 class="mb-6">致力於全球化佈局策略 符合國際標準</h4>
       <div>
@@ -20,7 +20,7 @@
         </div>
       </div>
     </div>
-    <div class="relative flex flex-wrap md:w-1/2">
+    <div class="quality-assurance__image relative flex flex-wrap md:w-1/2">
       <div
         class="absolute top-[7%] right-[6.25%] -z-10 h-32 w-32 bg-[length:0.75rem_0.75rem] opacity-75"
         :style="{
@@ -51,7 +51,31 @@ import List from '~/components/ui/List'
 import ListItem from '~/components/ui/ListItem'
 export default {
   name: 'QualityAssurance',
-  components: { ListItem, List }
+  components: { ListItem, List },
+  mounted() {
+    this.$gsap
+      .timeline({
+        scrollTrigger: {
+          markers: this.$showScrollMarker,
+          trigger: '.quality-assurance',
+          start: 'top+=300px bottom'
+        }
+      })
+      .from('.quality-assurance__image', {
+        duration: 0.7,
+        opacity: 0,
+        y: 30
+      })
+      .from(
+        '.quality-assurance__content',
+        {
+          duration: 0.7,
+          opacity: 0,
+          y: 30
+        },
+        '<+=50%'
+      )
+  }
 }
 </script>
 

@@ -12,7 +12,7 @@
         我們很樂意為您提供協助，歡迎探索我們的產品及解決方案，留下資訊後將有專人與您聯繫。
       </p>
       <button
-        class="gradient-button rounded-md border border-transparent py-2.5 px-6"
+        class="gradient-button relative rounded-md border border-transparent py-2.5 px-6"
       >
         <span
           class="bg-gradient-to-r from-[#3a7bd5] to-[#223d9d] bg-clip-text text-lg font-medium text-transparent"

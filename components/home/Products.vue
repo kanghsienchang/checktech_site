@@ -1,14 +1,16 @@
 <template>
   <div class="products">
     <div class="main-container">
-      <h2 class="mb-3">產品分類</h2>
-      <h4 class="mb-6">提供客戶一次購足服務</h4>
+      <div class="products__heading">
+        <h2 class="mb-3">產品分類</h2>
+        <h4 class="mb-6">提供客戶一次購足服務</h4>
+      </div>
       <div class="grid-with-gap grid-cols-3">
         <nuxt-link
           v-for="category of categories"
           :key="category.key"
           :to="category.link"
-          class="group relative block flex h-[20rem] cursor-pointer flex-col items-center justify-center overflow-hidden rounded-md bg-cover bg-no-repeat p-8 text-white"
+          class="category group relative block flex h-[20rem] cursor-pointer flex-col items-center justify-center overflow-hidden rounded-md bg-cover bg-no-repeat p-8 text-white"
         >
           <div
             class="absolute inset-0 -z-10 bg-cover bg-no-repeat transition-transform duration-500 group-hover:scale-[1.025]"
@@ -63,6 +65,22 @@ export default {
         }
       ]
     }
+  },
+  mounted() {
+    this.$gsap
+      .timeline({
+        scrollTrigger: {
+          markers: this.$showScrollMarker,
+          trigger: '.products',
+          start: 'top+=300px bottom'
+        }
+      })
+      .from('.products__heading', {
+        duration: 0.4,
+        opacity: 0,
+        y: 30
+      })
+      .from('.category', { opacity: 0, duration: 0.7, y: 30, stagger: 0.25 })
   }
 }
 </script>

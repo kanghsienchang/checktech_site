@@ -10,7 +10,7 @@
       <div
         v-for="feature of features"
         :key="feature.key"
-        class="flex w-52 flex-col gap-4"
+        class="features__feature flex w-52 flex-col gap-4"
       >
         <div
           class="flex h-14 w-14 items-center justify-center rounded-md bg-primary-l"
@@ -66,6 +66,22 @@ export default {
         }
       ]
     }
+  },
+  mounted() {
+    this.$gsap
+      .timeline({
+        scrollTrigger: {
+          markers: this.$showScrollMarker,
+          trigger: '.features',
+          start: 'top+=300px bottom'
+        }
+      })
+      .from('.features__feature', {
+        duration: 0.4,
+        opacity: 0,
+        x: 30,
+        stagger: 0.25
+      })
   }
 }
 </script>

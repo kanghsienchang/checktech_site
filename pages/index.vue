@@ -40,6 +40,7 @@ export default {
     Products,
     HomeHeader: Header
   },
+  scrollToTop: true,
   data() {
     return {}
   }

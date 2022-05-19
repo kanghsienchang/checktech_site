@@ -1,11 +1,11 @@
 <template>
   <div class="vendors main-container">
-    <h2 class="mb-6">代理品牌</h2>
+    <h2 class="vendors__heading mb-6">代理品牌</h2>
     <div class="grid grid-cols-2 gap-4 md:grid-cols-4 lg:grid-cols-5">
       <figure
         v-for="vendor of vendors"
         :key="vendor.image_alt"
-        class="vendor-image group overflow-hidden rounded-md border shadow-sm"
+        class="vendors__vendor group overflow-hidden rounded-md border shadow-sm"
       >
         <img :src="vendor.image" :alt="vendor.image_alt" />
       </figure>
@@ -41,6 +41,27 @@ export default {
         }
       ]
     }
+  },
+  mounted() {
+    this.$gsap
+      .timeline({
+        scrollTrigger: {
+          markers: this.$showScrollMarker,
+          trigger: '.vendors',
+          start: 'top+=300px bottom'
+        }
+      })
+      .from('.vendors__heading', {
+        duration: 0.5,
+        opacity: 0,
+        y: 30
+      })
+      .from('.vendors__vendor', {
+        opacity: 0,
+        duration: 0.4,
+        y: 30,
+        stagger: 0.15
+      })
   }
 }
 </script>

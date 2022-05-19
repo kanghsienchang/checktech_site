@@ -10,7 +10,7 @@
       style="clip-path: polygon(0 2rem, 100% 0, 100% calc(100% - 2rem), 0 100%)"
     >
       <div class="main-container relative z-20 py-32 text-white">
-        <div class="w-80">
+        <div class="feature-and-services__content w-80">
           <h2
             class="mb-4 bg-none bg-clip-content text-white before:bg-white before:bg-none"
           >
@@ -51,6 +51,19 @@ export default {
   },
   mounted() {
     this.fixedBg = !this.$device.isMobileOrTablet
+    this.$gsap
+      .timeline({
+        scrollTrigger: {
+          markers: this.$showScrollMarker,
+          trigger: '.feature-and-services',
+          start: 'top+=300px bottom'
+        }
+      })
+      .from('.feature-and-services__content', {
+        duration: 0.7,
+        opacity: 0,
+        x: 30
+      })
   }
 }
 </script>

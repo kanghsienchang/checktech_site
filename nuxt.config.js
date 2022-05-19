@@ -64,7 +64,8 @@ export default {
     '@nuxtjs/eslint-module',
     '@nuxt/postcss8',
     '@nuxtjs/device',
-    '@nuxtjs/svg'
+    '@nuxtjs/svg',
+    '@nuxtjs/dotenv'
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules

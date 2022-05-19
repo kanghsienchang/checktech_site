@@ -1,10 +1,12 @@
 <template>
   <div class="service-map">
     <div class="main-container">
-      <h2 class="mb-6">客戶分佈</h2>
+      <h2 class="service-map__heading mb-6">客戶分佈</h2>
       <div class="grid-with-gap grid-cols-4">
-        <lottie-wrapper class="col-span-3" :options="mapAnimationOptions" />
-        <div>
+        <div class="service-map__map col-span-3">
+          <lottie-wrapper :options="mapAnimationOptions" />
+        </div>
+        <div class="service-map__legend">
           <div
             class="grid auto-rows-min grid-cols-2 gap-6 rounded-md border border-primary-l bg-light px-6 py-8"
           >
@@ -106,6 +108,23 @@ export default {
         }
       ]
     }
+  },
+  mounted() {
+    this.$gsap
+      .timeline({
+        scrollTrigger: {
+          markers: this.$showScrollMarker,
+          trigger: '.service-map',
+          start: 'top+=300px bottom'
+        }
+      })
+      .from('.service-map__heading', { opacity: 0, duration: 0.7, y: 30 })
+      .from('.service-map__map', { opacity: 0, duration: 0.7, y: 30 }, '<+=50%')
+      .from(
+        '.service-map__legend',
+        { opacity: 0, duration: 0.7, y: 30 },
+        '<+=50%'
+      )
   }
 }
 </script>
