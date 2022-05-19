@@ -15,13 +15,31 @@ export default {
       { name: 'format-detection', content: 'telephone=no' }
     ],
     link: [
-      { rel: 'apple-touch-icon', sizes: '180x180', type: 'image/png', href: '/favicon-180.png' },
-      { rel: 'apple-touch-icon', sizes: '32x32', type: 'image/png', href: '/favicon-32.png' },
-      { rel: 'apple-touch-icon', sizes: '16x16', type: 'image/png', href: '/favicon-16.png' },
+      {
+        rel: 'apple-touch-icon',
+        sizes: '180x180',
+        type: 'image/png',
+        href: '/favicon-180.png'
+      },
+      {
+        rel: 'apple-touch-icon',
+        sizes: '32x32',
+        type: 'image/png',
+        href: '/favicon-32.png'
+      },
+      {
+        rel: 'apple-touch-icon',
+        sizes: '16x16',
+        type: 'image/png',
+        href: '/favicon-16.png'
+      },
       { rel: 'shortcut icon', href: '/favicon.ico' },
       { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
       { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossorigin: '' },
-      { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700;900&display=swap' }
+      {
+        rel: 'stylesheet',
+        href: 'https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700;900&display=swap'
+      }
     ]
   },
 
@@ -33,7 +51,8 @@ export default {
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
-    { src: '~/plugins/fontawesome.js' }
+    { src: '~/plugins/fontawesome.js' },
+    { src: '~/plugins/gsap.js', mode: 'client' }
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -44,7 +63,9 @@ export default {
     // https://go.nuxtjs.dev/eslint
     '@nuxtjs/eslint-module',
     '@nuxt/postcss8',
-    '@nuxtjs/device'
+    '@nuxtjs/device',
+    '@nuxtjs/svg',
+    '@nuxtjs/dotenv'
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
@@ -66,11 +87,11 @@ export default {
         tailwindcss: {},
         autoprefixer: {}
       }
-    }
+    },
+    transpile: ['gsap']
   },
 
   server: {
     host: '0'
   }
-
 }

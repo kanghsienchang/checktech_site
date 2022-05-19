@@ -7,7 +7,7 @@
 <script>
 export default {
   name: 'List',
-  provide () {
+  provide() {
     return {
       list: this
     }
@@ -21,11 +21,8 @@ export default {
         return ['check'].includes(value)
       }
     }
-
   }
 }
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

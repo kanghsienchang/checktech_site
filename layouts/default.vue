@@ -1,10 +1,10 @@
 <template>
-  <div class="default-layout">
-    <nav-menu />
-    <div class="content-wrapper">
+  <div class="default-layout flex flex-col">
+    <nav-menu ref="navMenu" />
+    <div :class="['content-wrapper flex-1']">
       <nuxt-child />
     </div>
-    <app-footer />
+    <app-footer ref="footer" />
   </div>
 </template>
 
@@ -14,19 +14,53 @@ import AppFooter from '~/layouts/components/AppFooter'
 export default {
   name: 'DefaultLayout',
   components: { AppFooter, NavMenu },
-  head () {
+  data() {
+    return {
+      resizeFunction: null
+    }
+  },
+  head() {
     return {
       meta: [
         { hid: 'og-type', property: 'og:type', content: 'website' },
         { hid: 'og-title', property: 'og:title', content: '大將科技' },
         { hid: 'og-desc', property: 'og:description', content: '測試大將官網' },
-        { hid: 'og-image', property: 'og:image', content: require('@/assets/images/logo.png') }
+        {
+          hid: 'og-image',
+          property: 'og:image',
+          content: require('@/assets/images/logo.png')
+        }
       ]
+    }
+  },
+  mounted() {
+    window.addEventListener('resize', this.resizeHandler)
+    this.resize()
+  },
+  beforeDestroy() {
+    window.removeEventListener('resize', this.resizeHandler)
+    clearTimeout(this.resizeFunction)
+  },
+  methods: {
+    resizeHandler() {
+      clearTimeout(this.resizeFunction)
+      this.resizeFunction = setTimeout(() => {
+        this.resize()
+      }, 300)
+    },
+    resize() {
+      this.$store.commit('setWindowWidth', window.innerWidth)
+      this.$store.commit('setWindowHeight', window.innerHeight)
+      const vh = window.innerHeight * 0.01
+      document.documentElement.style.setProperty('--vh-unit', `${vh}px`)
     }
   }
 }
 </script>
 
-<style scoped>
-
+<style scoped lang="scss">
+$vh: calc(var(--vh-unit, 1vh) * 100);
+.default-layout {
+  min-height: $vh;
+}
 </style>

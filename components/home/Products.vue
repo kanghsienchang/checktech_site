@@ -1,113 +1,92 @@
 <template>
-  <section class="products main-container">
-    <h2 class="mb-2">
-      產品分類
-    </h2>
-    <h3>
-      提供客戶一次購足服務
-    </h3>
-    <swiper ref="mySwiper" class="mt-8" :options="swiperOptions">
-      <swiper-slide v-for="product of products" :key="product.key">
-        <div class="relative border rounded-md flex flex-col h-full overflow-hidden shadow-sm">
-          <figure class="h-48 md:h-60 border-b bg-gray-50 flex justify-center items-center">
-            <img
-              :src="product.image"
-              :alt="product.title"
-              class="max-w-full max-h-full h-full object-cover p-6 lg:p-8"
-            >
-          </figure>
-          <!--<div>-->
-          <!--  <a class="relative border-b bg-gray-50 flex justify-center items-center w-full pt-[100%]">-->
-          <!--    <div class="w-full h-full absolute left-0 top-0 flex items-center justify-center">-->
-          <!--      <img-->
-          <!--        :src="product.image"-->
-          <!--        :alt="product.title"-->
-          <!--        class="max-w-full max-h-full"-->
-          <!--      >-->
-          <!--    </div>-->
-          <!--  </a>-->
-          <!--</div>-->
-          <div class="flex-1 flex flex-col p-6 gap-4">
-            <h4>{{ product.title }}</h4>
-            <p class="flex-1">
-              {{ product.description }}
-            </p>
-            <c-button class="mt-2">
-              了解更多
-            </c-button>
+  <div class="products">
+    <div class="main-container">
+      <div class="products__heading">
+        <h2 class="mb-3">產品分類</h2>
+        <h4 class="mb-6">提供客戶一次購足服務</h4>
+      </div>
+      <div class="grid-with-gap grid-cols-3">
+        <nuxt-link
+          v-for="category of categories"
+          :key="category.key"
+          :to="category.link"
+          class="category group relative block flex h-[20rem] cursor-pointer flex-col items-center justify-center overflow-hidden rounded-md bg-cover bg-no-repeat p-8 text-white"
+        >
+          <div
+            class="absolute inset-0 -z-10 bg-cover bg-no-repeat transition-transform duration-500 group-hover:scale-[1.025]"
+            :style="{
+              backgroundImage: `linear-gradient(0deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${category.image})`
+            }"
+          />
+          <div class="flex flex-col gap-4">
+            <div class="text-2xl font-medium">
+              {{ category.label }}
+            </div>
+            <div>
+              {{ category.description }}
+            </div>
+            <div class="underline">查看更多</div>
           </div>
-        </div>
-      </swiper-slide>
-      <div slot="pagination" class="swiper-pagination"></div>
-    </swiper>
-  </section>
+        </nuxt-link>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>
-import { Swiper, SwiperSlide } from 'vue-awesome-swiper'
-import 'swiper/swiper.scss'
-import defaultTheme from 'tailwindcss/defaultTheme'
-import CButton from '~/components/ui/Button'
 export default {
   name: 'Products',
-  components: { CButton, SwiperSlide, Swiper },
-  data () {
+  data() {
     return {
-      products: [
+      animation: null,
+      categories: [
         {
-          key: 1,
-          title: '耳機插頭',
-          description: '專業連接器,耳機插座工廠 尺寸規格齊全,歡迎洽詢訂購',
-          image: require('@/assets/images/product-1.png')
+          key: 'connectors',
+          label: '連接器',
+          description:
+            '牢靠耐用是您想要的，我們可以為您把關，提供穩定高效的元件',
+          image: require('@/assets/images/products/connectors.jpeg'),
+          link: '/products/1'
         },
         {
-          key: 2,
-          title: '連接器',
-          description: '電子連接器，是連接電氣線路的一種導體設備。它廣泛地應用於各種電氣線路',
-          image: require('@/assets/images/product-2.png')
+          key: 'switches',
+          label: '開關',
+          description:
+            '控制類的零件，是我們的強項，為您提供多元的選擇如開關的自由',
+          image: require('@/assets/images/products/switches.jpg'),
+          link: '/products/2'
         },
         {
-          key: 3,
-          title: '開關',
-          description: '',
-          image: require('@/assets/images/product-3.png')
+          key: 'wires',
+          label: '線材',
+          description:
+            '提供符合各項規範，且安全的連接線材，是我們的基本服務與精神',
+          image: require('@/assets/images/products/wires.jpeg'),
+          link: '/products/3'
         }
       ]
     }
   },
-  computed: {
-    swiperOptions () {
-      return {
-        slidesPerView: 1.15,
-        spaceBetween: 24,
-        cssMode: this.$device.isMobile,
-        pagination: {
-          el: '.swiper-pagination'
-        },
-        breakpoints: {
-          [this.removePx(defaultTheme.screens.sm)]: {
-            slidesPerView: 2.15
-          },
-          [this.removePx(defaultTheme.screens.lg)]: {
-            slidesPerView: 3
-          }
+  mounted() {
+    this.animation = this.$gsap
+      .timeline({
+        scrollTrigger: {
+          markers: this.$showScrollMarker,
+          trigger: '.products',
+          start: 'top+=300px bottom'
         }
-      }
-    },
-    swiper () {
-      return this.$refs.mySwiper.$swiper
-    }
+      })
+      .from('.products__heading', {
+        duration: 0.4,
+        opacity: 0,
+        y: 30
+      })
+      .from('.category', { opacity: 0, duration: 0.7, y: 30, stagger: 0.25 })
   },
-  methods: {
-    removePx (breakpointInpX) {
-      return breakpointInpX.replace('px', '')
-    }
+  beforeDestroy() {
+    this.animation.kill()
   }
 }
 </script>
 
-<style scoped lang="scss">
-.swiper-slide {
-  height: auto;
-}
-</style>
+<style scoped></style>
