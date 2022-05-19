@@ -63,8 +63,12 @@ export default {
 <style scoped lang="scss">
 .menu {
   &--horizontal {
-    .menu-item {
+    & > .menu-item {
       @apply px-6;
+    }
+  }
+  &--popup {
+    & > .menu-item {
     }
   }
 }

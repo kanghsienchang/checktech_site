@@ -1,5 +1,7 @@
 <template>
-  <button
+  <component
+    :is="to ? 'nuxt-link' : 'button'"
+    :to="to"
     :class="[
       'btn',
       `btn--${color}`,
@@ -13,13 +15,17 @@
     @click.prevent="$emit('click')"
   >
     <slot />
-  </button>
+  </component>
 </template>
 
 <script>
 export default {
   name: 'CButton',
   props: {
+    to: {
+      type: [String, Object],
+      default: null
+    },
     color: {
       type: String,
       default: 'primary'

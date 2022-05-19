@@ -38,6 +38,7 @@ export default {
   name: 'Products',
   data() {
     return {
+      animation: null,
       categories: [
         {
           key: 'connectors',
@@ -67,7 +68,7 @@ export default {
     }
   },
   mounted() {
-    this.$gsap
+    this.animation = this.$gsap
       .timeline({
         scrollTrigger: {
           markers: this.$showScrollMarker,
@@ -81,6 +82,9 @@ export default {
         y: 30
       })
       .from('.category', { opacity: 0, duration: 0.7, y: 30, stagger: 0.25 })
+  },
+  beforeDestroy() {
+    this.animation.kill()
   }
 }
 </script>

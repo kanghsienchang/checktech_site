@@ -1,10 +1,10 @@
 <template>
-  <div class="default-layout">
-    <nav-menu />
-    <div class="content-wrapper">
+  <div class="default-layout flex flex-col">
+    <nav-menu ref="navMenu" />
+    <div :class="['content-wrapper flex-1']">
       <nuxt-child />
     </div>
-    <app-footer />
+    <app-footer ref="footer" />
   </div>
 </template>
 
@@ -58,4 +58,9 @@ export default {
 }
 </script>
 
-<style scoped></style>
+<style scoped lang="scss">
+$vh: calc(var(--vh-unit, 1vh) * 100);
+.default-layout {
+  min-height: $vh;
+}
+</style>

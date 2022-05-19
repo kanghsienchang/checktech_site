@@ -40,6 +40,7 @@ export default {
   components: { ListItem, List },
   data() {
     return {
+      animation: null,
       fixedBg: false,
       services: [
         { key: 'connector', label: '連結器' },
@@ -51,7 +52,7 @@ export default {
   },
   mounted() {
     this.fixedBg = !this.$device.isMobileOrTablet
-    this.$gsap
+    this.animation = this.$gsap
       .timeline({
         scrollTrigger: {
           markers: this.$showScrollMarker,
@@ -64,6 +65,9 @@ export default {
         opacity: 0,
         x: 30
       })
+  },
+  beforeDestroy() {
+    this.animation.kill()
   }
 }
 </script>

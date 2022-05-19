@@ -27,6 +27,7 @@ export default {
   name: 'Statistics',
   data() {
     return {
+      animations: [],
       stats: [
         {
           key: 'average_capacity',
@@ -53,45 +54,29 @@ export default {
     }
   },
   mounted() {
-    const tl = this.$gsap
-      .timeline({
-        scrollTrigger: {
-          markers: this.$showScrollMarker,
-          trigger: '.statistics',
-          start: 'top+=300px bottom'
-        }
-      })
-      .from('.statistics__heading', {
-        duration: 0.7,
-        y: 30,
-        opacity: 0
-      })
-      .add('start')
-      .from(
-        '.statistics__content',
-        {
-          duration: 0.4,
-          opacity: 0
-        },
-        '<+=50%'
-      )
-
     for (const stat of this.stats) {
       const start = { val: 0 }
       const split = (stat.value + '').split('.')
       const decimals = split.length > 1 ? split[1].length : 0
-      tl.to(
-        start,
-        {
-          val: stat.value,
-          duration: 2.5,
-          ease: 'power1.out',
-          onUpdate() {
-            stat.value = this.targets()[0].val.toFixed(decimals)
-          }
+      const animation = this.$gsap.to(start, {
+        scrollTrigger: {
+          markers: this.$showScrollMarker,
+          trigger: '.statistics',
+          start: 'top+=200px bottom'
         },
-        'start'
-      )
+        val: stat.value,
+        duration: 1.5,
+        ease: 'power1.out',
+        onUpdate() {
+          stat.value = this.targets()[0].val.toFixed(decimals)
+        }
+      })
+      this.animations.push(animation)
+    }
+  },
+  beforeDestroy() {
+    for (const animation of this.animations) {
+      animation.kill()
     }
   }
 }

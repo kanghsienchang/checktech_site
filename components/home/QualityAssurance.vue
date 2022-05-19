@@ -30,7 +30,7 @@
       />
       <figure class="z-10 w-[75%] overflow-hidden rounded-md">
         <img
-          src="@/assets/images/quality-assurance/image1.jpeg"
+          src="@/assets/images/quality-assurance/image1.jpg"
           alt="Quality assurance 1"
           class="h-full object-cover"
         />
@@ -52,8 +52,13 @@ import ListItem from '~/components/ui/ListItem'
 export default {
   name: 'QualityAssurance',
   components: { ListItem, List },
+  data() {
+    return {
+      animation: null
+    }
+  },
   mounted() {
-    this.$gsap
+    this.animation = this.$gsap
       .timeline({
         scrollTrigger: {
           markers: this.$showScrollMarker,
@@ -75,6 +80,9 @@ export default {
         },
         '<+=50%'
       )
+  },
+  beforeDestroy() {
+    this.animation.kill()
   }
 }
 </script>

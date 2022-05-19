@@ -1,7 +1,10 @@
 <template>
   <div class="service-map">
     <div class="main-container">
-      <h2 class="service-map__heading mb-6">客戶分佈</h2>
+      <div class="service-map__heading">
+        <h2 class="mb-3">客戶分佈</h2>
+        <h4 class="mb-6">銷售據點涵蓋亞洲、歐洲及美洲</h4>
+      </div>
       <div class="grid-with-gap grid-cols-4">
         <div class="service-map__map col-span-3">
           <lottie-wrapper :options="mapAnimationOptions" />
@@ -46,6 +49,7 @@ export default {
   components: { LottieWrapper },
   data() {
     return {
+      animation: null,
       mapAnimationOptions: {
         animationData: map,
         autoplay: true
@@ -110,7 +114,7 @@ export default {
     }
   },
   mounted() {
-    this.$gsap
+    this.animation = this.$gsap
       .timeline({
         scrollTrigger: {
           markers: this.$showScrollMarker,
@@ -125,6 +129,9 @@ export default {
         { opacity: 0, duration: 0.7, y: 30 },
         '<+=50%'
       )
+  },
+  beforeDestroy() {
+    this.animation.kill()
   }
 }
 </script>

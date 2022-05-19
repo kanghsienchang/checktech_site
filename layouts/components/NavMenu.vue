@@ -1,10 +1,20 @@
 <template>
   <nav
     ref="nav"
-    :class="['nav-wrapper', { 'nav-wrapper--fixed': navStickTop }]"
+    :class="[
+      'nav-wrapper',
+      {
+        'nav-wrapper--fixed': navStickTop,
+        'bg-white/[0.97] !text-main shadow-sm': !isHomePage || navStickTop,
+        '!static': !isHomePage
+      }
+    ]"
   >
     <div class="main-container flex h-full items-center justify-between">
-      <nuxt-link to="/" :class="['h-20 py-2', { '!h-16': navStickTop }]">
+      <nuxt-link
+        to="/"
+        :class="['h-20 py-2', { '!h-16': navStickTop || !isHomePage }]"
+      >
         <img :src="logoImg" alt="CheckTech" class="h-full" />
       </nuxt-link>
       <div
@@ -21,46 +31,16 @@
             <app-menu-item index="1"> 能力與服務 </app-menu-item>
             <app-submenu index="2">
               <template #title> 產品 </template>
-              <app-menu-item index="3"> 開關 </app-menu-item>
-              <app-menu-item index="4"> 連接器 </app-menu-item>
-              <app-menu-item index="5"> 耳機插座 </app-menu-item>
+              <app-menu-item index="3"> 連接器 </app-menu-item>
+              <app-menu-item index="4"> 開關 </app-menu-item>
+              <app-menu-item index="5"> 線材 </app-menu-item>
+            </app-submenu>
+            <app-submenu index="3">
+              <template #title> 繁體中文 </template>
+              <app-menu-item index="6"> 繁體中文 </app-menu-item>
+              <app-menu-item index="7"> English </app-menu-item>
             </app-submenu>
           </app-menu>
-          <!--<ul :class="['nav', {'nav&#45;&#45;vertical': !sm}]">-->
-          <!--  <li class="nav-item">-->
-          <!--    關於大將-->
-          <!--  </li>-->
-          <!--  <li class="nav-item">-->
-          <!--    能力與服務-->
-          <!--  </li>-->
-          <!--  <li class="nav-item">-->
-          <!--    產品-->
-          <!--    <font-awesome-icon icon="chevron-down" size="xs" />-->
-          <!--    <ul class="nav-submenu">-->
-          <!--      <li class="nav-submenu-item">-->
-          <!--        開關-->
-          <!--      </li>-->
-          <!--      <li class="nav-submenu-item">-->
-          <!--        連接器-->
-          <!--      </li>-->
-          <!--      <li class="nav-submenu-item">-->
-          <!--        耳機插座-->
-          <!--      </li>-->
-          <!--    </ul>-->
-          <!--  </li>-->
-          <!--  <li class="nav-item">-->
-          <!--    繁體中文-->
-          <!--    <font-awesome-icon icon="chevron-down" size="xs" />-->
-          <!--    <ul class="nav-submenu !min-w-0">-->
-          <!--      <li class="nav-submenu-item">-->
-          <!--        English-->
-          <!--      </li>-->
-          <!--      <li class="nav-submenu-item">-->
-          <!--        簡體中文-->
-          <!--      </li>-->
-          <!--    </ul>-->
-          <!--  </li>-->
-          <!--</ul>-->
         </div>
       </portal>
     </div>
@@ -84,7 +64,6 @@ export default {
   },
   data() {
     return {
-      navHeightInPx: 80,
       navStickTop: false,
       navBarOpen: false
     }
@@ -92,9 +71,12 @@ export default {
   computed: {
     ...mapGetters(['sm']),
     logoImg() {
-      return this.navStickTop
+      return this.navStickTop || !this.isHomePage
         ? require('@/assets/images/logo.png')
         : require('@/assets/images/logo-white.png')
+    },
+    isHomePage() {
+      return this.$route.path === '/'
     }
   },
   mounted() {
@@ -136,42 +118,21 @@ export default {
 .nav-wrapper {
   @apply absolute top-0 right-0 left-0 z-30 text-white;
   &--fixed {
-    @apply fixed bg-white/[0.97] text-main shadow-sm;
-  }
-}
-
-.nav {
-  @apply ml-auto flex;
-
-  &--vertical {
-    @apply flex-col;
-    .nav-item {
-      @apply px-0 py-2.5;
-    }
-    .nav-submenu {
+    @apply fixed;
+    &::v-deep {
+      .menu-item,
+      .submenu__title {
+        @apply transition-colors duration-200 hover:text-primary-d;
+      }
     }
   }
-}
-
-.nav-item {
-  @apply relative cursor-pointer py-6 px-5 font-medium tracking-wide;
-  &:hover {
-    .nav-submenu {
-      @apply pointer-events-auto top-[100%] opacity-[0.95];
+  &::v-deep {
+    .menu--popup {
+      .menu-item,
+      .submenu__title {
+        @apply transition-colors duration-200 hover:text-primary-d;
+      }
     }
   }
-}
-.nav-wrapper--fixed .nav-item:hover .nav-submenu {
-  @apply mt-2 opacity-100;
-}
-
-.nav-submenu {
-  @apply pointer-events-none absolute inset-x-0 top-[120%] block h-auto w-full min-w-[10rem] rounded bg-white py-3 px-4 py-4 text-gray-600 opacity-0 shadow transition-all ease-out;
-  &:before {
-    @apply absolute inset-0 -top-4 -z-10 block h-full w-full content-[""];
-  }
-}
-.nav-submenu-item {
-  @apply py-1.5 text-[0.9375rem];
 }
 </style>

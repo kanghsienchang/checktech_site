@@ -11,7 +11,8 @@
       <p class="text-lg">
         我們很樂意為您提供協助，歡迎探索我們的產品及解決方案，留下資訊後將有專人與您聯繫。
       </p>
-      <button
+      <nuxt-link
+        to="/contact-us"
         class="gradient-button relative rounded-md border border-transparent py-2.5 px-6"
       >
         <span
@@ -19,7 +20,7 @@
         >
           聯絡我們
         </span>
-      </button>
+      </nuxt-link>
     </div>
   </div>
 </template>

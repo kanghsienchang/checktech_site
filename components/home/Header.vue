@@ -20,10 +20,23 @@
         提供您「一次購足」的電子零組件開發與客製化專業建議
       </p>
       <div class="header__bottom mt-6">
-        <c-button color="white" size="lg" pill translate-on-hover outline>
+        <c-button
+          to="/contact-us"
+          color="white"
+          size="lg"
+          pill
+          translate-on-hover
+          outline
+        >
           聯絡我們
         </c-button>
       </div>
+    </div>
+    <div
+      class="absolute inset-x-0 bottom-20 z-10 animate-bounce text-center text-white opacity-75"
+    >
+      <font-awesome-icon icon="angles-down" size="xl" />
+      <div class="text-sm">Scroll</div>
     </div>
   </section>
 </template>
@@ -35,6 +48,7 @@ export default {
   components: { CButton },
   head() {
     return {
+      animation: null,
       link: [
         {
           rel: 'preload',
@@ -45,24 +59,20 @@ export default {
     }
   },
   mounted() {
-    const tl = this.$gsap.timeline({
-      scrollTrigger: {
-        trigger: '#home-header',
-        start: 'top bottom',
-        markers: this.$showScrollMarker
-      }
-    })
-    tl.from('.header__top', { y: '-100%', duration: 0.7, opacity: 0 })
-      .from(
-        '.header__middle',
-        { x: '25%', duration: 0.7, opacity: 0 },
-        '<+=50%'
-      )
-      .from(
-        '.header__bottom',
-        { y: '100%', duration: 0.7, opacity: 0 },
-        '<+=50%'
-      )
+    this.animation = this.$gsap
+      .timeline({
+        scrollTrigger: {
+          trigger: '#home-header',
+          start: 'top bottom',
+          markers: this.$showScrollMarker
+        }
+      })
+      .from('.header__top', { y: -50, duration: 0.7, opacity: 0 })
+      .from('.header__middle', { x: 30, duration: 0.7, opacity: 0 })
+      .from('.header__bottom', { y: 30, duration: 0.7, opacity: 0 }, '<+=50%')
+  },
+  beforeDestroy() {
+    this.animation.kill()
   }
 }
 </script>

@@ -5,7 +5,7 @@
       <figure
         v-for="vendor of vendors"
         :key="vendor.image_alt"
-        class="vendors__vendor group overflow-hidden rounded-md border shadow-sm"
+        class="vendors__vendor group overflow-hidden rounded-md border shadow-sm transition-all duration-200 hover:-translate-y-1"
       >
         <img :src="vendor.image" :alt="vendor.image_alt" />
       </figure>
@@ -41,27 +41,6 @@ export default {
         }
       ]
     }
-  },
-  mounted() {
-    this.$gsap
-      .timeline({
-        scrollTrigger: {
-          markers: this.$showScrollMarker,
-          trigger: '.vendors',
-          start: 'top+=300px bottom'
-        }
-      })
-      .from('.vendors__heading', {
-        duration: 0.5,
-        opacity: 0,
-        y: 30
-      })
-      .from('.vendors__vendor', {
-        opacity: 0,
-        duration: 0.4,
-        y: 30,
-        stagger: 0.15
-      })
   }
 }
 </script>

@@ -12,25 +12,25 @@
         <div class="flex flex-col gap-6">
           <figure class="h-full w-[calc(100%-1.5rem)] self-end">
             <img
-              src="@/assets/images/about/about-us-top-left.jpeg"
+              src="@/assets/images/about/about-us-top-left.jpg"
               class="h-full"
             />
           </figure>
           <figure class="h-[100%-1.5rem]">
             <img
-              src="@/assets/images/about/about-us-bottom-left.jpeg"
+              src="@/assets/images/about/about-us-bottom-left.jpg"
               class="h-full"
             />
           </figure>
         </div>
         <figure class="h-[calc(100%-3rem)] self-center">
-          <img src="@/assets/images/about/about-us-right.jpeg" class="h-full" />
+          <img src="@/assets/images/about/about-us-right.jpg" class="h-full" />
         </figure>
         <div
           class="absolute top-[calc(50%+2.5rem)] left-1/2 flex h-[9.375rem] w-[9.375rem] -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-primary"
         >
           <div class="text-center text-white">
-            <div class="mb-1 text-3xl font-bold">20+</div>
+            <div class="mb-1 text-3xl font-bold">30+</div>
             <div>Year Experience</div>
           </div>
         </div>
@@ -44,7 +44,7 @@
           同時整合上下游並深入市場需求延伸出更多元化、客製化的經營合作模式
         </h4>
         <p>
-          銷售據點涵蓋亞洲、歐洲及美洲，提供客戶「一次購足服務」，供應完整的電阻、電容、電感、變壓器、繼電器、天線、無線元件和電路保護元件等被動元件，以滿足客戶各種不同領域應用的各式需求。
+          提供客戶「一次購足服務」，供應完整的電阻、電容、電感、變壓器、繼電器、天線、無線元件和電路保護元件等被動元件，以滿足客戶各種不同領域應用的各式需求。
         </p>
       </div>
     </div>
@@ -54,8 +54,13 @@
 <script>
 export default {
   name: 'AboutUs',
+  data() {
+    return {
+      animation: null
+    }
+  },
   mounted() {
-    this.$gsap
+    this.animation = this.$gsap
       .timeline({
         scrollTrigger: {
           markers: this.$showScrollMarker,
@@ -77,6 +82,9 @@ export default {
         },
         '<+=50%'
       )
+  },
+  beforeDestroy() {
+    this.animation.kill()
   }
 }
 </script>

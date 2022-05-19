@@ -121,12 +121,15 @@ export default {
 
 <style lang="scss">
 .menu {
-  @apply flex;
+  @apply flex font-medium;
   &--horizontal {
     @apply flex-row;
   }
   &--vertical {
     @apply flex-col;
+  }
+  &--popup {
+    @apply mt-2 flex-col rounded-md bg-white px-6 py-3 text-main shadow;
   }
 }
 </style>

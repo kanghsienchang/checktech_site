@@ -1,5 +1,5 @@
 <template>
-  <div class="features relative">
+  <div class="features relative overflow-hidden">
     <div
       class="absolute top-0 right-0 h-8 w-60 translate-y-2 -skew-y-2 -skew-x-2 bg-[#A3F8FDB2]/70"
     />
@@ -35,6 +35,7 @@ export default {
   name: 'Features',
   data() {
     return {
+      animation: null,
       features: [
         {
           key: 'fast_response',
@@ -68,7 +69,7 @@ export default {
     }
   },
   mounted() {
-    this.$gsap
+    this.animation = this.$gsap
       .timeline({
         scrollTrigger: {
           markers: this.$showScrollMarker,
@@ -82,6 +83,9 @@ export default {
         x: 30,
         stagger: 0.25
       })
+  },
+  beforeDestroy() {
+    this.animation.kill()
   }
 }
 </script>
