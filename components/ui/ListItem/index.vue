@@ -4,9 +4,9 @@
       <slot name="icon">
         <span
           v-if="type === 'check'"
-          class="inline-flex h-5 w-5 items-center justify-center rounded-full bg-primary-l"
+          class="inline-flex h-5 w-5 items-center justify-center rounded-full bg-primary-100"
         >
-          <font-awesome-icon icon="check" size="xs" class="text-primary" />
+          <font-awesome-icon icon="check" size="xs" class="text-primary-500" />
         </span>
       </slot>
     </span>

@@ -11,11 +11,12 @@
           :key="stat.key"
           class="flex flex-col items-center text-center"
         >
+          <!--eslint-disable-next-line vue/no-v-html-->
           <div class="icon mb-4" v-html="stat.icon" />
           <div class="mb-3 text-3xl font-bold">
             {{ stat.value }}{{ stat.suffix }}
           </div>
-          <div class="text-main-l">{{ stat.label }}</div>
+          <div class="text-slate-800-l">{{ stat.label }}</div>
         </div>
       </div>
     </div>
@@ -89,10 +90,10 @@ export default {
       @apply h-12 w-12;
     }
     .lineal-fill {
-      @apply fill-primary;
+      @apply fill-primary-500;
     }
     .lineal-stroke {
-      fill: #36496d;
+      fill: theme('colors.slate.700');
     }
   }
 }

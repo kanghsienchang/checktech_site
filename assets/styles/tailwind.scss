@@ -4,33 +4,37 @@
 
 @layer base {
   body {
-    @apply antialiased text-base leading-relaxed tracking-normal font-normal text-main bg-white;
+    @apply antialiased text-base leading-relaxed tracking-normal font-normal text-slate-800 bg-white;
+  }
+
+  .linear-primary {
+    background-image: linear-gradient(90deg, #3A7BD5, #223D9D);
   }
 
   h1 {
-    @apply font-medium text-main-d text-3xl md:text-4xl;
+    @apply font-medium text-slate-800 text-3xl md:text-4xl;
   }
 
   h2 {
-    @apply relative pl-[20px] font-medium text-main-d text-lg md:text-xl bg-clip-text text-transparent inline-flex;
-    background-image: linear-gradient(90deg, #3A7BD5 0%, #223D9D 100%);
+    @apply relative pl-[20px] font-medium text-slate-800 text-lg md:text-xl bg-clip-text text-transparent inline-flex;
+    @extend .linear-primary;
     &:before {
       @apply absolute content-[''] min-w-[12px] min-h-[2px] left-0 top-1/2 rounded-full inline-block;
-      background-image: linear-gradient(90deg, #3A7BD5 0%, #223D9D 100%);
+      @extend .linear-primary;
     }
-    //@apply font-medium text-main-d text-2xl md:text-3xl;
+    //@apply font-medium text-slate-800 text-2xl md:text-3xl;
   }
   h3 {
-    @apply font-medium text-main-d text-2xl md:text-3xl;
+    @apply font-medium text-slate-800 text-2xl md:text-3xl;
   }
   h4 {
-    @apply font-medium text-main-d text-xl md:text-2xl;
+    @apply font-medium text-slate-800 text-xl md:text-2xl;
   }
   h5 {
-    @apply font-medium text-main-d text-lg md:text-xl;
+    @apply font-medium text-slate-800 text-lg md:text-xl;
   }
   h6 {
-    @apply font-medium text-main-d text-sm md:text-base;
+    @apply font-medium text-slate-800 text-sm md:text-base;
   }
 
   img {

@@ -1,5 +1,5 @@
 <template>
-  <div class="footer bg-footer py-6 text-sm text-white md:py-8">
+  <div class="footer bg-slate-800 py-6 text-sm text-white md:py-8">
     <div
       class="main-container flex flex-col flex-wrap justify-between gap-8 sm:flex-row"
     >
@@ -93,7 +93,7 @@ export default {
 <style scoped lang="scss">
 .footer {
   &__title {
-    @apply mb-3 text-gray-400;
+    @apply mb-3 text-slate-400;
   }
 }
 

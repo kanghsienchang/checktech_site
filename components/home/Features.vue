@@ -1,10 +1,10 @@
 <template>
   <div class="features relative overflow-hidden">
     <div
-      class="absolute top-0 right-0 h-8 w-60 translate-y-2 -skew-y-2 -skew-x-2 bg-[#A3F8FDB2]/70"
+      class="absolute top-0 right-0 h-8 w-60 translate-y-2 -skew-y-2 -skew-x-2 bg-cyan-200/70"
     />
     <div
-      class="absolute top-0 right-0 h-6 w-52 translate-y-7 -translate-x-2 rotate-1 -skew-y-2 -skew-x-3 bg-[#539BFFCC]/70"
+      class="absolute top-0 right-0 h-6 w-52 translate-y-7 -translate-x-2 rotate-1 -skew-y-2 -skew-x-3 bg-blue-400/70"
     />
     <div class="main-container flex justify-between">
       <div
@@ -13,11 +13,11 @@
         class="features__feature flex w-52 flex-col gap-4"
       >
         <div
-          class="flex h-14 w-14 items-center justify-center rounded-md bg-primary-l"
+          class="flex h-14 w-14 items-center justify-center rounded-md bg-primary-100"
         >
           <font-awesome-icon
             :icon="feature.icon"
-            class="text-primary"
+            class="text-primary-500"
             size="xl"
           />
         </div>

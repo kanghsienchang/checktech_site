@@ -5,7 +5,7 @@
       'nav-wrapper',
       {
         'nav-wrapper--fixed': navStickTop,
-        'bg-white/[0.97] !text-main shadow-sm': !isHomePage || navStickTop,
+        'bg-white/[0.97] !text-slate-800 shadow-sm': !isHomePage || navStickTop,
         '!static': !isHomePage
       }
     ]"
@@ -24,7 +24,7 @@
         <font-awesome-icon icon="bars" size="xl" />
       </div>
       <portal :disabled="sm">
-        <!--:class="[!sm && 'fixed inset-0 bg-footer z-50 px-4 py-2 w-[15rem] text-white']"-->
+        <!--:class="[!sm && 'fixed inset-0 bg-slate-800 z-50 px-4 py-2 w-[15rem] text-white']"-->
         <div>
           <app-menu :mode="sm ? 'horizontal' : 'vertical'" class="font-medium">
             <app-menu-item index="0"> 關於大將 </app-menu-item>
@@ -122,7 +122,7 @@ export default {
     &::v-deep {
       .menu-item,
       .submenu__title {
-        @apply transition-colors duration-200 hover:text-primary-d;
+        @apply transition-colors duration-200 hover:text-primary-500;
       }
     }
   }
@@ -130,7 +130,7 @@ export default {
     .menu--popup {
       .menu-item,
       .submenu__title {
-        @apply transition-colors duration-200 hover:text-primary-d;
+        @apply transition-colors duration-200 hover:text-primary-500;
       }
     }
   }

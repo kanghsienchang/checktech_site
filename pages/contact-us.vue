@@ -1,7 +1,7 @@
 <template>
   <div class="contact-us main-container py-8">
     <div class="mb-4">
-      <nuxt-link to="/" class="text-primary">首頁</nuxt-link>
+      <nuxt-link to="/" class="text-primary-500">首頁</nuxt-link>
       / 聯絡我們
     </div>
     <!--<div>-->

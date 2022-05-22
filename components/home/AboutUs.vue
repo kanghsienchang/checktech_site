@@ -27,7 +27,7 @@
           <img src="@/assets/images/about/about-us-right.jpg" class="h-full" />
         </figure>
         <div
-          class="absolute top-[calc(50%+2.5rem)] left-1/2 flex h-[9.375rem] w-[9.375rem] -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-primary"
+          class="absolute top-[calc(50%+2.5rem)] left-1/2 flex h-[9.375rem] w-[9.375rem] -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-primary-500"
         >
           <div class="text-center text-white">
             <div class="mb-1 text-3xl font-bold">30+</div>

@@ -129,7 +129,7 @@ export default {
     @apply flex-col;
   }
   &--popup {
-    @apply mt-2 flex-col rounded-md bg-white px-6 py-3 text-main shadow;
+    @apply mt-2 flex-col rounded-md bg-white px-6 py-3 text-slate-800 shadow;
   }
 }
 </style>

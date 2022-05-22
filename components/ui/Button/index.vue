@@ -57,7 +57,7 @@ export default {
     &:hover {
       @apply bg-#{$color};
       @if $color == 'white' {
-        @apply text-main;
+        @apply text-slate-800;
       } @else {
         @apply text-white;
       }
@@ -81,15 +81,15 @@ export default {
   }
 
   &--primary {
-    @apply border-primary bg-primary hover:bg-primary-d;
-    @include outline('primary');
+    @apply border-primary-500 bg-primary-500 hover:bg-primary-600;
+    @include outline('primary-500');
   }
 
   &--white {
-    @apply border-white bg-white text-main;
+    @apply border-white bg-white text-slate-800;
     @include outline('white');
     &:hover {
-      @apply bg-white text-main;
+      @apply bg-white text-slate-800;
     }
   }
 }
