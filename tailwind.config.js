@@ -37,18 +37,19 @@ module.exports = {
     boxShadow: {
       sm: '0 .25rem .75rem rgba(30, 40, 40, 0.07)',
       DEFAULT: '0 0 1.25rem rgba(30, 34, 40, 0.1)',
-      md: '0 .25rem 1.75rem rgba(30, 34, 40, 0.15)'
+      md: '0 .25rem 1.75rem rgba(30, 34, 40, 0.15)',
+      none: 'none'
     },
     fontFamily: {
       sans: ["'Noto Sans TC'", ...defaultTheme.fontFamily.sans]
-    },
-    screens: {
-      sm: '576px',
-      md: '768px',
-      lg: '992px',
-      xl: '1200px',
-      '2xl': '1400px'
     }
+    // screens: {
+    //   sm: '576px',
+    //   md: '768px',
+    //   lg: '992px',
+    //   xl: '1200px',
+    //   '2xl': '1400px'
+    // }
     // fontSize: {
     //   xs: ['0.75rem', { lineHeight: '1rem' }], // 12px
     //   sm: ['0.875rem', { lineHeight: '1.25rem' }], // 14px

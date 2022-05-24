@@ -1,9 +1,5 @@
 <template>
   <div class="contact-us main-container py-8">
-    <div class="mb-4">
-      <nuxt-link to="/" class="text-primary-500">首頁</nuxt-link>
-      / 聯絡我們
-    </div>
     <!--<div>-->
     <!--  <h4>聯絡我們</h4>-->
     <!--  <div>-->
@@ -18,7 +14,10 @@
 
 <script>
 export default {
-  name: 'ContactUs'
+  name: 'ContactUs',
+  meta: {
+    test: '12'
+  }
 }
 </script>
 

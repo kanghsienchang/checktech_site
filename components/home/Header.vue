@@ -46,23 +46,16 @@ import CButton from '~/components/ui/Button'
 export default {
   name: 'Header',
   components: { CButton },
-  head() {
+  data() {
     return {
-      animation: null,
-      link: [
-        {
-          rel: 'preload',
-          as: 'video',
-          href: require('@/assets/videos/header.mp4')
-        }
-      ]
+      animation: null
     }
   },
   mounted() {
     this.animation = this.$gsap
       .timeline({
         scrollTrigger: {
-          trigger: '#home-header',
+          trigger: '.header',
           start: 'top bottom',
           markers: this.$showScrollMarker
         }

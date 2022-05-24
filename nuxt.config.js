@@ -71,7 +71,8 @@ export default {
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
     // https://go.nuxtjs.dev/axios
-    '@nuxtjs/axios'
+    '@nuxtjs/axios',
+    'nuxt-route-meta'
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
@@ -93,5 +94,10 @@ export default {
 
   server: {
     host: '0'
+  },
+  watchers: {
+    webpack: {
+      ignored: ['.idea', '.eslintcache', '.git']
+    }
   }
 }

@@ -5,15 +5,18 @@
       'nav-wrapper',
       {
         'nav-wrapper--fixed': navStickTop,
-        'bg-white/[0.97] !text-slate-800 shadow-sm': !isHomePage || navStickTop,
-        '!static': !isHomePage
+        'nav-wrapper--top-absolute-transparent':
+          transparentAndAbsoluteAtTop && !navStickTop
       }
     ]"
   >
     <div class="main-container flex h-full items-center justify-between">
       <nuxt-link
         to="/"
-        :class="['h-20 py-2', { '!h-16': navStickTop || !isHomePage }]"
+        :class="[
+          'h-20 py-2',
+          { '!h-16': navStickTop || !transparentAndAbsoluteAtTop }
+        ]"
       >
         <img :src="logoImg" alt="CheckTech" class="h-full" />
       </nuxt-link>
@@ -62,6 +65,16 @@ export default {
     AppSubmenu,
     Portal
   },
+  props: {
+    transparentAndAbsoluteAtTop: {
+      type: Boolean,
+      default: false
+    },
+    scrollTriggerOptions: {
+      type: Object,
+      default: () => {}
+    }
+  },
   data() {
     return {
       navStickTop: false,
@@ -71,12 +84,9 @@ export default {
   computed: {
     ...mapGetters(['sm']),
     logoImg() {
-      return this.navStickTop || !this.isHomePage
+      return this.navStickTop || !this.transparentAndAbsoluteAtTop
         ? require('@/assets/images/logo.png')
         : require('@/assets/images/logo-white.png')
-    },
-    isHomePage() {
-      return this.$route.path === '/'
     }
   },
   mounted() {
@@ -97,15 +107,15 @@ export default {
 
     this.$ScrollTrigger.create({
       id: 'header-scroll-trigger',
-      trigger: '#home-header',
       animation,
-      start: '70% top',
       end: '+=0 top',
       toggleActions: 'play none reverse none',
-      immediateRender: false
+      immediateRender: false,
+      nullTargetWarn: false,
+      ...this.scrollTriggerOptions
     })
   },
-  beforeUnmount() {
+  beforeDestroy() {
     const st = this.$ScrollTrigger.getById('header-scroll-trigger')
     if (st) {
       st.kill()
@@ -116,7 +126,10 @@ export default {
 
 <style scoped lang="scss">
 .nav-wrapper {
-  @apply absolute top-0 right-0 left-0 z-30 text-white;
+  @apply top-0 right-0 left-0 z-30 bg-white/[0.97] text-slate-800 shadow-sm;
+  &--top-absolute-transparent {
+    @apply absolute bg-transparent text-white shadow-none;
+  }
   &--fixed {
     @apply fixed;
     &::v-deep {
