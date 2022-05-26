@@ -5,9 +5,6 @@ export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
     title: '大將科技',
-    htmlAttrs: {
-      lang: 'zh-Hant'
-    },
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
@@ -52,6 +49,8 @@ export default {
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
     { src: '~/plugins/fontawesome.js' },
+    { src: '~/plugins/lodash.js' },
+    { src: '~/plugins/router-i18n.js' },
     { src: '~/plugins/gsap.js', mode: 'client' }
   ],
 
@@ -65,20 +64,57 @@ export default {
     '@nuxt/postcss8',
     '@nuxtjs/device',
     '@nuxtjs/svg',
-    '@nuxtjs/dotenv'
+    '@nuxtjs/dotenv',
+    '@nuxtjs/router'
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
-    'nuxt-route-meta'
+    '@nuxtjs/i18n'
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
     // Workaround to avoid enforcing hard-coded localhost:3000: https://github.com/nuxt-community/axios-module/issues/308
-    baseURL: '/'
+    baseURL: process.env.NUXT_API_BASE_URL,
+    headers: {
+      common: {
+        Authorization: `Bearer ${process.env.NUXT_API_TOKEN}`
+      }
+    }
+  },
+
+  i18n: {
+    locales: [
+      {
+        code: 'en',
+        iso: 'en-US',
+        name: 'English',
+        file: 'en.json'
+      },
+      {
+        code: 'zh_TW',
+        iso: 'zh-TW',
+        name: '繁體中文',
+        file: 'zh_TW.json'
+      }
+    ],
+    langDir: 'i18n/',
+    // defaultLocale: 'zh_TW',
+    vueI18n: {
+      fallbackLocale: 'zh_TW',
+      silentFallbackWarn: true
+    },
+    seo: true,
+    strategy: 'no_prefix',
+    lazy: true,
+    detectBrowserLanguage: {
+      useCookie: true,
+      cookieKey: 'i18n_redirected',
+      redirectOn: 'root' // recommended
+    }
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build

@@ -1,7 +1,7 @@
 <template>
   <section id="home-header" class="header relative min-h-[100vh]">
     <video
-      src="@/assets/videos/header.mp4"
+      src="@/assets/videos/header_v2.mp4"
       class="absolute top-0 left-0 h-full w-full max-w-full object-cover"
       playsinline
       autoplay

@@ -1,13 +1,20 @@
 <template>
-  <div class="default-layout flex flex-col">
+  <div
+    class="default-layout min-h-[calc(var(--vh-unit, 1vh)*100-4rem)] flex flex-col"
+  >
     <nav-menu
       :key="$route.path"
       ref="navMenu"
       :transparent-and-absolute-at-top="isHomePage"
       :scroll-trigger-options="scrollTriggerOptions"
     />
-    <div :class="['content-wrapper flex-1']">
-      <bread-crumbs v-if="!isHomePage" />
+    <div
+      :class="[
+        'content-wrapper flex-1',
+        { 'main-container mt-16 py-8': !isHomePage }
+      ]"
+    >
+      <bread-crumbs v-if="!isHomePage" class="mb-10" />
       <nuxt-child />
     </div>
     <app-footer ref="footer" />
@@ -82,9 +89,4 @@ export default {
 }
 </script>
 
-<style scoped lang="scss">
-$vh: calc(var(--vh-unit, 1vh) * 100);
-.default-layout {
-  min-height: $vh;
-}
-</style>
+<style scoped lang="scss"></style>

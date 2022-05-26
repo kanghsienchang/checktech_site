@@ -126,7 +126,7 @@ export default {
 
 <style scoped lang="scss">
 .nav-wrapper {
-  @apply top-0 right-0 left-0 z-30 bg-white/[0.97] text-slate-800 shadow-sm;
+  @apply absolute top-0 right-0 left-0 z-30 bg-white/[0.97] text-slate-800 shadow-sm;
   &--top-absolute-transparent {
     @apply absolute bg-transparent text-white shadow-none;
   }

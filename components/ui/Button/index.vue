@@ -66,7 +66,7 @@ export default {
 }
 
 .btn {
-  @apply inline-flex cursor-pointer select-none items-center justify-center rounded-md border border-solid border-transparent bg-transparent px-4 py-2 text-center align-middle font-bold leading-normal tracking-wide text-white transition-all duration-200 ease-in-out;
+  @apply inline-flex cursor-pointer select-none items-center justify-center rounded-md border border-solid border-transparent bg-transparent px-6 py-2.5 text-center align-middle font-medium leading-normal tracking-wide text-white transition-all;
 
   &:hover {
     @apply text-white;

@@ -16,7 +16,10 @@ import {
   faGlobe,
   faCircleArrowRight,
   faBars,
-  faAnglesDown
+  faAngleDown,
+  faAnglesDown,
+  faAngleRight,
+  faHouse
 } from '@fortawesome/free-solid-svg-icons'
 import { faCircleXmark } from '@fortawesome/free-regular-svg-icons'
 
@@ -37,7 +40,10 @@ library.add(
   faCircleArrowRight,
   faBars,
   faCircleXmark,
-  faAnglesDown
+  faAnglesDown,
+  faAngleRight,
+  faHouse,
+  faAngleDown
 )
 
 Vue.component('FontAwesomeIcon', FontAwesomeIcon)
