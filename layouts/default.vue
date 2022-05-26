@@ -1,7 +1,20 @@
 <template>
-  <div class="default-layout flex flex-col">
-    <nav-menu ref="navMenu" />
-    <div :class="['content-wrapper flex-1']">
+  <div
+    class="default-layout min-h-[calc(var(--vh-unit, 1vh)*100-4rem)] flex flex-col"
+  >
+    <nav-menu
+      :key="$route.path"
+      ref="navMenu"
+      :transparent-and-absolute-at-top="isHomePage"
+      :scroll-trigger-options="scrollTriggerOptions"
+    />
+    <div
+      :class="[
+        'content-wrapper flex-1',
+        { 'main-container mt-16 py-8': !isHomePage }
+      ]"
+    >
+      <bread-crumbs v-if="!isHomePage" class="mb-10" />
       <nuxt-child />
     </div>
     <app-footer ref="footer" />
@@ -11,9 +24,10 @@
 <script>
 import NavMenu from '~/layouts/components/NavMenu'
 import AppFooter from '~/layouts/components/AppFooter'
+import BreadCrumbs from '~/layouts/components/BreadCrumbs'
 export default {
   name: 'DefaultLayout',
-  components: { AppFooter, NavMenu },
+  components: { BreadCrumbs, AppFooter, NavMenu },
   data() {
     return {
       resizeFunction: null
@@ -31,6 +45,23 @@ export default {
           content: require('@/assets/images/logo.png')
         }
       ]
+    }
+  },
+  computed: {
+    isHomePage() {
+      return this.$route.path === '/'
+    },
+    scrollTriggerOptions() {
+      if (!this.isHomePage) {
+        return {
+          trigger: '.nav-wrapper',
+          start: 'bottom top'
+        }
+      }
+      return {
+        trigger: '#home-header',
+        start: '70% top'
+      }
     }
   },
   mounted() {
@@ -58,9 +89,4 @@ export default {
 }
 </script>
 
-<style scoped lang="scss">
-$vh: calc(var(--vh-unit, 1vh) * 100);
-.default-layout {
-  min-height: $vh;
-}
-</style>
+<style scoped lang="scss"></style>

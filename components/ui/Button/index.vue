@@ -57,7 +57,7 @@ export default {
     &:hover {
       @apply bg-#{$color};
       @if $color == 'white' {
-        @apply text-main;
+        @apply text-slate-800;
       } @else {
         @apply text-white;
       }
@@ -66,7 +66,7 @@ export default {
 }
 
 .btn {
-  @apply inline-flex cursor-pointer select-none items-center justify-center rounded-md border border-solid border-transparent bg-transparent px-4 py-2 text-center align-middle font-bold leading-normal tracking-wide text-white transition-all duration-200 ease-in-out;
+  @apply inline-flex cursor-pointer select-none items-center justify-center rounded-md border border-solid border-transparent bg-transparent px-6 py-2.5 text-center align-middle font-medium leading-normal tracking-wide text-white transition-all;
 
   &:hover {
     @apply text-white;
@@ -81,15 +81,15 @@ export default {
   }
 
   &--primary {
-    @apply border-primary bg-primary hover:bg-primary-d;
-    @include outline('primary');
+    @apply border-primary-500 bg-primary-500 hover:bg-primary-600;
+    @include outline('primary-500');
   }
 
   &--white {
-    @apply border-white bg-white text-main;
+    @apply border-white bg-white text-slate-800;
     @include outline('white');
     &:hover {
-      @apply bg-white text-main;
+      @apply bg-white text-slate-800;
     }
   }
 }

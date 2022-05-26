@@ -1,0 +1,22 @@
+{
+  "common": {
+    "please_select": "請選擇",
+    "this_field": "此欄位"
+  },
+  "contact_us": {
+    "channel_to_know_us": "透過何種管道得知我們公司",
+    "city": "城市",
+    "company_name": "公司名稱",
+    "country": "國家",
+    "email": "電子郵件",
+    "full_name": "姓名",
+    "inquiry_details": "洽詢內容",
+    "inquiry_type": "洽詢項目",
+    "phone_no": "聯絡電話",
+    "product": "產品",
+    "product_category": "產品類別"
+  },
+  "validation": {
+    "required": "{field}為必填欄位"
+  }
+}

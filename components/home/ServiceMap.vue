@@ -11,7 +11,7 @@
         </div>
         <div class="service-map__legend">
           <div
-            class="grid auto-rows-min grid-cols-2 gap-6 rounded-md border border-primary-l bg-light px-6 py-8"
+            class="grid auto-rows-min grid-cols-2 gap-6 rounded-md border border-primary-200 bg-slate-50 px-6 py-8"
           >
             <div
               v-for="country of legendCountries"

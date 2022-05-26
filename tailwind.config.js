@@ -18,34 +18,38 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        primary: '#488bd4',
-        'primary-l': '#D1E2F4',
-        'primary-d': '#2C71BD',
-        light: '#F9FBFD',
-        main: colors.gray[800],
-        'main-d': colors.gray[900],
-        'main-l': colors.gray[700],
-        footer: '#3C4145'
+        primary: {
+          100: '#C8DAF3',
+          200: '#A7C4EC',
+          300: '#85ADE5',
+          400: '#6397DE',
+          500: '#4280D7',
+          600: '#2A6BC6',
+          700: '#2359A4',
+          800: '#1C4782',
+          900: '#153561'
+        }
       },
       borderColor: {
-        DEFAULT: colors.gray[200]
+        DEFAULT: colors.slate[200]
       }
     },
     boxShadow: {
       sm: '0 .25rem .75rem rgba(30, 40, 40, 0.07)',
       DEFAULT: '0 0 1.25rem rgba(30, 34, 40, 0.1)',
-      md: '0 .25rem 1.75rem rgba(30, 34, 40, 0.15)'
+      md: '0 .25rem 1.75rem rgba(30, 34, 40, 0.15)',
+      none: 'none'
     },
     fontFamily: {
       sans: ["'Noto Sans TC'", ...defaultTheme.fontFamily.sans]
-    },
-    screens: {
-      sm: '576px',
-      md: '768px',
-      lg: '992px',
-      xl: '1200px',
-      '2xl': '1400px'
     }
+    // screens: {
+    //   sm: '576px',
+    //   md: '768px',
+    //   lg: '992px',
+    //   xl: '1200px',
+    //   '2xl': '1400px'
+    // }
     // fontSize: {
     //   xs: ['0.75rem', { lineHeight: '1rem' }], // 12px
     //   sm: ['0.875rem', { lineHeight: '1.25rem' }], // 14px
@@ -63,6 +67,7 @@ module.exports = {
     // }
   },
   plugins: [
+    require('@tailwindcss/forms'),
     function ({ addBase, theme }) {
       // function extractColorVars(colorObj, colorGroup = '') {
       //   return Object.keys(colorObj).reduce((vars, colorKey) => {

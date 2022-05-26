@@ -1,7 +1,7 @@
 <template>
   <section id="home-header" class="header relative min-h-[100vh]">
     <video
-      src="@/assets/videos/header.mp4"
+      src="@/assets/videos/header_v2.mp4"
       class="absolute top-0 left-0 h-full w-full max-w-full object-cover"
       playsinline
       autoplay
@@ -46,23 +46,16 @@ import CButton from '~/components/ui/Button'
 export default {
   name: 'Header',
   components: { CButton },
-  head() {
+  data() {
     return {
-      animation: null,
-      link: [
-        {
-          rel: 'preload',
-          as: 'video',
-          href: require('@/assets/videos/header.mp4')
-        }
-      ]
+      animation: null
     }
   },
   mounted() {
     this.animation = this.$gsap
       .timeline({
         scrollTrigger: {
-          trigger: '#home-header',
+          trigger: '.header',
           start: 'top bottom',
           markers: this.$showScrollMarker
         }

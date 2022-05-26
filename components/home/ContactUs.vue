@@ -4,7 +4,7 @@
       class="main-container flex flex-col items-center justify-center gap-8 text-center"
     >
       <h3
-        class="bg-gradient-to-r from-[#4776E6] to-[#8E54E9] bg-clip-text text-transparent"
+        class="bg-gradient-to-r from-primary-500 to-purple-600 bg-clip-text text-transparent"
       >
         準備好與我們聯繫了嗎？
       </h3>
@@ -16,7 +16,7 @@
         class="gradient-button relative rounded-md border border-transparent py-2.5 px-6"
       >
         <span
-          class="bg-gradient-to-r from-[#3a7bd5] to-[#223d9d] bg-clip-text text-lg font-medium text-transparent"
+          class="linear-primary bg-clip-text text-lg font-medium text-transparent"
         >
           聯絡我們
         </span>
