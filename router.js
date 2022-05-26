@@ -28,15 +28,15 @@ export function createRouter() {
           title: '聯絡我們'
         }
       },
-      {
-        path: '/products',
-        name: 'products',
-        component: () =>
-          import('@/pages/Products.vue').then((m) => m.default || m),
-        meta: {
-          title: '產品'
-        }
-      }
+      //{
+        //path: '/products',
+        //name: 'products',
+        //component: () =>
+          //import('@/pages/Products.vue').then((m) => m.default || m),
+        //meta: {
+          //title: '產品'
+      //  }
+      //}
     ]
   })
 }
