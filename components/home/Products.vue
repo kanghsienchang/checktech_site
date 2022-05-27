@@ -6,10 +6,9 @@
         <h4 class="mb-6">提供客戶一次購足服務</h4>
       </div>
       <div class="grid-with-gap grid-cols-3">
-        <nuxt-link
+        <div
           v-for="category of categories"
           :key="category.key"
-          :to="category.link"
           class="category group relative block flex h-[20rem] cursor-pointer flex-col items-center justify-center overflow-hidden rounded-md bg-cover bg-no-repeat p-8 text-white"
         >
           <div
@@ -27,7 +26,7 @@
             </div>
             <div class="underline">查看更多</div>
           </div>
-        </nuxt-link>
+        </div>
       </div>
     </div>
   </div>
