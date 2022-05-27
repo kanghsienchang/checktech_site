@@ -1,5 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+import Home from '~/pages/Home'
+import ContactUs from '~/pages/ContactUs'
 
 Vue.use(Router)
 
@@ -13,7 +15,7 @@ export function createRouter() {
       {
         path: '/',
         name: 'home',
-        component: () => import('@/pages/Home.vue').then((m) => m.default || m),
+        component: Home,
         meta: {
           icon: 'house',
           title: '首頁'
@@ -22,21 +24,20 @@ export function createRouter() {
       {
         path: '/contact-us',
         name: 'contact-us',
-        component: () =>
-          import('@/pages/ContactUs.vue').then((m) => m.default || m),
+        component: ContactUs,
         meta: {
           title: '聯絡我們'
         }
-      },
-      //{
-        //path: '/products',
-        //name: 'products',
-        //component: () =>
-          //import('@/pages/Products.vue').then((m) => m.default || m),
-        //meta: {
-          //title: '產品'
+      }
+      // {
+      // path: '/products',
+      // name: 'products',
+      // component: () =>
+      // import('@/pages/Products.vue').then((m) => m.default || m),
+      // meta: {
+      // title: '產品'
       //  }
-      //}
+      // }
     ]
   })
 }

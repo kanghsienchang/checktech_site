@@ -25,11 +25,9 @@
 <script>
 import AsyncValidator from 'async-validator'
 import emitterMixin from '~/mixins/emitterMixin'
-import CTextArea from '~/components/ui/TextArea'
 
 export default {
   name: 'CFormItem',
-  components: { CTextArea },
   mixins: [emitterMixin],
   componentName: 'CFormItem',
   provide() {
