@@ -7,23 +7,25 @@
           class="h-[20rem] md:h-[30rem]"
           :images="product.images"
         />
-        <div class="flex flex-col">
+        <div class="flex flex-col justify-start">
           <div class="flex-1">
             <h3 class="mb-6 font-medium">{{ product.name }}</h3>
             <div class="mb-16 grid grid-cols-2 gap-x-12 gap-y-8">
-              <div
-                v-for="productInfo in productInfoList"
-                :key="productInfo.key"
-              >
-                <div class="mb-2 text-lg font-medium text-slate-500">
-                  {{ productInfo.label }}
+              <template v-for="productInfo in productInfoList">
+                <div
+                  v-if="productInfo.items && productInfo.items.length > 0"
+                  :key="productInfo.key"
+                >
+                  <div class="mb-2 text-lg font-medium text-slate-500">
+                    {{ productInfo.label }}
+                  </div>
+                  <ul class="list-inside list-disc space-y-1">
+                    <li v-for="item in productInfo.items" :key="item" class="">
+                      {{ item }}
+                    </li>
+                  </ul>
                 </div>
-                <ul class="list-inside list-disc space-y-1">
-                  <li v-for="item in productInfo.items" :key="item" class="">
-                    {{ item }}
-                  </li>
-                </ul>
-              </div>
+              </template>
             </div>
           </div>
           <div class="flex">
@@ -38,8 +40,11 @@
         <div class="mb-6 text-xl font-medium">
           {{ $t('products.description') }}
         </div>
-        <!--eslint-disable-next-line vue/no-v-html-->
-        <div class="whitespace-pre-wrap" v-html="product.description"></div>
+        <!--eslint-disable vue/no-v-html-->
+        <div
+          class="whitespace-pre-wrap"
+          v-html="renderMarkdown(product.description)"
+        />
       </div>
     </div>
     <div v-if="relatedProducts.length" class="main-container mt-10 mb-14">
@@ -56,7 +61,7 @@ import { getProductDetail, getProducts } from '~/api/products'
 import CButton from '~/components/ui/Button'
 import ProductImagesCard from '~/components/products/ProductImagesCard'
 import RelatedProductList from '~/components/products/RelatedProductList'
-const md = new MarkdownIt()
+const md = new MarkdownIt('default')
 export default {
   name: 'ProductDetail',
   components: { RelatedProductList, ProductImagesCard, CButton, BreadCrumbs },
@@ -64,6 +69,38 @@ export default {
     return {
       rawData: null,
       rawRelatedData: []
+    }
+  },
+  head() {
+    return {
+      title: this.product.name,
+      meta: [
+        {
+          hid: 'og:title',
+          property: 'og:title',
+          content: this.product.name
+        },
+        {
+          hid: 'description',
+          property: 'description',
+          content: this.product.description.replace(/[\n\r\s\t]+/g, '')
+        },
+        {
+          hid: 'og:description',
+          property: 'og:description',
+          content: this.product.description.replace(/[\n\r\s\t]+/g, '')
+        },
+        {
+          hid: 'og:image',
+          property: 'og:image',
+          content: this.product.images?.[0].src
+        },
+        {
+          hid: 'twitter:image',
+          name: 'twitter:image',
+          content: this.product.images?.[0].src
+        }
+      ]
     }
   },
   computed: {
@@ -88,9 +125,8 @@ export default {
     product() {
       return {
         applications: this.$getApiDataTranslation(this.rawData, 'applications'),
-        description: md.render(
-          this.$getApiDataTranslation(this.rawData, 'description') || ''
-        ),
+        description:
+          this.$getApiDataTranslation(this.rawData, 'description') || '',
         dimensions: this.$getApiDataTranslation(this.rawData, 'dimensions'),
         features: this.$getApiDataTranslation(this.rawData, 'features'),
         images: this.rawData?.attributes?.images?.data?.map((image) => {
@@ -149,6 +185,9 @@ export default {
     await Promise.all([this.getProductDetail(), this.getRelatedProducts()])
   },
   methods: {
+    renderMarkdown(val) {
+      return md.render(val)
+    },
     async getProductDetail() {
       const { data } = await getProductDetail(
         this.$axios,

@@ -4,7 +4,6 @@
     class="default-layout flex min-h-[calc(var(--vh-unit,1vh)*100)] flex-col"
   >
     <nav-menu
-      :key="$route.path"
       ref="navMenu"
       :transparent-and-absolute-at-top="isHomePage"
       :scroll-trigger-options="scrollTriggerOptions"
@@ -30,25 +29,64 @@ export default {
   head() {
     const i18nHead = this.$nuxtI18nHead({ addSeoAttributes: true })
     return {
-      title: this.$t('meta.title'),
+      titleTemplate: (title) => {
+        return title
+          ? `${title} | ${this.$t('meta.title')}`
+          : this.$t('meta.title')
+      },
       htmlAttrs: {
         ...i18nHead.htmlAttrs
       },
       meta: [
-        { hid: 'og-type', property: 'og:type', content: 'website' },
-        { hid: 'og-title', property: 'og:title', content: '大將科技' },
-        { hid: 'og-desc', property: 'og:description', content: '測試大將官網' },
+        { hid: 'og:type', property: 'og:type', content: 'website' },
         {
-          hid: 'og-image',
+          hid: 'og:title',
+          property: 'og:title',
+          content: this.$t('meta.title')
+        },
+        {
+          hid: 'description',
+          name: 'description',
+          content: this.$t('meta.description')
+        },
+        {
+          hid: 'og:description',
+          property: 'og:description',
+          content: this.$t('meta.description')
+        },
+        { hid: 'twitter:site', name: 'twitter:site', content: this.fullUrl },
+        { hid: 'og:url', property: 'og:url', content: this.fullUrl },
+        {
+          hid: 'og:image',
           property: 'og:image',
+          content: require('@/assets/images/logo.png')
+        },
+        {
+          hid: 'twitter:image',
+          name: 'twitter:image',
           content: require('@/assets/images/logo.png')
         },
         ...i18nHead.meta
       ],
-      link: [...i18nHead.link]
+      link: [
+        {
+          hid: 'canonical',
+          rel: 'canonical',
+          href: this.fullUrl
+        },
+        ...i18nHead.link
+      ]
     }
   },
   computed: {
+    keepAliveProps() {
+      return {
+        includes: [this.localeRoute('products').name]
+      }
+    },
+    fullUrl() {
+      return `${process.env.NUXT_WEB_BASE_URL}${this.$route.fullPath}`
+    },
     isHomePage() {
       return this.localePath('index') === this.$route.path
     },

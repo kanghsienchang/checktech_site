@@ -12,7 +12,7 @@
         </c-form-item>
       </c-form>
       <div v-if="categoryDescription" class="mb-8">
-        <p>{{ categoryDescription }}</p>
+        <p class="whitespace-pre-wrap">{{ categoryDescription }}</p>
       </div>
       <c-tabs
         :value="selectedTypeKey"
@@ -20,15 +20,20 @@
         class="mb-6"
         @input="handleTabChange"
       />
-      <div class="grid grid-cols-2 gap-6 lg:grid-cols-3 xl:grid-cols-4">
-        <product-list-card
+      <div class="-mx-2 flex flex-wrap md:-mx-3">
+        <div
           v-for="product in productList"
           :key="product.key"
-          :link="localePath(`/products/${product.key}`)"
-          :image-alt="product.image.alt"
-          :image-src="product.image.src"
-          :name="product.name"
-        />
+          class="w-1/2 px-2 pb-4 md:w-1/3 md:px-3 md:pb-6 xl:w-1/4"
+        >
+          <product-list-card
+            class="h-full"
+            :link="localePath(`/products/${product.key}`)"
+            :image-alt="product.image.alt"
+            :image-src="product.image.src"
+            :name="product.name"
+          />
+        </div>
       </div>
     </div>
   </div>
@@ -203,7 +208,8 @@ export default {
         pagination: {
           limit: '-1'
         },
-        populate: ['name', 'description', 'product_types']
+        populate: ['name', 'description', 'product_types'],
+        sort: ['id:desc']
       })
       this.productCategories = data
     },

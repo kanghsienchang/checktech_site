@@ -7,6 +7,7 @@
           :key="relatedProduct.key"
         >
           <product-list-card
+            class="h-full"
             :link="localePath(`/products/${relatedProduct.key}`)"
             :image-alt="relatedProduct.image.alt"
             :image-src="relatedProduct.image.src"

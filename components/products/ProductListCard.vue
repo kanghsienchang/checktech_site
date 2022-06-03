@@ -1,12 +1,18 @@
 <template>
   <nuxt-link
     :to="link"
-    class="product-list-card flex flex-col rounded border p-4 shadow-sm"
+    class="product-list-card group flex flex-col overflow-hidden rounded-md border shadow-sm"
   >
-    <div class="mb-4 flex-1 overflow-hidden rounded-md">
-      <img :src="imageSrc" :alt="imageAlt" class="h-full w-full object-cover" />
+    <div class="relative mb-3 w-full overflow-hidden pb-[80%]">
+      <div class="absolute inset-0">
+        <img
+          :src="imageSrc"
+          :alt="imageAlt"
+          class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[102%]"
+        />
+      </div>
     </div>
-    <div class="text-center">
+    <div class="px-3 pb-3 text-center">
       {{ name }}
     </div>
   </nuxt-link>

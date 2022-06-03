@@ -4,16 +4,14 @@
   >
     <client-only>
       <swiper ref="swiper" :options="swiperOptions" class="w-full">
-        <swiper-slide
-          v-for="image in images || []"
-          :key="image.src"
-          class="flex items-center"
-        >
-          <img
-            :src="image.src"
-            :alt="image.alt"
-            class="max-h-full max-w-full"
-          />
+        <swiper-slide v-for="image in images || []" :key="image.src">
+          <div class="flex h-full w-full items-center">
+            <img
+              :src="image.src"
+              :alt="image.alt"
+              class="max-h-full w-full max-w-full"
+            />
+          </div>
         </swiper-slide>
         <div
           slot="pagination"
@@ -40,6 +38,7 @@ export default {
         autoplay: {
           delay: 5000
         },
+        fadeEffect: { crossFade: true },
         pagination: {
           el: '.swiper-pagination',
           type: 'fraction'
