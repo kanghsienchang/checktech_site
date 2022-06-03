@@ -14,7 +14,8 @@ export const getters = {
   md: (state) => state.windowWidth >= breakpoints.md,
   lg: (state) => state.windowWidth >= breakpoints.lg,
   xl: (state) => state.windowWidth >= breakpoints.xl,
-  '2xl': (state) => state.windowWidth >= breakpoints['2xl']
+  '2xl': (state) => state.windowWidth >= breakpoints['2xl'],
+  breakpoints: () => breakpoints
 }
 
 export const mutations = {

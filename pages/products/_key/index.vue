@@ -1,0 +1,185 @@
+<template>
+  <div class="product-detail mt-8">
+    <div class="main-container mb-12">
+      <bread-crumbs :items="crumbs" class="mb-8" />
+      <div class="grid auto-cols-fr gap-6 md:grid-cols-2 md:gap-16">
+        <product-images-card
+          class="h-[20rem] md:h-[30rem]"
+          :images="product.images"
+        />
+        <div class="flex flex-col">
+          <div class="flex-1">
+            <h3 class="mb-6 font-medium">{{ product.name }}</h3>
+            <div class="mb-16 grid grid-cols-2 gap-x-12 gap-y-8">
+              <div
+                v-for="productInfo in productInfoList"
+                :key="productInfo.key"
+              >
+                <div class="mb-2 text-lg font-medium text-slate-500">
+                  {{ productInfo.label }}
+                </div>
+                <ul class="list-inside list-disc space-y-1">
+                  <li v-for="item in productInfo.items" :key="item" class="">
+                    {{ item }}
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="flex">
+            <c-button outline>型錄下載</c-button>
+            <c-button class="ml-4 flex-1">＋加入洽詢</c-button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="bg-slate-100">
+      <div class="main-container py-10 md:py-14">
+        <div class="mb-6 text-xl font-medium">
+          {{ $t('products.description') }}
+        </div>
+        <!--eslint-disable-next-line vue/no-v-html-->
+        <div class="whitespace-pre-wrap" v-html="product.description"></div>
+      </div>
+    </div>
+    <div v-if="relatedProducts.length" class="main-container mt-10 mb-14">
+      <div class="mb-6 text-xl font-medium">相似產品</div>
+      <related-product-list :related-products="relatedProducts" />
+    </div>
+  </div>
+</template>
+
+<script>
+import MarkdownIt from 'markdown-it'
+import BreadCrumbs from '~/components/ui/BreadCrumbs'
+import { getProductDetail, getProducts } from '~/api/products'
+import CButton from '~/components/ui/Button'
+import ProductImagesCard from '~/components/products/ProductImagesCard'
+import RelatedProductList from '~/components/products/RelatedProductList'
+const md = new MarkdownIt()
+export default {
+  name: 'ProductDetail',
+  components: { RelatedProductList, ProductImagesCard, CButton, BreadCrumbs },
+  data() {
+    return {
+      rawData: null,
+      rawRelatedData: []
+    }
+  },
+  computed: {
+    crumbs() {
+      return [
+        {
+          icon: 'house',
+          label: this.$t('page.home'),
+          path: this.localePath('index')
+        },
+        {
+          icon: '',
+          label: this.$t('page.products'),
+          path: this.localePath('products')
+        },
+        {
+          icon: '',
+          label: this.product.name
+        }
+      ]
+    },
+    product() {
+      return {
+        applications: this.$getApiDataTranslation(this.rawData, 'applications'),
+        description: md.render(
+          this.$getApiDataTranslation(this.rawData, 'description') || ''
+        ),
+        dimensions: this.$getApiDataTranslation(this.rawData, 'dimensions'),
+        features: this.$getApiDataTranslation(this.rawData, 'features'),
+        images: this.rawData?.attributes?.images?.data?.map((image) => {
+          return {
+            alt: image?.attributes?.alternativeText,
+            src: image?.attributes?.url
+          }
+        }),
+        name: this.$getApiDataTranslation(this.rawData, 'name'),
+        related_products: [],
+        specifications: this.$getApiDataTranslation(
+          this.rawData,
+          'specifications'
+        )
+      }
+    },
+    relatedProducts() {
+      return this.rawRelatedData.map((product) => ({
+        name: product?.attributes?.name?.[this.$i18n.localeProperties.dataKey],
+        key: product?.attributes?.key,
+        image: {
+          src: product?.attributes?.images?.data?.[0]?.attributes?.url,
+          alt: product?.attributes?.images?.data?.[0]?.attributes
+            ?.alternativeText
+        }
+      }))
+    },
+    productInfoList() {
+      return this.product
+        ? [
+            {
+              key: 'features',
+              label: this.$t('products.features'),
+              items: this.product.features
+            },
+            {
+              key: 'dimensions',
+              label: this.$t('products.dimensions'),
+              items: this.product.dimensions
+            },
+            {
+              key: 'specifications',
+              label: this.$t('products.specifications'),
+              items: this.product.specifications
+            },
+            {
+              key: 'applications',
+              label: this.$t('products.applications'),
+              items: this.product.applications
+            }
+          ]
+        : []
+    }
+  },
+  async mounted() {
+    await Promise.all([this.getProductDetail(), this.getRelatedProducts()])
+  },
+  methods: {
+    async getProductDetail() {
+      const { data } = await getProductDetail(
+        this.$axios,
+        this.$route.params.key,
+        {
+          populate: [
+            'applications',
+            'description',
+            'dimensions',
+            'features',
+            'images',
+            'name',
+            'specifications'
+          ]
+        }
+      )
+      this.rawData = data
+    },
+    async getRelatedProducts() {
+      const { data } = await getProducts(this.$axios, {
+        populate: ['name', 'images'],
+        filters: {
+          being_related_products: {
+            key: this.$route.params.key
+          }
+        }
+      })
+      this.rawRelatedData = data
+    }
+  }
+}
+</script>
+
+<style scoped lang="scss"></style>

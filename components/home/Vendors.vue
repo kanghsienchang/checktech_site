@@ -1,7 +1,7 @@
 <template>
-  <div class="vendors main-container">
+  <div class="vendors main-container my-16 md:my-20">
     <h2 class="vendors__heading mb-6">代理品牌</h2>
-    <div class="grid grid-cols-2 gap-4 md:grid-cols-4 lg:grid-cols-5">
+    <div class="grid grid-cols-2 gap-6 md:grid-cols-4 lg:grid-cols-5">
       <a
         v-for="vendor of vendors"
         :key="vendor.image_alt"

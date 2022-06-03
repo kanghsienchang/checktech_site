@@ -1,11 +1,13 @@
 <template>
-  <div class="statistics">
-    <div class="main-container grid-with-gap grid-cols-3 items-center">
-      <div class="statistics__heading">
+  <div class="statistics bg-slate-50 py-16 md:py-20">
+    <div class="main-container grid items-center gap-10 md:grid-cols-3">
+      <div class="statistics__heading text-center md:text-left">
         <h3>We are proud of</h3>
         <h3>our works</h3>
       </div>
-      <div class="statistics__content col-span-2 flex justify-between">
+      <div
+        class="statistics__content justify-between space-y-10 md:col-span-2 md:flex md:space-y-0 md:space-x-12"
+      >
         <div
           v-for="stat of stats"
           :key="stat.key"
@@ -13,7 +15,7 @@
         >
           <!--eslint-disable-next-line vue/no-v-html-->
           <div class="icon mb-4" v-html="stat.icon" />
-          <div class="mb-3 text-3xl font-bold">
+          <div class="mb-2 text-3xl font-bold">
             {{ stat.value }}{{ stat.suffix }}
           </div>
           <div class="text-slate-800-l">{{ stat.label }}</div>

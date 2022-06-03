@@ -10,7 +10,7 @@ export default {
   componentName: 'CForm',
   provide() {
     return {
-      form: this
+      CForm: this
     }
   },
   props: {

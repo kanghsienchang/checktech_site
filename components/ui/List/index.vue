@@ -6,7 +6,7 @@
 
 <script>
 export default {
-  name: 'List',
+  name: 'CList',
   provide() {
     return {
       list: this
@@ -15,10 +15,10 @@ export default {
   props: {
     type: {
       type: String,
-      required: true,
+      default: '',
       validator: (value) => {
         // yet to implement bullet and arrow
-        return ['check'].includes(value)
+        return ['check', 'bullet', ''].includes(value)
       }
     }
   }

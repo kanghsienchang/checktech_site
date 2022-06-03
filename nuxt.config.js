@@ -3,45 +3,51 @@ export default {
   target: 'static',
 
   generate: {
-    routes: ['/']
+    fallback: true,
+    exclude: [/^.*\/products/]
   },
 
   // Global page headers: https://go.nuxtjs.dev/config-head
-  head: {
-    title: '大將科技',
-    meta: [
-      { charset: 'utf-8' },
-      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: '' },
-      { name: 'format-detection', content: 'telephone=no' }
-    ],
-    link: [
-      {
-        rel: 'apple-touch-icon',
-        sizes: '180x180',
-        type: 'image/png',
-        href: '/favicon-180.png'
-      },
-      {
-        rel: 'apple-touch-icon',
-        sizes: '32x32',
-        type: 'image/png',
-        href: '/favicon-32.png'
-      },
-      {
-        rel: 'apple-touch-icon',
-        sizes: '16x16',
-        type: 'image/png',
-        href: '/favicon-16.png'
-      },
-      { rel: 'shortcut icon', href: '/favicon.ico' },
-      { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
-      { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossorigin: '' },
-      {
-        rel: 'stylesheet',
-        href: 'https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700;900&display=swap'
-      }
-    ]
+  head() {
+    return {
+      meta: [
+        { charset: 'utf-8' },
+        { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+        { hid: 'description', name: 'description', content: '' },
+        { name: 'format-detection', content: 'telephone=no' }
+      ],
+      link: [
+        {
+          rel: 'apple-touch-icon',
+          sizes: '180x180',
+          type: 'image/png',
+          href: '/favicon-180.png'
+        },
+        {
+          rel: 'apple-touch-icon',
+          sizes: '32x32',
+          type: 'image/png',
+          href: '/favicon-32.png'
+        },
+        {
+          rel: 'apple-touch-icon',
+          sizes: '16x16',
+          type: 'image/png',
+          href: '/favicon-16.png'
+        },
+        { rel: 'shortcut icon', href: '/favicon.ico' },
+        { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
+        {
+          rel: 'preconnect',
+          href: 'https://fonts.gstatic.com',
+          crossorigin: ''
+        },
+        {
+          rel: 'stylesheet',
+          href: 'https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700;900&display=swap'
+        }
+      ]
+    }
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
@@ -54,7 +60,12 @@ export default {
   plugins: [
     { src: '~/plugins/fontawesome.js' },
     { src: '~/plugins/lodash.js' },
-    { src: '~/plugins/router-i18n.js' },
+    { src: '~/plugins/axios.js' },
+    { src: '~/plugins/modal.js' },
+    { src: '~/plugins/scroll-lock.js' },
+    { src: '~/plugins/utils.js' },
+    { src: '~/plugins/swiper.js', mode: 'client' },
+    // { src: '~/plugins/router-i18n.js' },
     { src: '~/plugins/gsap.js', mode: 'client' }
   ],
 
@@ -68,8 +79,8 @@ export default {
     '@nuxt/postcss8',
     '@nuxtjs/device',
     '@nuxtjs/svg',
-    '@nuxtjs/dotenv',
-    '@nuxtjs/router'
+    '@nuxtjs/dotenv'
+    // '@nuxtjs/router'
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
@@ -82,12 +93,7 @@ export default {
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
     // Workaround to avoid enforcing hard-coded localhost:3000: https://github.com/nuxt-community/axios-module/issues/308
-    baseURL: process.env.NUXT_API_BASE_URL,
-    headers: {
-      common: {
-        Authorization: `Bearer ${process.env.NUXT_API_TOKEN}`
-      }
-    }
+    baseURL: process.env.NUXT_API_BASE_URL
   },
 
   i18n: {
@@ -95,24 +101,24 @@ export default {
       {
         code: 'en',
         iso: 'en-US',
+        dataKey: 'en',
         name: 'English',
         file: 'en.json'
       },
       {
-        code: 'zh_TW',
+        code: 'tw',
         iso: 'zh-TW',
+        dataKey: 'zh_TW',
         name: '繁體中文',
         file: 'zh_TW.json'
       }
     ],
     langDir: 'i18n/',
-    // defaultLocale: 'zh_TW',
     vueI18n: {
-      fallbackLocale: 'zh_TW',
+      fallbackLocale: 'tw',
       silentFallbackWarn: true
     },
     seo: true,
-    strategy: 'no_prefix',
     lazy: true,
     detectBrowserLanguage: {
       useCookie: true,

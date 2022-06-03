@@ -1,11 +1,11 @@
 <template>
-  <div class="products">
+  <div class="products mt-16 md:mt-20">
     <div class="main-container">
       <div class="products__heading">
         <h2 class="mb-3">產品分類</h2>
         <h4 class="mb-6">提供客戶一次購足服務</h4>
       </div>
-      <div class="grid-with-gap grid-cols-3">
+      <div class="grid gap-10 md:grid-cols-3 md:gap-12">
         <div
           v-for="category of categories"
           :key="category.key"

@@ -22,14 +22,16 @@
       <slot name="title" />
       <font-awesome-icon icon="chevron-down" size="xs" class="ml-2" />
     </div>
-    <div ref="menuWrapper">
+    <div
+      ref="menuWrapper"
+      @mouseenter="handleMouseEnter(100)"
+      @mouseleave="handleMouseLeave"
+    >
       <ul
         v-show="opened"
         ref="menu"
         role="menu"
         :class="[`menu`, { 'menu--popup': mode === 'horizontal' }]"
-        @mouseenter="handleMouseEnter(100)"
-        @mouseleave="handleMouseLeave"
       >
         <slot />
       </ul>

@@ -12,7 +12,7 @@
   >
     <div class="main-container flex h-full items-center justify-between">
       <nuxt-link
-        to="/"
+        :to="localePath('index')"
         :class="[
           'h-20 py-2',
           { '!h-16': navStickTop || !transparentAndAbsoluteAtTop }
@@ -21,37 +21,50 @@
         <img :src="logoImg" alt="CheckTech" class="h-full" />
       </nuxt-link>
       <div
-        class="cursor-pointer p-1 pr-0 sm:hidden"
+        class="cursor-pointer p-1 pr-0 md:hidden"
         @click="navBarOpen = !navBarOpen"
       >
         <font-awesome-icon icon="bars" size="xl" />
       </div>
-      <portal :disabled="sm">
-        <!--:class="[!sm && 'fixed inset-0 bg-slate-800 z-50 px-4 py-2 w-[15rem] text-white']"-->
-        <div>
-          <app-menu :mode="sm ? 'horizontal' : 'vertical'" class="font-medium">
-            <app-menu-item index="0"> 關於大將 </app-menu-item>
-            <app-menu-item index="1"> 能力與服務 </app-menu-item>
-            <app-submenu index="2">
-              <template #title> 產品 </template>
-              <app-menu-item index="3"> 連接器 </app-menu-item>
-              <app-menu-item index="4"> 開關 </app-menu-item>
-              <app-menu-item index="5"> 線材 </app-menu-item>
-            </app-submenu>
-            <app-submenu index="3">
-              <template #title> 繁體中文 </template>
-              <app-menu-item index="6"> 繁體中文 </app-menu-item>
-              <app-menu-item index="7"> English </app-menu-item>
-            </app-submenu>
-          </app-menu>
-        </div>
-      </portal>
+      <div class="hidden md:block">
+        <app-menu
+          :mode="md ? 'horizontal' : 'vertical'"
+          class="font-medium"
+          router
+        >
+          <app-menu-item index="0" disable-routing> 關於大將 </app-menu-item>
+          <app-submenu index="2">
+            <template #title> 產品 </template>
+            <app-menu-item index="3" disable-routing> 連接器 </app-menu-item>
+            <app-menu-item index="4" disable-routing> 開關 </app-menu-item>
+            <app-menu-item index="5" disable-routing> 線材 </app-menu-item>
+            <app-menu-item :index="localePath('products')">
+              {{ $t('common.all') }}
+            </app-menu-item>
+          </app-submenu>
+          <app-submenu index="3">
+            <template #title>
+              <font-awesome-icon icon="globe" class="mr-2" />
+              <span>
+                {{ currentLocaleObj.name }}
+              </span>
+            </template>
+            <app-menu-item
+              v-for="locale in $i18n.locales"
+              :key="locale.code"
+              :disabled="currentLocaleObj.code === locale.code"
+              :index="switchLocalePath(locale.code)"
+            >
+              {{ locale.name }}
+            </app-menu-item>
+          </app-submenu>
+        </app-menu>
+      </div>
     </div>
   </nav>
 </template>
 
 <script>
-import { Portal } from '@linusborg/vue-simple-portal'
 import { mapGetters } from 'vuex'
 import AppMenu from '~/layouts/components/AppMenu'
 import AppMenuItem from '~/layouts/components/AppMenuItem'
@@ -62,8 +75,7 @@ export default {
   components: {
     AppMenu,
     AppMenuItem,
-    AppSubmenu,
-    Portal
+    AppSubmenu
   },
   props: {
     transparentAndAbsoluteAtTop: {
@@ -82,11 +94,14 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(['sm']),
+    ...mapGetters(['md']),
     logoImg() {
       return this.navStickTop || !this.transparentAndAbsoluteAtTop
         ? require('@/assets/images/logo.png')
         : require('@/assets/images/logo-white.png')
+    },
+    currentLocaleObj() {
+      return this.$i18n.locales.find(({ code }) => code === this.$i18n.locale)
     }
   },
   mounted() {

@@ -4,14 +4,19 @@
       'menu-item',
       {
         'is-active': active,
-        'is-disabled': disabled
+        'pointer-events-none text-slate-400': disabled
       }
     ]"
-    :style="[paddingStyle]"
     role="menuitem"
     tabindex="-1"
   >
-    <slot></slot>
+    <component
+      :is="shouldUseRouter ? 'nuxt-link' : 'span'"
+      :to="index"
+      :style="[paddingStyle]"
+    >
+      <slot />
+    </component>
   </li>
 </template>
 
@@ -31,6 +36,10 @@ export default {
     disabled: {
       type: Boolean,
       default: false
+    },
+    disableRouting: {
+      type: Boolean,
+      default: false
     }
   },
   computed: {
@@ -39,6 +48,9 @@ export default {
     },
     mode() {
       return this.rootMenu.mode
+    },
+    shouldUseRouter() {
+      return !this.disableRouting && this.rootMenu.router
     }
   },
   mounted() {

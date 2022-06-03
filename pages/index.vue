@@ -1,17 +1,15 @@
 <template>
   <div class="home">
     <home-header />
-    <div class="content">
-      <about-us />
-      <statistics class="bg-slate-50" />
-      <service-map />
-      <products class="-mt-10" />
-      <vendors />
-      <services class="!pb-0" />
-      <features class="-mt-10 bg-slate-50 !pt-[7rem] md:!pt-[9rem]" />
-      <quality-assurance />
-      <contact-us class="bg-slate-50" />
-    </div>
+    <about-us />
+    <statistics />
+    <service-map />
+    <products />
+    <vendors />
+    <services />
+    <features />
+    <quality-assurance />
+    <contact-us />
   </div>
 </template>
 
@@ -27,7 +25,7 @@ import Statistics from '~/components/home/Statistics'
 import ServiceMap from '~/components/home/ServiceMap'
 import ContactUs from '~/components/home/ContactUs'
 export default {
-  name: 'Home',
+  name: 'Index',
   components: {
     ContactUs,
     ServiceMap,
@@ -47,10 +45,10 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.content {
-  //@apply py-20 pb-32 md:py-24 md:pb-40;
-  & > * {
-    @apply py-16 md:py-20;
-  }
-}
+//.content {
+//  //@apply py-20 pb-32 md:py-24 md:pb-40;
+//  & > *:not(:first-child) {
+//    @apply pt-16 md:pt-20;
+//  }
+//}
 </style>

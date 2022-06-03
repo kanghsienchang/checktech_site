@@ -7,7 +7,10 @@
       }
     ]"
   >
-    <label v-if="label" class="mb-2 inline-block text-slate-600">
+    <label
+      v-if="label"
+      :class="['mb-1.5 inline-block text-slate-600', labelClass]"
+    >
       {{ label }}
     </label>
     <slot />
@@ -35,7 +38,7 @@ export default {
       formItem: this
     }
   },
-  inject: ['form'],
+  inject: ['CForm'],
   props: {
     label: {
       type: String,
@@ -57,6 +60,11 @@ export default {
     }
   },
   computed: {
+    labelClass() {
+      return {
+        'before:text-red-400 before:content-["*"]': this.isRequired
+      }
+    },
     form() {
       let parent = this.$parent
       let parentName = parent.$options.componentName
@@ -71,7 +79,7 @@ export default {
       return parent
     },
     fieldValue() {
-      const model = this.form.model
+      const model = this.CForm.model
       if (!model || !this.prop) {
         return
       }
@@ -177,8 +185,8 @@ export default {
           this.validateState = !errors ? 'success' : 'error'
           this.validateMessage = errors ? errors[0].message : ''
           callback(this.validateMessage, invalidFields)
-          this.form &&
-            this.form.$emit(
+          this.CForm &&
+            this.CForm.$emit(
               'validate',
               this.prop,
               !errors,
@@ -195,13 +203,13 @@ export default {
     resetField() {
       this.validateState = ''
       this.validateMessage = ''
-      const model = this.form.model
+      const model = this.CForm.model
       const value = this.fieldValue
       let path = this.prop
       if (path.includes(':')) {
         path = path.replace(/:/, '.')
       }
-      const prop = this.getPropByPath(model, path, true).v
+      const prop = this.getPropByPath(model, path, true)
       this.validateDisabled = true
       if (Array.isArray(value)) {
         prop.o[prop.k] = [].concat(this.initialValue)
@@ -215,7 +223,7 @@ export default {
       // this.broadcast('ElTimeSelect', 'fieldReset', this.initialValue)
     },
     getRules() {
-      let formRules = this.form.rules
+      let formRules = this.CForm.rules
       const selfRules = this.rules
       const requiredRule =
         this.required !== undefined ? { required: !!this.required } : []

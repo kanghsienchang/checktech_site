@@ -1,5 +1,8 @@
 <template>
-  <section id="home-header" class="header relative min-h-[100vh]">
+  <section
+    id="home-header"
+    class="header relative min-h-[calc(var(--vh-unit,1vh)*100)] py-16 md:py-20"
+  >
     <video
       src="@/assets/videos/header_v2.mp4"
       class="absolute top-0 left-0 h-full w-full max-w-full object-cover"
@@ -21,7 +24,7 @@
       </p>
       <div class="header__bottom mt-6">
         <c-button
-          to="/contact-us"
+          :to="localePath('contact-us')"
           color="white"
           size="lg"
           pill
@@ -33,7 +36,7 @@
       </div>
     </div>
     <div
-      class="absolute inset-x-0 bottom-20 z-10 animate-bounce text-center text-white opacity-75"
+      class="absolute inset-x-0 bottom-[2.5%] z-10 animate-bounce text-center text-white opacity-75"
     >
       <font-awesome-icon icon="angles-down" size="xl" />
       <div class="text-sm">Scroll</div>

@@ -1,10 +1,11 @@
 <template>
   <textarea
     ref="textarea"
-    class="c-textarea inline-block w-full rounded-md border border-slate-300 align-bottom placeholder-slate-400 transition-colors focus:border-primary-400 focus:ring-0"
+    class="c-textarea inline-block w-full rounded-md border border-slate-300 align-bottom placeholder-slate-400 transition-colors focus:border-primary-400 focus:ring-0 disabled:cursor-not-allowed disabled:cursor-not-allowed disabled:border-slate-200 disabled:bg-slate-100 disabled:text-slate-400"
     :placeholder="placeholder"
     :style="textAreaStyle"
     :value="value"
+    :disabled="textAreaDisabled"
     @input="handleInput"
     @blur="handleBlur"
   />
@@ -17,6 +18,7 @@ import emitterMixin from '~/mixins/emitterMixin'
 export default {
   name: 'CTextArea',
   mixins: [emitterMixin],
+  inject: ['CForm'],
   props: {
     value: {
       type: String,
@@ -29,11 +31,20 @@ export default {
     autosize: {
       type: [Boolean, Object],
       default: () => ({ minRows: 5, maxRows: null })
+    },
+    disabled: {
+      type: Boolean,
+      default: false
     }
   },
   data() {
     return {
       textAreaStyle: {}
+    }
+  },
+  computed: {
+    textAreaDisabled() {
+      return this.disabled || (this.CForm || {}).disabled
     }
   },
   mounted() {

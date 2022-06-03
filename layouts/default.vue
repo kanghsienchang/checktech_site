@@ -1,6 +1,7 @@
 <template>
   <div
-    class="default-layout min-h-[calc(var(--vh-unit, 1vh)*100-4rem)] flex flex-col"
+    :key="$i18n.locale"
+    class="default-layout flex min-h-[calc(var(--vh-unit,1vh)*100)] flex-col"
   >
     <nav-menu
       :key="$route.path"
@@ -8,13 +9,7 @@
       :transparent-and-absolute-at-top="isHomePage"
       :scroll-trigger-options="scrollTriggerOptions"
     />
-    <div
-      :class="[
-        'content-wrapper flex-1',
-        { 'main-container mt-16 py-8': !isHomePage }
-      ]"
-    >
-      <bread-crumbs v-if="!isHomePage" class="mb-10" />
+    <div :class="['content-wrapper flex-1', { 'mt-16': !isHomePage }]">
       <nuxt-child />
     </div>
     <app-footer ref="footer" />
@@ -24,17 +19,21 @@
 <script>
 import NavMenu from '~/layouts/components/NavMenu'
 import AppFooter from '~/layouts/components/AppFooter'
-import BreadCrumbs from '~/layouts/components/BreadCrumbs'
 export default {
   name: 'DefaultLayout',
-  components: { BreadCrumbs, AppFooter, NavMenu },
+  components: { AppFooter, NavMenu },
   data() {
     return {
       resizeFunction: null
     }
   },
   head() {
+    const i18nHead = this.$nuxtI18nHead({ addSeoAttributes: true })
     return {
+      title: this.$t('meta.title'),
+      htmlAttrs: {
+        ...i18nHead.htmlAttrs
+      },
       meta: [
         { hid: 'og-type', property: 'og:type', content: 'website' },
         { hid: 'og-title', property: 'og:title', content: '大將科技' },
@@ -43,13 +42,15 @@ export default {
           hid: 'og-image',
           property: 'og:image',
           content: require('@/assets/images/logo.png')
-        }
-      ]
+        },
+        ...i18nHead.meta
+      ],
+      link: [...i18nHead.link]
     }
   },
   computed: {
     isHomePage() {
-      return this.$route.path === '/'
+      return this.localePath('index') === this.$route.path
     },
     scrollTriggerOptions() {
       if (!this.isHomePage) {
@@ -77,7 +78,7 @@ export default {
       clearTimeout(this.resizeFunction)
       this.resizeFunction = setTimeout(() => {
         this.resize()
-      }, 300)
+      }, 100)
     },
     resize() {
       this.$store.commit('setWindowWidth', window.innerWidth)
