@@ -71,6 +71,9 @@ export default {
       rawRelatedData: []
     }
   },
+  async fetch() {
+    await Promise.all([this.getProductDetail(), this.getRelatedProducts()])
+  },
   head() {
     return {
       title: this.product.name,
@@ -180,9 +183,6 @@ export default {
           ]
         : []
     }
-  },
-  async mounted() {
-    await Promise.all([this.getProductDetail(), this.getRelatedProducts()])
   },
   methods: {
     renderMarkdown(val) {
