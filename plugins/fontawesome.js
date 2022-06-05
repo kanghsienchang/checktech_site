@@ -23,7 +23,8 @@ import {
   faCircleNotch,
   faCircleCheck,
   faCircleXmark,
-  faCircle
+  faCircle,
+  faXmark
 } from '@fortawesome/free-solid-svg-icons'
 
 config.autoAddCss = false
@@ -49,7 +50,8 @@ library.add(
   faAngleDown,
   faCircleNotch,
   faCircleCheck,
-  faCircle
+  faCircle,
+  faXmark
 )
 
 Vue.component('FontAwesomeIcon', FontAwesomeIcon)

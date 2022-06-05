@@ -16,7 +16,7 @@
           :key="company.image_alt"
           class="company-logo"
         >
-          <img :src="company.image" :alt="company.image_alt" />
+          <img v-lazy="company.image" :alt="company.image_alt" />
         </figure>
       </div>
     </div>

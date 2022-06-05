@@ -1,7 +1,8 @@
 <template>
   <div class="feature-and-services mt-20 md:mt-24">
     <div
-      class="relative z-10 mt-8 bg-[url('@/assets/images/services.jpg')] bg-cover bg-center bg-no-repeat before:absolute before:inset-0 before:z-10 before:bg-[#1e222866]"
+      v-lazy:background-image="require('@/assets/images/services.jpg')"
+      class="bg-image-overlay-40 relative mt-8 bg-cover bg-center bg-no-repeat before:absolute"
       :class="[
         {
           'bg-fixed': fixedBg

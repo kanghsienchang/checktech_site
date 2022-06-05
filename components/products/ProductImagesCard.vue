@@ -7,7 +7,7 @@
         <swiper-slide v-for="image in images || []" :key="image.src">
           <div class="flex h-full w-full items-center">
             <img
-              :src="image.src"
+              v-lazy="image.src"
               :alt="image.alt"
               class="max-h-full w-full max-w-full"
             />

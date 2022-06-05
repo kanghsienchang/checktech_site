@@ -12,19 +12,22 @@
         <div class="flex flex-col gap-6">
           <figure class="h-full w-[calc(100%-1.5rem)] self-end">
             <img
-              src="@/assets/images/about/about-us-top-left.jpg"
+              v-lazy="require('@/assets/images/about/about-us-top-left.jpg')"
               class="h-full"
             />
           </figure>
           <figure class="h-[100%-1.5rem]">
             <img
-              src="@/assets/images/about/about-us-bottom-left.jpg"
+              v-lazy="require('@/assets/images/about/about-us-bottom-left.jpg')"
               class="h-full"
             />
           </figure>
         </div>
         <figure class="h-[calc(100%-3rem)] self-center">
-          <img src="@/assets/images/about/about-us-right.jpg" class="h-full" />
+          <img
+            v-lazy="require('@/assets/images/about/about-us-right.jpg')"
+            class="h-full"
+          />
         </figure>
         <div
           class="absolute top-[calc(50%+2.5rem)] left-1/2 flex h-[9.375rem] w-[9.375rem] -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-primary-500"

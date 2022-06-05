@@ -5,7 +5,7 @@ const breakpoints = Object.keys(defaultTheme.screens).reduce(
 )
 
 export const state = () => ({
-  windowWidth: 0,
+  windowWidth: 1280,
   windowHeight: 0
 })
 

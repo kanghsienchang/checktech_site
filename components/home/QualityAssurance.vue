@@ -31,14 +31,14 @@
         />
         <figure class="z-10 w-[75%] overflow-hidden rounded-md">
           <img
-            src="@/assets/images/quality-assurance/image1.jpg"
+            v-lazy="require('@/assets/images/quality-assurance/image1.jpg')"
             alt="Quality assurance 1"
             class="h-full object-cover"
           />
         </figure>
         <figure class="ml-[30%] -mt-[25%] w-[70%] overflow-hidden rounded-md">
           <img
-            src="@/assets/images/quality-assurance/image2.jpeg"
+            v-lazy="require('@/assets/images/quality-assurance/image2.jpeg')"
             alt="Quality assurance 2"
             class="h-full object-cover"
           />

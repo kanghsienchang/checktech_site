@@ -9,14 +9,14 @@
         />
         <div class="flex flex-col justify-start">
           <div class="flex-1">
-            <h3 class="mb-6 font-medium">{{ product.name }}</h3>
+            <h4 class="mb-6 font-medium">{{ product.name }}</h4>
             <div class="mb-16 grid grid-cols-2 gap-x-12 gap-y-8">
               <template v-for="productInfo in productInfoList">
                 <div
                   v-if="productInfo.items && productInfo.items.length > 0"
                   :key="productInfo.key"
                 >
-                  <div class="mb-2 text-lg font-medium text-slate-500">
+                  <div class="mb-2 font-medium text-slate-500">
                     {{ productInfo.label }}
                   </div>
                   <ul class="list-inside list-disc space-y-1">
@@ -65,6 +65,31 @@ const md = new MarkdownIt('default')
 export default {
   name: 'ProductDetail',
   components: { RelatedProductList, ProductImagesCard, CButton, BreadCrumbs },
+  // async asyncData({ $axios, params }) {
+  //   const { data: rawData } = await getProductDetail($axios, params.key, {
+  //     populate: [
+  //       'applications',
+  //       'description',
+  //       'dimensions',
+  //       'features',
+  //       'images',
+  //       'name',
+  //       'specifications'
+  //     ]
+  //   })
+  //   const { data: rawRelatedData } = await getProducts($axios, {
+  //     populate: ['name', 'images'],
+  //     filters: {
+  //       being_related_products: {
+  //         key: params.key
+  //       }
+  //     }
+  //   })
+  //   return {
+  //     rawData,
+  //     rawRelatedData
+  //   }
+  // },
   data() {
     return {
       rawData: null,
@@ -127,20 +152,20 @@ export default {
     },
     product() {
       return {
-        applications: this.$getApiDataTranslation(this.rawData, 'applications'),
+        applications: this.getApiDataTranslation(this.rawData, 'applications'),
         description:
-          this.$getApiDataTranslation(this.rawData, 'description') || '',
-        dimensions: this.$getApiDataTranslation(this.rawData, 'dimensions'),
-        features: this.$getApiDataTranslation(this.rawData, 'features'),
+          this.getApiDataTranslation(this.rawData, 'description') || '',
+        dimensions: this.getApiDataTranslation(this.rawData, 'dimensions'),
+        features: this.getApiDataTranslation(this.rawData, 'features'),
         images: this.rawData?.attributes?.images?.data?.map((image) => {
           return {
             alt: image?.attributes?.alternativeText,
             src: image?.attributes?.url
           }
         }),
-        name: this.$getApiDataTranslation(this.rawData, 'name'),
+        name: this.getApiDataTranslation(this.rawData, 'name'),
         related_products: [],
-        specifications: this.$getApiDataTranslation(
+        specifications: this.getApiDataTranslation(
           this.rawData,
           'specifications'
         )
@@ -185,6 +210,17 @@ export default {
     }
   },
   methods: {
+    getApiDataTranslation(data, attributeKey) {
+      const attribute = data?.attributes?.[attributeKey]
+      if (!attribute) return undefined
+      if (Array.isArray(attribute)) {
+        return attribute.map(
+          (item) => item[this.$i18n.localeProperties.dataKey]
+        )
+      } else {
+        return attribute[this.$i18n.localeProperties.dataKey]
+      }
+    },
     renderMarkdown(val) {
       return md.render(val)
     },

@@ -5,7 +5,9 @@
   >
     <nav-menu
       ref="navMenu"
-      :transparent-and-absolute-at-top="isHomePage"
+      :on-transparent-bg="isHomePage"
+      :show-contact-us="isHomePage"
+      :product-categories="productCategories"
       :scroll-trigger-options="scrollTriggerOptions"
     />
     <div :class="['content-wrapper flex-1', { 'mt-16': !isHomePage }]">
@@ -18,13 +20,18 @@
 <script>
 import NavMenu from '~/layouts/components/NavMenu'
 import AppFooter from '~/layouts/components/AppFooter'
+import { getProductCategories } from '~/api/products'
 export default {
   name: 'DefaultLayout',
   components: { AppFooter, NavMenu },
   data() {
     return {
-      resizeFunction: null
+      resizeFunction: null,
+      rawProductCategories: []
     }
+  },
+  async fetch() {
+    await this.getProductCategories()
   },
   head() {
     const i18nHead = this.$nuxtI18nHead({ addSeoAttributes: true })
@@ -79,11 +86,6 @@ export default {
     }
   },
   computed: {
-    keepAliveProps() {
-      return {
-        includes: [this.localeRoute('products').name]
-      }
-    },
     fullUrl() {
       return `${process.env.NUXT_WEB_BASE_URL}${this.$route.fullPath}`
     },
@@ -93,14 +95,25 @@ export default {
     scrollTriggerOptions() {
       if (!this.isHomePage) {
         return {
-          trigger: '.nav-wrapper',
+          trigger: '.nav-menu',
           start: 'bottom top'
         }
       }
       return {
-        trigger: '#home-header',
-        start: '70% top'
+        trigger: '.nav-menu',
+        start: () => `${Math.ceil(window.innerHeight * 0.7)} top`
       }
+    },
+    productCategories() {
+      return this.rawProductCategories.map((category) => {
+        return {
+          name: this.$_get(
+            category,
+            `attributes.name.${this.$i18n.localeProperties.dataKey}`
+          ),
+          key: this.$_get(category, 'attributes.key')
+        }
+      })
     }
   },
   mounted() {
@@ -123,6 +136,13 @@ export default {
       this.$store.commit('setWindowHeight', window.innerHeight)
       const vh = window.innerHeight * 0.01
       document.documentElement.style.setProperty('--vh-unit', `${vh}px`)
+    },
+    async getProductCategories() {
+      const { data } = await getProductCategories(this.$axios, {
+        populate: ['name'],
+        sort: ['id:desc']
+      })
+      this.rawProductCategories = data
     }
   }
 }

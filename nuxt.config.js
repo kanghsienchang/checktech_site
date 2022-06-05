@@ -1,3 +1,4 @@
+const isDev = process.env.NODE_ENV === 'development'
 export default {
   // Target: https://go.nuxtjs.dev/config-target
   target: 'static',
@@ -6,6 +7,8 @@ export default {
     fallback: true,
     exclude: [/^.*\/products/]
   },
+
+  loading: false,
 
   // Global page headers: https://go.nuxtjs.dev/config-head
   head() {
@@ -62,8 +65,9 @@ export default {
     { src: '~/plugins/axios.js' },
     { src: '~/plugins/modal.js' },
     { src: '~/plugins/scroll-lock.js' },
-    { src: '~/plugins/utils.js' },
     { src: '~/plugins/swiper.js', mode: 'client' },
+    { src: '~/plugins/lazy-load.js', mode: 'client' },
+    isDev ? { src: '~/plugins/preview.js', mode: 'client' } : {},
     // { src: '~/plugins/router-i18n.js' },
     { src: '~/plugins/gsap.js', mode: 'client' }
   ],

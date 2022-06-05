@@ -35,21 +35,21 @@ export default {
         {
           key: 'average_capacity',
           icon: require('@/assets/images/icons/analytics.svg?raw'),
-          value: 75.13,
-          suffix: 'M',
+          value: 10,
+          suffix: 'KK/M',
           label: 'Average Capacity'
         },
         {
           key: 'operation_rate',
           icon: require('@/assets/images/icons/profits.svg?raw'),
-          value: 85,
+          value: 70,
           suffix: '%',
           label: 'Operation Rate'
         },
         {
           key: 'expert_employees',
           icon: require('@/assets/images/icons/group-2.svg?raw'),
-          value: 550,
+          value: 21,
           suffix: '',
           label: 'Expert Employees'
         }

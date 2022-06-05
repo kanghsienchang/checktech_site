@@ -31,10 +31,10 @@
     @apply font-medium text-slate-800 text-2xl;
   }
   h5 {
-    @apply font-medium text-slate-800 text-lg md:text-xl;
+    @apply font-medium text-slate-800 text-xl;
   }
   h6 {
-    @apply font-medium text-slate-800 text-sm md:text-base;
+    @apply font-medium text-slate-800 text-base;
   }
 
   img {
@@ -43,6 +43,10 @@
     image-rendering: crisp-edges;
     image-rendering: -webkit-optimize-contrast; /* Webkit (non-standard naming) */
     -ms-interpolation-mode: nearest-neighbor; /* IE (non-standard property) */
+  }
+
+  img[lazy=loading] {
+    @apply bg-slate-200;
   }
 
   figure img {
@@ -57,5 +61,17 @@
   .main-container-padded {
     @extend .main-container;
     @apply py-8;
+  }
+
+  .bg-image-overlay-30 {
+    @apply relative before:absolute before:inset-0 before:bg-black/[0.3] before:-z-10 z-10;
+  }
+
+  .bg-image-overlay-40 {
+    @apply relative before:absolute before:inset-0 before:bg-black/[0.4] before:-z-10 z-10;
+  }
+
+  .bg-image-overlay-50 {
+    @apply relative before:absolute before:inset-0 before:bg-black/50 before:-z-10 z-10;
   }
 }

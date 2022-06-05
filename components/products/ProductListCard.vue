@@ -6,7 +6,7 @@
     <div class="relative mb-3 w-full overflow-hidden pb-[80%]">
       <div class="absolute inset-0">
         <img
-          :src="imageSrc"
+          v-lazy="imageSrc"
           :alt="imageAlt"
           class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[102%]"
         />

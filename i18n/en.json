@@ -37,6 +37,12 @@
     "product_categories": "Categories",
     "specifications": "Specifications"
   },
+  "route": {
+    "about_us": "About Us",
+    "contact_us": "Contact Us",
+    "esg": "ESG",
+    "products": "Products"
+  },
   "validation": {
     "email": "Wrong format, correct format is aaa@bbb.ccc ",
     "required": "{field} is required"

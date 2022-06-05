@@ -15,7 +15,7 @@
 
 <script>
 export default {
-  name: 'Menu',
+  name: 'AppMenu',
   componentName: 'Menu',
   provide() {
     return {
@@ -123,13 +123,16 @@ export default {
 .menu {
   @apply flex font-medium;
   &--horizontal {
-    @apply flex-row;
+    @apply -mr-5 flex-row items-center;
   }
   &--vertical {
     @apply flex-col;
   }
+  &--vertical-inner {
+    @apply flex-col pb-5;
+  }
   &--popup {
-    @apply mt-2 flex-col rounded-md bg-white px-6 py-3 text-slate-800 shadow;
+    @apply mt-2 flex-col rounded-md bg-white py-3 text-slate-800 shadow;
   }
 }
 </style>

@@ -3,6 +3,6 @@ import VScrollLock from 'v-scroll-lock'
 
 Vue.use(VScrollLock, {
   bodyScrollOptions: {
-    reserveScrollBarGap: true
+    // reserveScrollBarGap: true
   }
 })

@@ -12,7 +12,7 @@
         <figure
           class="vendors__vendor group overflow-hidden rounded-md border shadow-sm transition-all duration-200 hover:-translate-y-1"
         >
-          <img :src="vendor.image" :alt="vendor.image_alt" />
+          <img v-lazy="vendor.image" :alt="vendor.image_alt" />
         </figure>
       </a>
     </div>
@@ -31,9 +31,9 @@ export default {
           link: 'https://www.gi-de.com'
         },
         {
-          image_alt: 'idedapower',
-          image: require('@/assets/images/vendors/idedapower.jpeg'),
-          link: 'http://www.cztpower.com'
+          image_alt: 'jahwa',
+          image: require('@/assets/images/vendors/jahwa.jpg'),
+          link: 'https://www.jahwa.co.kr/index_eng.php'
         },
         {
           image_alt: 'kyocera',

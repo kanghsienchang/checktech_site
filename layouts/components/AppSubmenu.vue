@@ -19,7 +19,7 @@
       @mouseenter="handleMouseEnter"
       @mouseleave="handleMouseLeave"
     >
-      <slot name="title" />
+      <span><slot name="title" /></span>
       <font-awesome-icon icon="chevron-down" size="xs" class="ml-2" />
     </div>
     <div
@@ -27,26 +27,37 @@
       @mouseenter="handleMouseEnter(100)"
       @mouseleave="handleMouseLeave"
     >
-      <ul
-        v-show="opened"
-        ref="menu"
-        role="menu"
-        :class="[`menu`, { 'menu--popup': mode === 'horizontal' }]"
-      >
-        <slot />
-      </ul>
+      <component :is="mode === 'vertical' ? 'collapse-transition' : 'span'">
+        <ul
+          v-show="opened"
+          ref="menu"
+          role="menu"
+          :class="[
+            'menu menu--vertical-inner',
+            {
+              'menu--popup': mode === 'horizontal'
+            }
+          ]"
+        >
+          <slot />
+        </ul>
+      </component>
     </div>
   </li>
 </template>
 
 <script>
 import { createPopper } from '@popperjs/core'
+import { CollapseTransition } from '@ivanv/vue-collapse-transition'
 import menuMixin from '~/layouts/components/menuMixin'
 import emitterMixin from '~/mixins/emitterMixin'
 
 export default {
-  name: 'Submenu',
+  name: 'AppSubmenu',
   componentName: 'Submenu',
+  components: {
+    CollapseTransition
+  },
   mixins: [menuMixin, emitterMixin],
   props: {
     index: {
@@ -99,10 +110,18 @@ export default {
   },
   watch: {
     opened() {
-      this.$nextTick(async () => {
-        await this.popper.update()
-        this.animation.restart()
-      })
+      if (this.mode === 'horizontal') {
+        this.$nextTick(async () => {
+          await this.popper.update()
+          this.animation.restart()
+        })
+      }
+    },
+    mode: {
+      handler() {
+        if (process.client) return
+        this.init()
+      }
     }
   },
   created() {
@@ -116,24 +135,39 @@ export default {
     })
   },
   mounted() {
+    this.init()
     this.parentMenu.addSubmenu(this)
     this.rootMenu.addSubmenu(this)
-    this.popper = createPopper(this.$el, this.$refs.menuWrapper, {
-      placement: 'bottom'
-    })
-    this.animation = this.$gsap.from(this.$refs.menu, {
-      duration: 0.2,
-      opacity: 0,
-      y: 10,
-      paused: true
-    })
   },
   beforeDestroy() {
     this.parentMenu.removeSubmenu(this)
     this.rootMenu.removeSubmenu(this)
-    this.animation.kill()
+    this.tearDown()
   },
   methods: {
+    init() {
+      if (this.mode === 'horizontal') {
+        this.popper = createPopper(this.$el, this.$refs.menuWrapper, {
+          placement: 'bottom'
+        })
+        this.animation = this.$gsap.from(this.$refs.menu, {
+          duration: 0.2,
+          opacity: 0,
+          y: 10,
+          paused: true
+        })
+      } else {
+        this.tearDown()
+      }
+    },
+    tearDown() {
+      if (this.popper) {
+        this.popper.destroy()
+      }
+      if (this.animation) {
+        this.animation.kill()
+      }
+    },
     handleMouseEnter(showTimeout = this.showTimeout) {
       if (this.disabled || this.mode === 'vertical') return
       this.dispatch('Submenu', 'mouse-enter-child')
@@ -177,7 +211,17 @@ export default {
 .menu {
   &--horizontal {
     .submenu__title {
-      @apply px-6;
+      @apply px-5 py-1.5;
+    }
+  }
+  &--vertical {
+    & > {
+      .submenu {
+        @apply border-b;
+        .submenu__title {
+          @apply py-5;
+        }
+      }
     }
   }
 }
@@ -192,7 +236,7 @@ export default {
     //}
   }
   &__title {
-    @apply flex cursor-pointer select-none items-center justify-between py-1.5;
+    @apply flex w-full cursor-pointer select-none items-center justify-between leading-none;
   }
 }
 </style>

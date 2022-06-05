@@ -38,6 +38,12 @@
     "product_categories": "分類",
     "specifications": "特點"
   },
+  "route": {
+    "about_us": "關於大將",
+    "contact_us": "聯絡我們",
+    "esg": "ESG",
+    "products": "產品"
+  },
   "validation": {
     "email": "格式錯誤，正確格式為 aaa@bbb.ccc ",
     "required": "{field}為必填欄位"

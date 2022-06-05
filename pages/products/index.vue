@@ -141,6 +141,13 @@ export default {
       }))
     }
   },
+  watch: {
+    async '$route.query.category'() {
+      await this.handleSelectProductCategory(
+        this.$route.query.category || 'all'
+      )
+    }
+  },
   async mounted() {
     await this.getProductCategories()
     const categoryQuery = this.$route.query.category

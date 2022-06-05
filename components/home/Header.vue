@@ -4,7 +4,7 @@
     class="header relative min-h-[calc(var(--vh-unit,1vh)*100)] py-16 md:py-20"
   >
     <video
-      src="@/assets/videos/header_v2.mp4"
+      src="@/assets/videos/header.mp4"
       class="absolute top-0 left-0 h-full w-full max-w-full object-cover"
       playsinline
       autoplay

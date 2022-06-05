@@ -12,10 +12,8 @@
           class="category group relative block flex h-[20rem] cursor-pointer flex-col items-center justify-center overflow-hidden rounded-md bg-cover bg-no-repeat p-8 text-white"
         >
           <div
-            class="absolute inset-0 -z-10 bg-cover bg-no-repeat transition-transform duration-500 group-hover:scale-[1.025]"
-            :style="{
-              backgroundImage: `linear-gradient(0deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${category.image})`
-            }"
+            v-lazy:background-image="category.image"
+            class="bg-image-overlay-50 absolute inset-0 -z-10 bg-cover bg-no-repeat transition-transform duration-500 group-hover:scale-[1.025]"
           />
           <div class="flex flex-col gap-4">
             <div class="text-2xl font-medium">
