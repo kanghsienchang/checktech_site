@@ -45,10 +45,6 @@
     -ms-interpolation-mode: nearest-neighbor; /* IE (non-standard property) */
   }
 
-  img[lazy=loading] {
-    @apply bg-slate-200;
-  }
-
   figure img {
     @apply w-full max-w-full h-auto;
   }

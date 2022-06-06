@@ -82,7 +82,8 @@ export default {
     '@nuxt/postcss8',
     '@nuxtjs/device',
     '@nuxtjs/svg',
-    '@nuxtjs/dotenv'
+    '@nuxtjs/dotenv',
+    '@nuxtjs/netlify-files'
     // '@nuxtjs/router'
   ],
 
@@ -97,6 +98,25 @@ export default {
   axios: {
     // Workaround to avoid enforcing hard-coded localhost:3000: https://github.com/nuxt-community/axios-module/issues/308
     baseURL: process.env.NUXT_API_BASE_URL
+  },
+
+  netlifyFiles: {
+    netlifyToml: {
+      redirects: [
+        {
+          from: '/api/*',
+          to: 'https://35.73.42.247:1337/api/:splat',
+          force: true,
+          status: 200
+        },
+        {
+          from: '/admin/*',
+          to: 'http://35.73.42.247:1337/admin/:splat',
+          force: true,
+          status: 200
+        }
+      ]
+    }
   },
 
   i18n: {
