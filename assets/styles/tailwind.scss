@@ -16,7 +16,7 @@
   }
 
   h2 {
-    @apply relative pl-[20px] font-medium text-slate-800 text-lg md:text-xl bg-clip-text text-transparent inline-flex;
+    @apply relative pl-[20px] font-medium text-slate-800 text-lg md:text-xl bg-clip-text text-transparent inline-block;
     @extend .linear-primary;
     &:before {
       @apply absolute content-[''] min-w-[12px] min-h-[2px] left-0 top-1/2 rounded-full inline-block;
@@ -28,13 +28,13 @@
     @apply font-medium text-slate-800 text-2xl md:text-3xl;
   }
   h4 {
-    @apply font-medium text-slate-800 text-xl md:text-2xl;
+    @apply font-medium text-slate-800 text-2xl;
   }
   h5 {
-    @apply font-medium text-slate-800 text-lg md:text-xl;
+    @apply font-medium text-slate-800 text-xl;
   }
   h6 {
-    @apply font-medium text-slate-800 text-sm md:text-base;
+    @apply font-medium text-slate-800 text-base;
   }
 
   img {
@@ -52,9 +52,22 @@
 
 @layer components {
   .main-container {
-    @apply container px-4 md:px-12 mx-auto;
+    @apply lg:container px-4 md:px-8 lg:px-12 mx-auto;
   }
-  .grid-with-gap {
-    @apply grid gap-8;
+  .main-container-padded {
+    @extend .main-container;
+    @apply py-8;
+  }
+
+  .bg-image-overlay-30 {
+    @apply relative before:absolute before:inset-0 before:bg-black/[0.3] before:-z-10 z-10;
+  }
+
+  .bg-image-overlay-40 {
+    @apply relative before:absolute before:inset-0 before:bg-black/[0.4] before:-z-10 z-10;
+  }
+
+  .bg-image-overlay-50 {
+    @apply relative before:absolute before:inset-0 before:bg-black/50 before:-z-10 z-10;
   }
 }

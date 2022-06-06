@@ -9,12 +9,17 @@
       {
         'btn--pill': pill,
         'hover:-translate-y-0.5 hover:shadow-md': translateOnHover,
+        'pointer-events-none opacity-75': disabled || loading,
         'btn--outline': outline
       }
     ]"
+    :disabled="disabled || loading"
     @click.prevent="$emit('click')"
   >
-    <slot />
+    <font-awesome-icon v-if="loading" icon="circle-notch" spin class="mr-2" />
+    <span>
+      <slot />
+    </span>
   </component>
 </template>
 
@@ -45,6 +50,14 @@ export default {
     translateOnHover: {
       type: Boolean,
       default: false
+    },
+    loading: {
+      type: Boolean,
+      default: false
+    },
+    disabled: {
+      type: Boolean,
+      default: false
     }
   }
 }
@@ -66,7 +79,7 @@ export default {
 }
 
 .btn {
-  @apply inline-flex cursor-pointer select-none items-center justify-center rounded-md border border-solid border-transparent bg-transparent px-6 py-2.5 text-center align-middle font-medium leading-normal tracking-wide text-white transition-all;
+  @apply inline-flex cursor-pointer select-none items-center justify-center rounded-md border border-solid border-transparent bg-transparent px-6 py-3 text-center align-middle leading-none tracking-wide text-white outline-none transition-all;
 
   &:hover {
     @apply text-white;

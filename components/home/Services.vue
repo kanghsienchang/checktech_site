@@ -1,15 +1,18 @@
 <template>
-  <div class="feature-and-services">
+  <div class="feature-and-services mt-20 md:mt-24">
     <div
-      class="relative z-10 mt-8 bg-[url('@/assets/images/services.jpg')] bg-cover bg-center bg-no-repeat before:absolute before:inset-0 before:z-10 before:bg-[#1e222866]"
+      v-lazy:background-image="require('@/assets/images/services.jpg')"
+      class="bg-image-overlay-40 relative mt-8 bg-cover bg-center bg-no-repeat before:absolute"
       :class="[
         {
           'bg-fixed': fixedBg
         }
       ]"
-      style="clip-path: polygon(0 2rem, 100% 0, 100% calc(100% - 2rem), 0 100%)"
+      :style="{
+        clipPath: 'polygon(0 1rem,100% 0, 100% calc(100% - 1rem),0 100%)'
+      }"
     >
-      <div class="main-container relative z-20 py-32 text-white">
+      <div class="main-container relative z-20 py-28 text-white md:py-32">
         <div class="feature-and-services__content w-80">
           <h2
             class="mb-4 bg-none bg-clip-content text-white before:bg-white before:bg-none"

@@ -4,14 +4,22 @@
       'menu-item',
       {
         'is-active': active,
-        'is-disabled': disabled
+        'pointer-events-none text-slate-400': disabled
       }
     ]"
-    :style="[paddingStyle]"
     role="menuitem"
     tabindex="-1"
   >
-    <slot></slot>
+    <component
+      :is="shouldUseRouter ? 'nuxt-link' : 'div'"
+      class="block w-full"
+      :to="index"
+      :style="[paddingStyle]"
+      @click.native="handleClick"
+      @click="handleClick"
+    >
+      <slot />
+    </component>
   </li>
 </template>
 
@@ -20,7 +28,7 @@ import menuMixin from '~/layouts/components/menuMixin'
 import emitterMixin from '~/mixins/emitterMixin'
 
 export default {
-  name: 'MenuItem',
+  name: 'AppMenuItem',
   componentName: 'MenuItem',
   mixins: [menuMixin, emitterMixin],
   props: {
@@ -31,6 +39,10 @@ export default {
     disabled: {
       type: Boolean,
       default: false
+    },
+    disableRouting: {
+      type: Boolean,
+      default: false
     }
   },
   computed: {
@@ -39,6 +51,9 @@ export default {
     },
     mode() {
       return this.rootMenu.mode
+    },
+    shouldUseRouter() {
+      return !this.disableRouting && this.rootMenu.router
     }
   },
   mounted() {
@@ -63,16 +78,25 @@ export default {
 <style scoped lang="scss">
 .menu {
   &--horizontal {
-    & > .menu-item {
-      @apply px-6;
+    .menu-item {
+      @apply px-5;
     }
   }
-  &--popup {
+  &--vertical {
     & > .menu-item {
+      @apply border-b;
+      & > * {
+        @apply py-5;
+      }
+    }
+  }
+  &--vertical-inner {
+    & > .menu-item > * {
+      @apply py-3;
     }
   }
 }
 .menu-item {
-  @apply cursor-pointer select-none py-1.5;
+  @apply flex cursor-pointer select-none items-center whitespace-nowrap leading-none;
 }
 </style>

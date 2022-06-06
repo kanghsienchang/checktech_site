@@ -1,7 +1,7 @@
 <template>
-  <div class="vendors main-container">
+  <div class="vendors main-container my-16 md:my-20">
     <h2 class="vendors__heading mb-6">代理品牌</h2>
-    <div class="grid grid-cols-2 gap-4 md:grid-cols-4 lg:grid-cols-5">
+    <div class="grid grid-cols-2 gap-6 md:grid-cols-4 lg:grid-cols-5">
       <a
         v-for="vendor of vendors"
         :key="vendor.image_alt"
@@ -12,7 +12,7 @@
         <figure
           class="vendors__vendor group overflow-hidden rounded-md border shadow-sm transition-all duration-200 hover:-translate-y-1"
         >
-          <img :src="vendor.image" :alt="vendor.image_alt" />
+          <img v-lazy="vendor.image" :alt="vendor.image_alt" />
         </figure>
       </a>
     </div>
@@ -31,9 +31,9 @@ export default {
           link: 'https://www.gi-de.com'
         },
         {
-          image_alt: 'idedapower',
-          image: require('@/assets/images/vendors/idedapower.jpeg'),
-          link: 'http://www.cztpower.com'
+          image_alt: 'jahwa',
+          image: require('@/assets/images/vendors/jahwa.jpg'),
+          link: 'https://www.jahwa.co.kr/index_eng.php'
         },
         {
           image_alt: 'kyocera',

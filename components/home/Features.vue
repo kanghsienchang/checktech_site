@@ -1,16 +1,20 @@
 <template>
-  <div class="features relative overflow-hidden">
+  <div
+    class="features relative -mt-7 overflow-hidden bg-slate-50 pt-24 pb-16 md:pb-20 md:pt-28"
+  >
     <div
-      class="absolute top-0 right-0 h-8 w-60 translate-y-2 -skew-y-2 -skew-x-2 bg-cyan-200/70"
+      class="absolute top-0 right-0 h-8 w-32 translate-y-2 -skew-y-2 -skew-x-2 bg-cyan-200/70 md:w-60"
     />
     <div
-      class="absolute top-0 right-0 h-6 w-52 translate-y-7 -translate-x-2 rotate-1 -skew-y-2 -skew-x-3 bg-blue-400/70"
+      class="absolute top-0 right-0 h-6 w-24 translate-y-7 -translate-x-2 -skew-y-1 -skew-x-2 bg-blue-400/70 md:w-52"
     />
-    <div class="main-container flex justify-between">
+    <div
+      class="main-container flex flex-col justify-between space-y-10 md:flex-row md:space-y-0"
+    >
       <div
         v-for="feature of features"
         :key="feature.key"
-        class="features__feature flex w-52 flex-col gap-4"
+        class="features__feature flex flex-col space-y-4 md:w-52"
       >
         <div
           class="flex h-14 w-14 items-center justify-center rounded-md bg-primary-100"

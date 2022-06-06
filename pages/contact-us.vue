@@ -1,19 +1,25 @@
 <template>
-  <div class="contact-us">
+  <div class="contact-us main-container-padded">
+    <bread-crumbs :items="crumbs" class="mb-8" />
     <div class="mx-auto max-w-screen-lg">
       <h4
         class="linear-primary mb-6 inline-block bg-clip-text text-transparent"
       >
         聯絡我們
       </h4>
-      <c-form :model="form" :rules="rules">
+      <c-form
+        ref="form"
+        :model="form"
+        :rules="rules"
+        :disabled="env.submitLoading"
+      >
         <div class="grid md:grid-cols-2 md:gap-x-8">
           <c-form-item
             class="md:col-span-2"
             :label="$t('contact_us.inquiry_type')"
             prop="inquiry_type"
           >
-            <c-select v-model="form.inquiry_type" :options="inquiryTypes" />
+            <c-select v-model="form.inquiry_type" :options="inquiryOptions" />
           </c-form-item>
           <c-form-item
             :label="$t('contact_us.product_category')"
@@ -44,10 +50,10 @@
             <c-input v-model="form.full_name" />
           </c-form-item>
           <c-form-item :label="$t('contact_us.email')" prop="email">
-            <c-input v-model="form.email" />
+            <c-input v-model="form.email" type="email" />
           </c-form-item>
           <c-form-item :label="$t('contact_us.phone_no')" prop="phone_no">
-            <c-input v-model="form.phone_no" />
+            <c-input :value="form.phone_no" @input="handlePhoneInput" />
           </c-form-item>
           <c-form-item
             class="md:col-span-2"
@@ -60,7 +66,7 @@
             />
           </c-form-item>
           <c-form-item
-            v-if="form.channel_to_know_us === 'others'"
+            v-if="channelToKnowUsIsOthers"
             class="md:col-span-2"
             prop="channel_to_know_us_others"
           >
@@ -74,10 +80,39 @@
             <c-text-area v-model="form.inquiry_details" />
           </c-form-item>
           <c-form-item class="mt-2 text-right md:col-span-2">
-            <c-button class="w-full md:w-auto">送出洽詢</c-button>
+            <c-button
+              class="w-full md:w-auto"
+              :loading="env.submitLoading"
+              @click="handleSubmit"
+            >
+              {{ $t('contact_us.submit_query') }}
+            </c-button>
           </c-form-item>
         </div>
       </c-form>
+      <c-modal
+        :visible.sync="env.modalOpened"
+        container-class="w-[25rem]"
+        @closed="handleModalClose"
+      >
+        <div class="text-center">
+          <font-awesome-icon
+            :icon="env.hasError ? 'circle-xmark' : 'circle-check'"
+            size="4x"
+            :class="['mb-6', env.hasError ? 'text-red-400' : 'text-green-400']"
+          />
+          <p class="mb-6">
+            {{
+              env.hasError
+                ? $t('contact_us.submit_error')
+                : $t('contact_us.submit_success')
+            }}
+          </p>
+          <c-button class="w-full" @click="env.modalOpened = false">
+            {{ $t('common.confirm') }}
+          </c-button>
+        </div>
+      </c-modal>
     </div>
   </div>
 </template>
@@ -91,15 +126,34 @@ import CTextArea from '~/components/ui/TextArea'
 import CButton from '~/components/ui/Button'
 import countriesEn from '@/data/countries_en.json'
 import countriesZhTW from '@/data/countries_zh_TW.json'
+import BreadCrumbs from '~/components/ui/BreadCrumbs'
+import { getOptions } from '~/api/inquiryFormOptions'
+import { submitInquiryForm } from '~/api/inquiryForm'
+import CModal from '~/components/ui/Modal'
 export default {
   name: 'ContactUs',
-  components: { CButton, CTextArea, CSelect, CInput, CFormItem, CForm },
+  components: {
+    CModal,
+    BreadCrumbs,
+    CButton,
+    CTextArea,
+    CSelect,
+    CInput,
+    CFormItem,
+    CForm
+  },
   data() {
     return {
+      env: {
+        submitLoading: false,
+        modalOpened: false,
+        hasError: false
+      },
       countries: {
         en: countriesEn,
-        zh_TW: countriesZhTW
+        tw: countriesZhTW
       },
+      optionsData: [],
       form: {
         inquiry_type: '',
         product_category: '',
@@ -114,11 +168,6 @@ export default {
         channel_to_know_us_others: '',
         inquiry_details: ''
       },
-      inquiryTypes: [
-        { label: '產品訂購', value: '產品訂購' },
-        { label: '客製化產品諮詢', value: '客製化產品諮詢' },
-        { label: '其他', value: '其他' }
-      ],
       industrialWiringOptions: [
         {
           label: 'Instrumentation harness',
@@ -249,18 +298,43 @@ export default {
             { label: '偵測開關', value: 'detectionSwitchOptions' }
           ]
         }
-      ],
-      channelToKnowUsOptions: [
-        { label: '網路搜尋', value: '網路搜尋' },
-        { label: '朋友/同事介紹', value: '朋友/同事介紹' },
-        { label: '社群媒體', value: '社群媒體' },
-        { label: '新聞報導', value: '新聞報導' },
-        { label: '展覽', value: '展覽' },
-        { label: '其他', value: 'others' }
       ]
     }
   },
+  async fetch() {
+    const { data } = await getOptions(this.$axios, {
+      'pagination[limit]': -1,
+      populate: '*'
+    })
+    this.optionsData = data
+  },
   computed: {
+    crumbs() {
+      return [
+        {
+          icon: 'house',
+          label: this.$t('page.home'),
+          path: this.localePath('index')
+        },
+        {
+          icon: '',
+          label: this.$t('page.contact_us')
+        }
+      ]
+    },
+    inquiryOptions() {
+      return this.getFormattedOptions('inquiry-type')
+    },
+    channelToKnowUsOptions() {
+      return this.getFormattedOptions('channel-to-know-us')
+    },
+    channelToKnowUsIsOthers() {
+      return (
+        this.channelToKnowUsOptions?.find(
+          ({ value }) => this.form.channel_to_know_us === value
+        )?.key === 'others'
+      )
+    },
     rules() {
       return {
         inquiry_type: [
@@ -288,20 +362,20 @@ export default {
           }
         ],
         country: [
-          {
-            required: true,
-            message: this.$t('validation.required', {
-              field: this.$t('contact_us.country')
-            })
-          }
+          // {
+          //   required: true,
+          //   message: this.$t('validation.required', {
+          //     field: this.$t('contact_us.country')
+          //   })
+          // }
         ],
         city: [
-          {
-            required: true,
-            message: this.$t('validation.required', {
-              field: this.$t('contact_us.city')
-            })
-          }
+          // {
+          //   required: true,
+          //   message: this.$t('validation.required', {
+          //     field: this.$t('contact_us.city')
+          //   })
+          // }
         ],
         company_name: [
           {
@@ -325,15 +399,20 @@ export default {
             message: this.$t('validation.required', {
               field: this.$t('contact_us.email')
             })
+          },
+          {
+            type: 'email',
+            message: this.$t('validation.email'),
+            trigger: ['blur']
           }
         ],
         phone_no: [
-          {
-            required: true,
-            message: this.$t('validation.required', {
-              field: this.$t('contact_us.phone_no')
-            })
-          }
+          // {
+          //   required: true,
+          //   message: this.$t('validation.required', {
+          //     field: this.$t('contact_us.phone_no')
+          //   })
+          // }
         ],
         channel_to_know_us: [
           {
@@ -345,7 +424,7 @@ export default {
         ],
         channel_to_know_us_others: [
           {
-            required: this.form.channel_to_know_us === 'others',
+            required: this.channelToKnowUsIsOthers,
             message: this.$t('validation.required', {
               field: this.$t('common.this_field')
             })
@@ -373,9 +452,44 @@ export default {
     }
   },
   methods: {
+    handleModalClose() {
+      this.$refs.form.resetFields()
+      this.env.hasError = false
+    },
     handleProductCategoryChange(val) {
       this.form.product_category = val
       this.form.product = ''
+    },
+    handlePhoneInput(val) {
+      this.form.phone_no = val.replace(/\D/g, '')
+    },
+    getFormattedOptions(key) {
+      return (
+        this.optionsData
+          ?.find((item) => item?.attributes?.key === key)
+          ?.attributes?.options.map((option) => ({
+            label: option[this.$i18n.localeProperties.dataKey],
+            value: option[this.$i18n.localeProperties.dataKey],
+            key: option.key
+          })) || []
+      )
+    },
+    async handleSubmit() {
+      try {
+        await this.$refs.form.validate()
+      } catch (error) {
+        return
+      }
+
+      try {
+        this.env.submitLoading = true
+        await submitInquiryForm(this.$axios, { data: this.form })
+      } catch (err) {
+        this.env.hasError = true
+      } finally {
+        this.env.modalOpened = true
+        this.env.submitLoading = false
+      }
     }
   }
 }

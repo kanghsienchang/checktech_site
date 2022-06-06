@@ -1,3 +1,6 @@
+const isDev = process.env.NODE_ENV === 'development'
+const warningInDev = isDev ? 'warn' : 'error'
+
 module.exports = {
   root: true,
   env: {
@@ -21,6 +24,7 @@ module.exports = {
     ],
     'vue/multi-word-component-names': 'off',
     'vue/html-self-closing': 'off',
-    'vue/no-unused-components': 'warn'
+    'vue/no-unused-components': warningInDev,
+    'no-unused-vars': warningInDev
   }
 }
