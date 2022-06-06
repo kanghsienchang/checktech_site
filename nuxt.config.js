@@ -4,8 +4,8 @@ export default {
   target: 'static',
 
   generate: {
-    fallback: true,
-    exclude: [/^.*\/products/]
+    fallback: true
+    // exclude: [/^.*\/products/]
   },
 
   loading: false,
@@ -67,7 +67,6 @@ export default {
     { src: '~/plugins/scroll-lock.js' },
     { src: '~/plugins/swiper.js', mode: 'client' },
     { src: '~/plugins/lazy-load.js', mode: 'client' },
-    isDev ? { src: '~/plugins/preview.js', mode: 'client' } : {},
     // { src: '~/plugins/router-i18n.js' },
     { src: '~/plugins/gsap.js', mode: 'client' }
   ],
