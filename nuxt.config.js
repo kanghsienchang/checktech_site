@@ -81,8 +81,8 @@ export default {
     '@nuxt/postcss8',
     '@nuxtjs/device',
     '@nuxtjs/svg',
-    '@nuxtjs/dotenv',
-    '@nuxtjs/netlify-files'
+    '@nuxtjs/dotenv'
+    // '@nuxtjs/netlify-files'
     // '@nuxtjs/router'
   ],
 
@@ -95,38 +95,7 @@ export default {
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
-    baseURL: 'http://localhost:1337/api'
-  },
-
-  publicRuntimeConfig: {
-    axios: {
-      browserBaseURL: process.env.NUXT_API_BASE_URL
-    }
-  },
-
-  privateRuntimeConfig: {
-    axios: {
-      baseURL: process.env.NUXT_INTERNAL_API_BASE_URL
-    }
-  },
-
-  netlifyFiles: {
-    netlifyToml: {
-      redirects: [
-        {
-          from: '/api/*',
-          to: 'https://35.73.42.247:1337/api/:splat',
-          force: true,
-          status: 200
-        },
-        {
-          from: '/admin/*',
-          to: 'http://35.73.42.247:1337/admin/:splat',
-          force: true,
-          status: 200
-        }
-      ]
-    }
+    baseURL: process.env.NUXT_API_BASE_URL
   },
 
   i18n: {
