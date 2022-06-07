@@ -98,6 +98,10 @@ export default {
     baseURL: process.env.NUXT_API_BASE_URL
   },
 
+  router: {
+    trailingSlash: true
+  },
+
   i18n: {
     locales: [
       {

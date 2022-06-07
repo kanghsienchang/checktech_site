@@ -90,7 +90,7 @@ export default {
       return `${process.env.NUXT_WEB_BASE_URL}${this.$route.fullPath}`
     },
     isHomePage() {
-      return this.localePath('index') === this.$route.path
+      return this.localeRoute('index').name === this.$route.name
     },
     scrollTriggerOptions() {
       if (!this.isHomePage) {
