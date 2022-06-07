@@ -23,22 +23,18 @@
       </div>
       <div class="quality-assurance__image relative flex flex-wrap md:w-1/2">
         <div
-          class="absolute top-[7%] right-[6.25%] -z-10 h-32 w-32 bg-[length:0.75rem_0.75rem] opacity-75"
-          :style="{
-            backgroundImage:
-              'radial-gradient(var(--color-primary) 2px,transparent 0)'
-          }"
+          class="dotted-bg absolute top-[3rem] right-[3rem] -z-10 h-32 w-32 bg-[length:0.75rem_0.75rem] opacity-75"
         />
         <figure class="z-10 w-[75%] overflow-hidden rounded-md">
           <img
-            v-lazy="require('@/assets/images/quality-assurance/image1.jpg')"
+            v-lazy="'/images/quality-assurance/image1.jpg'"
             alt="Quality assurance 1"
             class="h-full object-cover"
           />
         </figure>
         <figure class="ml-[30%] -mt-[25%] w-[70%] overflow-hidden rounded-md">
           <img
-            v-lazy="require('@/assets/images/quality-assurance/image2.jpeg')"
+            v-lazy="'/images/quality-assurance/image2.jpeg'"
             alt="Quality assurance 2"
             class="h-full object-cover"
           />
@@ -89,4 +85,11 @@ export default {
 }
 </script>
 
-<style scoped></style>
+<style scoped lang="scss">
+.dotted-bg {
+  background-image: radial-gradient(
+    theme('colors.primary.500') 2px,
+    transparent 0
+  );
+}
+</style>

@@ -1,10 +1,12 @@
+import dynamicRoutes from './dynamic-routes'
 const isDev = process.env.NODE_ENV === 'development'
 export default {
   // Target: https://go.nuxtjs.dev/config-target
   target: 'static',
 
   generate: {
-    fallback: true
+    fallback: true,
+    routes: dynamicRoutes
     // exclude: [/^.*\/products/]
   },
 
@@ -90,7 +92,8 @@ export default {
   modules: [
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
-    '@nuxtjs/i18n'
+    '@nuxtjs/i18n',
+    '@nuxtjs/redirect-module'
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
@@ -101,6 +104,14 @@ export default {
   router: {
     trailingSlash: true
   },
+
+  redirect: [
+    {
+      from: '^.*(?<!/)$',
+      to: (from, req) => req.url + '/',
+      statusCode: 301
+    }
+  ],
 
   i18n: {
     locales: [

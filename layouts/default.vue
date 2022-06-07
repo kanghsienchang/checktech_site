@@ -10,8 +10,8 @@
       :product-categories="productCategories"
       :scroll-trigger-options="scrollTriggerOptions"
     />
-    <div :class="['content-wrapper flex-1', { 'mt-16': !isHomePage }]">
-      <nuxt-child />
+    <div :class="['content-wrapper flex flex-1', { 'mt-16': !isHomePage }]">
+      <nuxt />
     </div>
     <app-footer ref="footer" />
   </div>
@@ -66,12 +66,12 @@ export default {
         {
           hid: 'og:image',
           property: 'og:image',
-          content: require('@/assets/images/logo.png')
+          content: '/images/logo.png'
         },
         {
           hid: 'twitter:image',
           name: 'twitter:image',
-          content: require('@/assets/images/logo.png')
+          content: '/images/logo.png'
         },
         ...i18nHead.meta
       ],
@@ -148,4 +148,10 @@ export default {
 }
 </script>
 
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+.content-wrapper {
+  & > * {
+    @apply w-full;
+  }
+}
+</style>

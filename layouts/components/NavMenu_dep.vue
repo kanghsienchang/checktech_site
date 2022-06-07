@@ -140,8 +140,8 @@ export default {
     ...mapGetters(['md']),
     logoImg() {
       return this.navStickTop || !this.transparentAndAbsoluteAtTop
-        ? require('@/assets/images/logo.png')
-        : require('@/assets/images/logo-white.png')
+        ? '/images/logo.png'
+        : '/images/logo-white.png'
     },
     currentLocaleObj() {
       return this.$i18n.locales.find(({ code }) => code === this.$i18n.locale)

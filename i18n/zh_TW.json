@@ -21,6 +21,11 @@
     "submit_query": "送出洽詢",
     "submit_success": "感謝您的洽詢。我們會盡快回复您"
   },
+  "error": {
+    "internal_server_error": "伺服器發生錯誤",
+    "page_not_found": "找不到頁面",
+    "return_to_home_page": "回到首頁"
+  },
   "meta": {
     "description": "測試大將官網",
     "title": "大將科技"

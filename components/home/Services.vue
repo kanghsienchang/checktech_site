@@ -1,7 +1,7 @@
 <template>
   <div class="feature-and-services mt-20 md:mt-24">
     <div
-      v-lazy:background-image="require('@/assets/images/services.jpg')"
+      v-lazy:background-image="'/images/services.jpg'"
       class="bg-image-overlay-40 relative mt-8 bg-cover bg-center bg-no-repeat before:absolute"
       :class="[
         {

@@ -1,9 +1,7 @@
 <template>
   <div class="">
     <div
-      v-lazy:background-image="
-        require('@/assets/images/applications/cover-test.jpeg')
-      "
+      v-lazy:background-image="'/images/applications/cover-test.jpeg'"
       class="bg-image-overlay-30 bg-cover bg-center bg-no-repeat"
     >
       <div class="main-container">
@@ -20,20 +18,11 @@
       <bread-crumbs :items="crumbs" class="mb-8" />
       <div class="md:w-1/2">
         <h4 class="mb-6">Calculator</h4>
-        <img
-          v-lazy="require('@/assets/images/applications/1.jpg')"
-          class="mb-10"
-        />
+        <img v-lazy="'/images/applications/1.jpg'" class="mb-10" />
         <h4 class="mb-6">Smart Door Lock</h4>
-        <img
-          v-lazy="require('@/assets/images/applications/2.jpg')"
-          class="mb-10"
-        />
+        <img v-lazy="'/images/applications/2.jpg'" class="mb-10" />
         <h4 class="mb-6">IoT Devices</h4>
-        <img
-          v-lazy="require('@/assets/images/applications/3.jpg')"
-          class="mb-10"
-        />
+        <img v-lazy="'/images/applications/3.jpg'" class="mb-10" />
       </div>
     </div>
   </div>

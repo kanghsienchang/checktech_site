@@ -31,59 +31,59 @@ export default {
       companies: [
         {
           image_alt: 'acer',
-          image: require('@/assets/images/clients/acer.png')
+          image: '/images/clients/acer.png'
         },
         {
           image_alt: 'cisco',
-          image: require('@/assets/images/clients/cisco.png')
+          image: '/images/clients/cisco.png'
         },
         {
           image_alt: 'dell',
-          image: require('@/assets/images/clients/dell.png')
+          image: '/images/clients/dell.png'
         },
         {
           image_alt: 'hitachi',
-          image: require('@/assets/images/clients/hitachi.png')
+          image: '/images/clients/hitachi.png'
         },
         {
           image_alt: 'hp',
-          image: require('@/assets/images/clients/hp.png')
+          image: '/images/clients/hp.png'
         },
         {
           image_alt: 'huawei',
-          image: require('@/assets/images/clients/huawei.png')
+          image: '/images/clients/huawei.png'
         },
         {
           image_alt: 'lg',
-          image: require('@/assets/images/clients/lg.png')
+          image: '/images/clients/lg.png'
         },
         {
           image_alt: 'netgear',
-          image: require('@/assets/images/clients/netgear.png')
+          image: '/images/clients/netgear.png'
         },
         {
           image_alt: 'nokia',
-          image: require('@/assets/images/clients/nokia.png')
+          image: '/images/clients/nokia.png'
         },
         {
           image_alt: 'pace',
-          image: require('@/assets/images/clients/pace.png')
+          image: '/images/clients/pace.png'
         },
         {
           image_alt: 'philips',
-          image: require('@/assets/images/clients/philips.png')
+          image: '/images/clients/philips.png'
         },
         {
           image_alt: 'samsung',
-          image: require('@/assets/images/clients/samsung.png')
+          image: '/images/clients/samsung.png'
         },
         {
           image_alt: 'sony',
-          image: require('@/assets/images/clients/sony.png')
+          image: '/images/clients/sony.png'
         },
         {
           image_alt: 'toshiba',
-          image: require('@/assets/images/clients/toshiba.png')
+          image: '/images/clients/toshiba.png'
         }
       ]
     }

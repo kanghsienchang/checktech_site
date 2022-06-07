@@ -192,8 +192,8 @@ export default {
     ...mapGetters(['md']),
     logoImg() {
       return this.onTransparentBg && !this.navBarOpen && !this.navStickTop
-        ? require('~/assets/images/logo-white.png')
-        : require('~/assets/images/logo.png')
+        ? '/images/logo-white.png'
+        : '/images/logo.png'
     },
     menu() {
       return [
@@ -234,7 +234,9 @@ export default {
           children: this.$i18n.locales.map((locale) => ({
             key: locale.code,
             label: locale.name,
-            link: this.switchLocalePath(locale.code),
+            link:
+              this.switchLocalePath(locale.code) ||
+              this.$route.fullPath.replace(this.$i18n.locale, locale.code),
             disabled: locale.code === this.$i18n.locale
           }))
         }

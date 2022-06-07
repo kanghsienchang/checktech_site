@@ -9,7 +9,7 @@
       class="absolute top-0 right-0 h-6 w-24 translate-y-7 -translate-x-2 -skew-y-1 -skew-x-2 bg-blue-400/70 md:w-52"
     />
     <div
-      class="main-container flex flex-col justify-between space-y-10 md:flex-row md:space-y-0"
+      class="main-container flex flex-col justify-between space-y-10 md:flex-row md:space-y-0 md:space-x-10"
     >
       <div
         v-for="feature of features"

@@ -4,11 +4,7 @@
       class="main-container flex flex-col flex-wrap justify-between gap-8 sm:flex-row"
     >
       <div class="w-full lg:w-auto">
-        <img
-          src="@/assets/images/logo-white.png"
-          alt="CHECKTECH"
-          class="mb-6 h-16"
-        />
+        <img src="/images/logo-white.png" alt="CHECKTECH" class="mb-6 h-16" />
         <p>© 2022 CHECKTECH All rights reserved.</p>
       </div>
       <div>

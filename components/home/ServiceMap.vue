@@ -5,13 +5,13 @@
         <h2 class="mb-3">客戶分佈</h2>
         <h4 class="mb-8">銷售據點涵蓋亞洲、歐洲及美洲</h4>
       </div>
-      <div class="grid gap-8 md:grid-cols-4 md:gap-12">
-        <div class="service-map__map md:col-span-3">
+      <div class="grid gap-8 xl:grid-cols-4 xl:gap-12">
+        <div class="service-map__map xl:col-span-3">
           <lottie-wrapper :options="mapAnimationOptions" />
         </div>
         <div class="service-map__legend">
           <div
-            class="grid auto-rows-min grid-cols-2 gap-4 md:gap-6 md:rounded-md md:border md:border-primary-200 md:bg-slate-50 md:px-6 md:py-8"
+            class="grid auto-rows-min grid-cols-2 gap-4 rounded-md border border-primary-200 bg-slate-50 px-6 py-8 xl:gap-6"
           >
             <div
               v-for="country of legendCountries"
@@ -22,7 +22,7 @@
               ]"
             >
               <div
-                class="relative mr-2 h-6 w-6 rounded-full border"
+                class="relative mr-2 h-6 w-6 flex-shrink-0 rounded-full border"
                 :style="{ borderColor: country.dotColor }"
               >
                 <div

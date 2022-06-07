@@ -27,27 +27,27 @@ export default {
       vendors: [
         {
           image_alt: 'giesecke-devrient',
-          image: require('@/assets/images/vendors/giesecke-devrient.jpeg'),
+          image: '/images/vendors/giesecke-devrient.jpeg',
           link: 'https://www.gi-de.com'
         },
         {
           image_alt: 'jahwa',
-          image: require('@/assets/images/vendors/jahwa.jpg'),
+          image: '/images/vendors/jahwa.jpg',
           link: 'https://www.jahwa.co.kr/index_eng.php'
         },
         {
           image_alt: 'kyocera',
-          image: require('@/assets/images/vendors/kyocera.jpeg'),
+          image: '/images/vendors/kyocera.jpeg',
           link: 'https://taiwan.kyocera.com'
         },
         {
           image_alt: 'sanico',
-          image: require('@/assets/images/vendors/sanico.jpeg'),
+          image: '/images/vendors/sanico.jpeg',
           link: 'http://www.sanicoecm.com'
         },
         {
           image_alt: 'shinmei',
-          image: require('@/assets/images/vendors/shinmei.jpeg'),
+          image: '/images/vendors/shinmei.jpeg',
           link: 'http://www.shinmei-e.co.jp'
         }
       ]

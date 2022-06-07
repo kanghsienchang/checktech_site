@@ -1,6 +1,8 @@
 <template>
   <div class="statistics bg-slate-50 py-16 md:py-20">
-    <div class="main-container grid items-center gap-10 md:grid-cols-3">
+    <div
+      class="main-container grid items-center gap-10 md:grid-cols-3 md:gap-12"
+    >
       <div class="statistics__heading text-center md:text-left">
         <h3>We are proud of</h3>
         <h3>our works</h3>
@@ -34,21 +36,21 @@ export default {
       stats: [
         {
           key: 'average_capacity',
-          icon: require('@/assets/images/icons/analytics.svg?raw'),
+          icon: require('@/assets/icons/analytics.svg?raw'),
           value: 10,
           suffix: 'KK/M',
           label: 'Average Capacity'
         },
         {
           key: 'operation_rate',
-          icon: require('@/assets/images/icons/profits.svg?raw'),
+          icon: require('@/assets/icons/profits.svg?raw'),
           value: 70,
           suffix: '%',
           label: 'Operation Rate'
         },
         {
           key: 'expert_employees',
-          icon: require('@/assets/images/icons/group-2.svg?raw'),
+          icon: require('@/assets/icons/group-2.svg?raw'),
           value: 21,
           suffix: '',
           label: 'Expert Employees'

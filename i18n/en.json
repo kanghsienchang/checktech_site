@@ -21,6 +21,11 @@
     "submit_query": "Submit Query",
     "submit_success": "Thank you for your inquiry. We will get back to you as soon as possible"
   },
+  "error": {
+    "internal_server_error": "INTERNAL SERVER ERROR",
+    "page_not_found": "PAGE NOT FOUND",
+    "return_to_home_page": "RETURN TO HOME PAGE"
+  },
   "meta": {
     "title": "CheckTech"
   },

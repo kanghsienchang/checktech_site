@@ -5,7 +5,7 @@
         <h2 class="mb-3">產品分類</h2>
         <h4 class="mb-6">提供客戶一次購足服務</h4>
       </div>
-      <div class="grid gap-10 md:grid-cols-3 md:gap-12">
+      <div class="grid gap-10 md:grid-cols-2 md:gap-12 lg:grid-cols-3">
         <div
           v-for="category of categories"
           :key="category.key"
@@ -42,7 +42,7 @@ export default {
           label: '連接器',
           description:
             '牢靠耐用是您想要的，我們可以為您把關，提供穩定高效的元件',
-          image: require('@/assets/images/products/connectors.jpeg'),
+          image: '/images/products/connectors.jpeg',
           link: '/products/1'
         },
         {
@@ -50,7 +50,7 @@ export default {
           label: '開關',
           description:
             '控制類的零件，是我們的強項，為您提供多元的選擇如開關的自由',
-          image: require('@/assets/images/products/switches.jpg'),
+          image: '/images/products/switches.jpg',
           link: '/products/2'
         },
         {
@@ -58,7 +58,7 @@ export default {
           label: '線材',
           description:
             '提供符合各項規範，且安全的連接線材，是我們的基本服務與精神',
-          image: require('@/assets/images/products/wires.jpeg'),
+          image: '/images/products/wires.jpeg',
           link: '/products/3'
         }
       ]

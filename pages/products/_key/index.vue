@@ -97,7 +97,18 @@ export default {
     }
   },
   async fetch() {
-    await Promise.all([this.getProductDetail(), this.getRelatedProducts()])
+    const { product } = this.$nuxt.context.payload
+    if (product) {
+      const relatedProducts = this.$_get(
+        product,
+        'attributes.related_products.data',
+        []
+      )
+      this.rawData = product
+      this.rawRelatedData = relatedProducts
+    } else {
+      await Promise.all([this.getProductDetail(), this.getRelatedProducts()])
+    }
   },
   head() {
     return {

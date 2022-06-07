@@ -3,31 +3,24 @@
     <div class="main-container grid gap-10 md:grid-cols-2 md:gap-12">
       <div class="about-us__image relative grid grid-cols-2 gap-4">
         <div
-          class="absolute -top-0 left-0 -z-10 h-20 w-20 -translate-y-1/4 bg-[length:0.75rem_0.75rem] opacity-75"
-          :style="{
-            backgroundImage:
-              'radial-gradient(var(--color-primary) 2px,transparent 0)'
-          }"
+          class="dotted-bg absolute -top-0 left-0 -z-10 h-20 w-20 -translate-y-1/4 bg-[length:0.75rem_0.75rem] opacity-75"
         />
         <div class="flex flex-col gap-6">
           <figure class="h-full w-[calc(100%-1.5rem)] self-end">
             <img
-              v-lazy="require('@/assets/images/about/about-us-top-left.jpg')"
+              v-lazy="'/images/about/about-us-top-left.jpg'"
               class="h-full"
             />
           </figure>
           <figure class="h-[100%-1.5rem]">
             <img
-              v-lazy="require('@/assets/images/about/about-us-bottom-left.jpg')"
+              v-lazy="'/images/about/about-us-bottom-left.jpg'"
               class="h-full"
             />
           </figure>
         </div>
         <figure class="h-[calc(100%-3rem)] self-center">
-          <img
-            v-lazy="require('@/assets/images/about/about-us-right.jpg')"
-            class="h-full"
-          />
+          <img v-lazy="'/images/about/about-us-right.jpg'" class="h-full" />
         </figure>
         <div
           class="absolute top-[calc(50%+2.5rem)] left-1/2 flex h-[9.375rem] w-[9.375rem] -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-primary-500"
@@ -92,4 +85,11 @@ export default {
 }
 </script>
 
-<style scoped></style>
+<style scoped lang="scss">
+.dotted-bg {
+  background-image: radial-gradient(
+    theme('colors.primary.500') 2px,
+    transparent 0
+  );
+}
+</style>
