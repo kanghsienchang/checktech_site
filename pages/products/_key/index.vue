@@ -97,7 +97,7 @@ export default {
     }
   },
   async fetch() {
-    const { product } = this.$nuxt.context.payload
+    const product = this.$_get(this.$nuxt, 'context.payload.product')
     if (product) {
       const relatedProducts = this.$_get(
         product,
