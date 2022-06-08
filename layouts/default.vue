@@ -1,8 +1,5 @@
 <template>
-  <div
-    :key="$i18n.locale"
-    class="default-layout flex min-h-[calc(var(--vh-unit,1vh)*100)] flex-col"
-  >
+  <div :key="$i18n.locale" class="default-layout flex flex-col">
     <nav-menu
       ref="navMenu"
       :on-transparent-bg="isHomePage"
@@ -90,17 +87,20 @@ export default {
       return `${process.env.NUXT_WEB_BASE_URL}${this.$route.fullPath}`
     },
     isHomePage() {
-      return this.localeRoute('index').name === this.$route.name
+      return (
+        this.$route.path === '/' ||
+        this.localeRoute('index')?.name === this.$route.name
+      )
     },
     scrollTriggerOptions() {
       if (!this.isHomePage) {
         return {
-          trigger: '.nav-menu',
-          start: 'bottom top'
+          trigger: 'body',
+          start: () => `64 top`
         }
       }
       return {
-        trigger: '.nav-menu',
+        trigger: 'body',
         start: () => `${Math.ceil(window.innerHeight * 0.7)} top`
       }
     },
@@ -134,8 +134,8 @@ export default {
     resize() {
       this.$store.commit('setWindowWidth', window.innerWidth)
       this.$store.commit('setWindowHeight', window.innerHeight)
-      const vh = window.innerHeight * 0.01
-      document.documentElement.style.setProperty('--vh-unit', `${vh}px`)
+      // const vh = window.innerHeight * 0.01
+      // document.documentElement.style.setProperty('--vh-unit', `${vh}px`)
     },
     async getProductCategories() {
       const { data } = await getProductCategories(this.$axios, {

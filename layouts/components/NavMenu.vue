@@ -270,22 +270,22 @@ export default {
         }
         const animation = this.$gsap
           .timeline({ paused: true })
-          .set(this.$refs.navMenu, {
-            y: '-100%',
+          .to(this.$refs.navMenu, {
+            duration: 0.15,
             opacity: 0,
-            onReverseComplete: () => (this.navStickTop = false),
+            y: '-100%',
             onComplete: () => (this.navStickTop = true)
           })
           .to(this.$refs.navMenu, {
             duration: 0.25,
             opacity: 1,
-            y: 0
+            y: 0,
+            onReverseComplete: () => (this.navStickTop = false)
           })
         this.st = this.$ScrollTrigger.create({
           animation,
           end: '+=0 top',
-          immediateRender: false,
-          toggleActions: 'play none reverse none',
+          toggleActions: 'restart none none reverse',
           ...this.scrollTriggerOptions
         })
       })

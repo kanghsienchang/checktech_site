@@ -130,6 +130,8 @@ export default {
         file: 'zh_TW.json'
       }
     ],
+    strategy: 'prefix',
+    defaultLocale: 'tw',
     langDir: 'i18n/',
     vueI18n: {
       fallbackLocale: 'tw',

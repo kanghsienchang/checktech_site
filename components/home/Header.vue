@@ -1,8 +1,5 @@
 <template>
-  <section
-    id="home-header"
-    class="header relative min-h-[calc(var(--vh-unit,1vh)*100)] py-16 md:py-20"
-  >
+  <section id="home-header" class="header relative h-screen py-16 md:py-20">
     <video
       src="/videos/header.mp4"
       class="absolute top-0 left-0 h-full w-full max-w-full object-cover"
@@ -73,4 +70,4 @@ export default {
 }
 </script>
 
-<style scoped></style>
+<style scoped lang="scss"></style>
