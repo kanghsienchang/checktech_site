@@ -67,6 +67,7 @@ export default {
     { src: '~/plugins/axios.js' },
     { src: '~/plugins/modal.js' },
     { src: '~/plugins/scroll-lock.js' },
+    { src: '~/plugins/utils.js' },
     { src: '~/plugins/swiper.js', mode: 'client' },
     { src: '~/plugins/lazy-load.js', mode: 'client' },
     // { src: '~/plugins/router-i18n.js' },

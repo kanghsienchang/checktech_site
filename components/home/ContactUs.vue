@@ -6,10 +6,10 @@
       <h3
         class="bg-gradient-to-r from-primary-500 to-purple-600 bg-clip-text text-transparent"
       >
-        準備好與我們聯繫了嗎？
+        {{ data.title }}
       </h3>
       <p>
-        我們很樂意為您提供協助，歡迎探索我們的產品及解決方案，留下資訊後將有專人與您聯繫。
+        {{ data.description }}
       </p>
       <nuxt-link
         :to="localePath('contact-us')"
@@ -18,7 +18,7 @@
         <span
           class="linear-primary bg-clip-text text-lg font-medium text-transparent"
         >
-          聯絡我們
+          {{ $t('route.contact_us') }}
         </span>
       </nuxt-link>
     </div>
@@ -27,7 +27,13 @@
 
 <script>
 export default {
-  name: 'ContactUs'
+  name: 'ContactUs',
+  props: {
+    data: {
+      type: Object,
+      default: () => {}
+    }
+  }
 }
 </script>
 

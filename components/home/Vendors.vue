@@ -1,10 +1,10 @@
 <template>
   <div class="vendors main-container my-16 md:my-20">
-    <h2 class="vendors__heading mb-6">代理品牌</h2>
+    <h2 class="vendors__heading mb-6">{{ data.title }}</h2>
     <div class="grid grid-cols-2 gap-6 md:grid-cols-4 lg:grid-cols-5">
       <a
-        v-for="vendor of vendors"
-        :key="vendor.image_alt"
+        v-for="(vendor, index) of data.items"
+        :key="index"
         :href="vendor.link"
         rel="noreferrer noopener"
         target="_blank"
@@ -12,7 +12,7 @@
         <figure
           class="vendors__vendor group overflow-hidden rounded-md border shadow-sm transition-all duration-200 hover:-translate-y-1"
         >
-          <img v-lazy="vendor.image" :alt="vendor.image_alt" />
+          <img v-lazy="vendor.image.src" :alt="vendor.image.alt" />
         </figure>
       </a>
     </div>
@@ -22,35 +22,10 @@
 <script>
 export default {
   name: 'Vendors',
-  data() {
-    return {
-      vendors: [
-        {
-          image_alt: 'giesecke-devrient',
-          image: '/images/vendors/giesecke-devrient.jpeg',
-          link: 'https://www.gi-de.com'
-        },
-        {
-          image_alt: 'jahwa',
-          image: '/images/vendors/jahwa.jpg',
-          link: 'https://www.jahwa.co.kr/index_eng.php'
-        },
-        {
-          image_alt: 'kyocera',
-          image: '/images/vendors/kyocera.jpeg',
-          link: 'https://taiwan.kyocera.com'
-        },
-        {
-          image_alt: 'sanico',
-          image: '/images/vendors/sanico.jpeg',
-          link: 'http://www.sanicoecm.com'
-        },
-        {
-          image_alt: 'shinmei',
-          image: '/images/vendors/shinmei.jpeg',
-          link: 'http://www.shinmei-e.co.jp'
-        }
-      ]
+  props: {
+    data: {
+      type: Object,
+      default: () => {}
     }
   }
 }

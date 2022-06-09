@@ -1,7 +1,7 @@
 <template>
   <div class="feature-and-services mt-20 md:mt-24">
     <div
-      v-lazy:background-image="'/images/services.jpg'"
+      v-lazy:background-image="data.background.src"
       class="bg-image-overlay-40 relative mt-8 bg-cover bg-center bg-no-repeat before:absolute"
       :class="[
         {
@@ -17,15 +17,15 @@
           <h2
             class="mb-4 bg-none bg-clip-content text-white before:bg-white before:bg-none"
           >
-            能力與服務
+            {{ data.title_1 }}
           </h2>
-          <h4 class="mb-6 text-white">提供各式方案客製化專業建議</h4>
+          <h4 class="mb-6 text-white">{{ data.title_2 }}</h4>
           <list type="check" class="grid auto-cols-max grid-cols-2 gap-4">
-            <list-item v-for="service of services" :key="service.key">
+            <list-item v-for="(label, index) of data.items" :key="index">
               <template #icon>
                 <font-awesome-icon icon="circle-arrow-right" />
               </template>
-              {{ service.label }}
+              {{ label }}
             </list-item>
           </list>
         </div>
@@ -41,16 +41,16 @@ import ListItem from '~/components/ui/ListItem'
 export default {
   name: 'Services',
   components: { ListItem, List },
+  props: {
+    data: {
+      type: Object,
+      default: () => {}
+    }
+  },
   data() {
     return {
       animation: null,
-      fixedBg: false,
-      services: [
-        { key: 'connector', label: '連結器' },
-        { key: 'switch', label: '開關' },
-        { key: 'wire', label: '線材' },
-        { key: 'electronic_components', label: '電子零組件' }
-      ]
+      fixedBg: false
     }
   },
   mounted() {

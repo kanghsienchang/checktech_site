@@ -2,14 +2,14 @@
   <div class="service-map mt-16 md:mt-20">
     <div class="main-container">
       <div class="service-map__heading">
-        <h2 class="mb-3">客戶分佈</h2>
-        <h4 class="mb-8">銷售據點涵蓋亞洲、歐洲及美洲</h4>
+        <h2 class="mb-3">{{ data.title_1 }}</h2>
+        <h4 class="mb-8">{{ data.title_2 }}</h4>
       </div>
-      <div class="grid gap-8 xl:grid-cols-4 xl:gap-12">
-        <div class="service-map__map xl:col-span-3">
+      <div class="flex flex-col gap-8 xl:flex-row xl:gap-12">
+        <div class="service-map__map w-full flex-1 xl:w-2/3">
           <lottie-wrapper :options="mapAnimationOptions" />
         </div>
-        <div class="service-map__legend">
+        <div class="service-map__legend flex-shrink-0">
           <div
             class="grid auto-rows-min grid-cols-2 gap-4 rounded-md border border-primary-200 bg-slate-50 px-6 py-8 xl:gap-6"
           >
@@ -47,6 +47,12 @@ import map from '~/assets/animations/map_v1.json'
 export default {
   name: 'ServiceMap',
   components: { LottieWrapper },
+  props: {
+    data: {
+      type: Object,
+      default: () => {}
+    }
+  },
   data() {
     return {
       animation: null,
@@ -57,57 +63,57 @@ export default {
       legendCountries: [
         {
           key: 'taiwan',
-          label: '台灣',
+          label: this.$t('service_map.countries.taiwan'),
           dotColor: '#4056A4'
         },
         {
           key: 'america',
-          label: '美國',
+          label: this.$t('service_map.countries.america'),
           dotColor: '#6599F8'
         },
         {
           key: 'japan',
-          label: '日本',
+          label: this.$t('service_map.countries.japan'),
           dotColor: '#6599F8'
         },
         {
           key: 'brazil',
-          label: '巴西',
+          label: this.$t('service_map.countries.brazil'),
           dotColor: '#6599F8'
         },
         {
           key: 'singapore',
-          label: '新加坡',
+          label: this.$t('service_map.countries.singapore'),
           dotColor: '#6599F8'
         },
         {
           key: 'holland',
-          label: '荷蘭',
+          label: this.$t('service_map.countries.holland'),
           dotColor: '#6599F8'
         },
         {
           key: 'malaysia',
-          label: '馬來西亞',
+          label: this.$t('service_map.countries.malaysia'),
           dotColor: '#6599F8'
         },
         {
           key: 'china',
-          label: '中國',
+          label: this.$t('service_map.countries.china'),
           dotColor: '#6599F8'
         },
         {
           key: 'vietnam',
-          label: '越南',
+          label: this.$t('service_map.countries.vietnam'),
           dotColor: '#6599F8'
         },
         {
           key: 'hongkong',
-          label: '香港',
+          label: this.$t('service_map.countries.hongkong'),
           dotColor: '#6599F8'
         },
         {
           key: 'indonesia',
-          label: '印尼',
+          label: this.$t('service_map.countries.indonesia'),
           dotColor: '#6599F8'
         }
       ]

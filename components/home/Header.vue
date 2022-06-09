@@ -1,7 +1,8 @@
 <template>
   <section id="home-header" class="header relative h-screen py-16 md:py-20">
     <video
-      src="/videos/header.mp4"
+      :poster="data.video.poster"
+      :src="data.video.src"
       class="absolute top-0 left-0 h-full w-full max-w-full object-cover"
       playsinline
       autoplay
@@ -13,11 +14,11 @@
       class="header__content main-container absolute inset-0 z-10 flex flex-col items-start justify-center text-white"
     >
       <div class="header__top">
-        <h1 class="text-current">專業與創新</h1>
-        <h1 class="mt-3 text-current">我們是您最好的選擇</h1>
+        <h1 class="text-current">{{ data.title_1 }}</h1>
+        <h1 class="mt-3 text-current">{{ data.title_2 }}</h1>
       </div>
       <p class="header__middle mt-6 text-base lg:text-lg">
-        提供您「一次購足」的電子零組件開發與客製化專業建議
+        {{ data.description }}
       </p>
       <div class="header__bottom mt-6">
         <c-button
@@ -28,7 +29,7 @@
           translate-on-hover
           outline
         >
-          聯絡我們
+          {{ $t('route.contact_us') }}
         </c-button>
       </div>
     </div>
@@ -36,7 +37,7 @@
       class="absolute inset-x-0 bottom-[2.5%] z-10 animate-bounce text-center text-white opacity-75"
     >
       <font-awesome-icon icon="angles-down" size="xl" />
-      <div class="text-sm">Scroll</div>
+      <div class="text-sm">{{ $t('home.scroll') }}</div>
     </div>
   </section>
 </template>
@@ -46,6 +47,12 @@ import CButton from '~/components/ui/Button'
 export default {
   name: 'Header',
   components: { CButton },
+  props: {
+    data: {
+      type: Object,
+      default: () => {}
+    }
+  },
   data() {
     return {
       animation: null

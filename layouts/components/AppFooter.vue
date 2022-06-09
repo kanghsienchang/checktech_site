@@ -8,7 +8,7 @@
         <p>© 2022 CHECKTECH All rights reserved.</p>
       </div>
       <div>
-        <div class="footer__title">聯絡我們</div>
+        <div class="footer__title">{{ $t('route.contact_us') }}</div>
         <ul>
           <li class="footer-item">
             <font-awesome-icon icon="phone" />
@@ -53,27 +53,17 @@
         </ul>
       </div>
       <div>
-        <div class="mb-8">
-          <div class="footer__title">了解更多</div>
-          <ul>
-            <li class="footer-item">關於大將</li>
-            <li class="footer-item">產品介紹</li>
-          </ul>
-        </div>
         <div>
-          <div class="footer__title">網站條款</div>
+          <div class="footer__title">{{ $t('footer.know_more') }}</div>
           <ul>
-            <li class="footer-item">Cookie政策</li>
+            <li class="footer-item">{{ $t('route.about_us') }}</li>
           </ul>
         </div>
       </div>
       <div>
-        <div class="footer__title">語言</div>
+        <div class="footer__title">{{ $t('footer.policies') }}</div>
         <ul>
-          <li class="footer-item">
-            <font-awesome-icon icon="globe" />
-            <span>繁體中文</span>
-          </li>
+          <li class="footer-item">{{ $t('footer.cookie_policy') }}</li>
         </ul>
       </div>
     </div>

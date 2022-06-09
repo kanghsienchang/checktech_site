@@ -4,21 +4,24 @@
       class="main-container grid items-center gap-10 md:grid-cols-3 md:gap-12"
     >
       <div class="statistics__heading text-center md:text-left">
-        <h3>We are proud of</h3>
-        <h3>our works</h3>
+        <h3 class="whitespace-pre-wrap">{{ data.title }}</h3>
       </div>
       <div
         class="statistics__content justify-between space-y-10 md:col-span-2 md:flex md:space-y-0 md:space-x-12"
       >
         <div
-          v-for="stat of stats"
-          :key="stat.key"
+          v-for="(stat, index) of data.items"
+          :key="index"
           class="flex flex-col items-center text-center"
         >
-          <!--eslint-disable-next-line vue/no-v-html-->
-          <div class="icon mb-4" v-html="stat.icon" />
+          <!--eslint-disable vue/no-v-html-->
+          <div
+            class="icon mb-4"
+            v-html="require(`@/assets/icons/${stat.icon}.svg?raw`)"
+          />
           <div class="mb-2 text-3xl font-bold">
-            {{ stat.value }}{{ stat.suffix }}
+            {{ (statValues[index] && statValues[index].value) || stat.value
+            }}{{ stat.suffix }}
           </div>
           <div class="text-slate-800-l">{{ stat.label }}</div>
         </div>
@@ -30,39 +33,27 @@
 <script>
 export default {
   name: 'Statistics',
+  props: {
+    data: {
+      type: Object,
+      default: () => {}
+    }
+  },
   data() {
     return {
       animations: [],
-      stats: [
-        {
-          key: 'average_capacity',
-          icon: require('@/assets/icons/analytics.svg?raw'),
-          value: 10,
-          suffix: 'KK/M',
-          label: 'Average Capacity'
-        },
-        {
-          key: 'operation_rate',
-          icon: require('@/assets/icons/profits.svg?raw'),
-          value: 70,
-          suffix: '%',
-          label: 'Operation Rate'
-        },
-        {
-          key: 'expert_employees',
-          icon: require('@/assets/icons/group-2.svg?raw'),
-          value: 21,
-          suffix: '',
-          label: 'Expert Employees'
-        }
-      ]
+      statValues: []
     }
   },
   mounted() {
-    for (const stat of this.stats) {
+    this.statValues = this.data.items.map((item) => ({
+      value: item.value
+    }))
+    for (const stat of this.statValues) {
       const start = { val: 0 }
       const split = (stat.value + '').split('.')
       const decimals = split.length > 1 ? split[1].length : 0
+      const self = this
       const animation = this.$gsap.to(start, {
         scrollTrigger: {
           markers: this.$showScrollMarker,
@@ -73,7 +64,7 @@ export default {
         duration: 1.5,
         ease: 'power1.out',
         onUpdate() {
-          stat.value = this.targets()[0].val.toFixed(decimals)
+          self.$set(stat, 'value', this.targets()[0].val.toFixed(decimals))
         }
       })
       this.animations.push(animation)

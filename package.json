@@ -24,6 +24,7 @@
     "cleave.js": "^1.6.0",
     "core-js": "^3.19.3",
     "gsap": "^3.10.4",
+    "lodash.clonedeep": "^4.5.0",
     "lodash.get": "^4.4.2",
     "lodash.set": "^4.3.2",
     "lottie-web": "^5.9.4",

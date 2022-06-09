@@ -2,20 +2,16 @@
   <div class="quality-assurance my-16 md:my-20">
     <div class="main-container flex flex-col gap-12 md:flex-row">
       <div class="quality-assurance__content md:w-1/2">
-        <h2 class="mb-3">品質要求</h2>
-        <h4 class="mb-6">致力於全球化佈局策略 符合國際標準</h4>
+        <h2 class="mb-3">{{ data.title_1 }}</h2>
+        <h4 class="mb-6">{{ data.title_2 }}</h4>
         <div>
           <div>
             <p>
-              本公司致力於全球化佈局策略，尤以環保是市場所趨，生產皆符合環保標準
+              {{ data.description }}
             </p>
             <list class="mt-6 flex flex-col gap-6" type="check">
-              <list-item> 通過 ISO 9001:2015 質量體系認證 </list-item>
-              <list-item>
-                全面導入無鉛製程產品，以符合歐盟RoHS之要求
-              </list-item>
-              <list-item>
-                所有產品所含金屬皆符合無衝突規範 (DRC Conflict-Free)
+              <list-item v-for="(item, index) in data.items" :key="index">
+                {{ item }}
               </list-item>
             </list>
           </div>
@@ -27,15 +23,15 @@
         />
         <figure class="z-10 w-[75%] overflow-hidden rounded-md">
           <img
-            v-lazy="'/images/quality-assurance/image1.jpg'"
-            alt="Quality assurance 1"
+            v-lazy="data.image_left.src"
+            :alt="data.image_left.alt"
             class="h-full object-cover"
           />
         </figure>
         <figure class="ml-[30%] -mt-[25%] w-[70%] overflow-hidden rounded-md">
           <img
-            v-lazy="'/images/quality-assurance/image2.jpeg'"
-            alt="Quality assurance 2"
+            v-lazy="data.image_right.src"
+            :alt="data.image_left.alt"
             class="h-full object-cover"
           />
         </figure>
@@ -50,6 +46,12 @@ import ListItem from '~/components/ui/ListItem'
 export default {
   name: 'QualityAssurance',
   components: { ListItem, List },
+  props: {
+    data: {
+      type: Object,
+      default: () => {}
+    }
+  },
   data() {
     return {
       animation: null
