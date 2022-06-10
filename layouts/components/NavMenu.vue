@@ -223,6 +223,11 @@ export default {
           ]
         },
         {
+          key: 'applications',
+          label: this.$t('route.application'),
+          link: this.localePath({ name: 'applications' })
+        },
+        {
           key: 'esg',
           label: this.$t('route.esg'),
           link: this.localePath({ name: 'esg' })

@@ -17,7 +17,7 @@
     "inquiry_type": "洽詢項目",
     "phone_no": "聯絡電話",
     "product": "產品",
-    "product_category": "產品類別",
+    "product_type": "產品類別",
     "submit_error": "送出失敗，請再試一次",
     "submit_query": "送出洽詢",
     "submit_success": "感謝您的洽詢。我們會盡快回复您"
@@ -55,6 +55,7 @@
   },
   "route": {
     "about_us": "關於大將",
+    "application": "產品應用",
     "contact_us": "聯絡我們",
     "esg": "ESG",
     "products": "產品"

@@ -22,13 +22,13 @@
             <c-select v-model="form.inquiry_type" :options="inquiryOptions" />
           </c-form-item>
           <c-form-item
-            :label="$t('contact_us.product_category')"
-            prop="product_category"
+            :label="$t('contact_us.product_type')"
+            prop="product_type"
           >
             <c-select
-              :value="form.product_category"
-              :option-groups="productCategoryOptions"
-              @input="handleProductCategoryChange"
+              :value="form.product_type"
+              :option-groups="productTypeOptions"
+              @input="handleProductTypeChange"
             />
           </c-form-item>
           <c-form-item :label="$t('contact_us.product')" prop="product">
@@ -130,6 +130,7 @@ import BreadCrumbs from '~/components/ui/BreadCrumbs'
 import { getOptions } from '~/api/inquiryFormOptions'
 import { submitInquiryForm } from '~/api/inquiryForm'
 import CModal from '~/components/ui/Modal'
+import { getProductCategories } from '~/api/products'
 export default {
   name: 'ContactUs',
   components: {
@@ -153,10 +154,11 @@ export default {
         en: countriesEn,
         tw: countriesZhTW
       },
+      rawCategories: [],
       optionsData: [],
       form: {
         inquiry_type: '',
-        product_category: '',
+        product_type: '',
         product: '',
         country: '',
         city: '',
@@ -167,148 +169,70 @@ export default {
         channel_to_know_us: '',
         channel_to_know_us_others: '',
         inquiry_details: ''
-      },
-      industrialWiringOptions: [
-        {
-          label: 'Instrumentation harness',
-          value: 'Instrumentation harness'
-        },
-        {
-          label: 'INDUSTRIAL DRAG CABLE',
-          value: 'INDUSTRIAL DRAG CABLE'
-        },
-        {
-          label: 'D-SUB DM POWER 8W8PIN',
-          value: 'D-SUB DM POWER 8W8PIN'
-        },
-        {
-          label: 'Industrial network cable',
-          value: 'Industrial network cable'
-        },
-        {
-          label: 'Waterproof wiring harness',
-          value: 'Waterproof wiring harness'
-        },
-        {
-          label: 'Signal transmission system cable of industrial printer',
-          value: 'Signal transmission system cable of industrial printer'
-        },
-        {
-          label: 'Automatic control system cable',
-          value: 'Automatic control system cable'
-        },
-        { label: 'RS232 SERIES cable', value: 'RS232 SERIES cable' }
-      ],
-      rfCableOptions: [
-        { label: 'SMA cable 50Ω', value: 'SMA cable 50Ω' },
-        { label: 'TNC cable 50Ω', value: 'TNC cable 50Ω' },
-        { label: 'BNC cable 75Ω', value: 'BNC cable 75Ω' },
-        { label: 'I-PEX cable', value: 'I-PEX cable' },
-        { label: 'SMB cable 50Ω', value: 'SMB cable 50Ω' },
-        { label: 'N Type cable 50Ω', value: 'N Type cable 50Ω' },
-        { label: 'MMCX cable 50Ω', value: 'MMCX cable 50Ω' },
-        { label: 'RF SERIES cable', value: 'RF SERIES cable' }
-      ],
-      renewableEnergyHarnessOptions: [
-        { label: 'PV CABLE', value: 'PV CABLE' },
-        { label: 'PV Y CABLE', value: 'PV Y CABLE' },
-        {
-          label: 'Cable for energy storage systems',
-          value: 'Cable for energy storage systems'
-        }
-      ],
-      connectorOptions: [
-        {
-          label: 'M Series Waterproof Connector',
-          value: 'M Series Waterproof Connector'
-        },
-        {
-          label: 'Circular Series Waterproof Connector',
-          value: 'Circular Series Waterproof Connector'
-        },
-        {
-          label: 'I/O Series Waterproof Connector',
-          value: 'I/O Series Waterproof Connector'
-        },
-        {
-          label: 'RJ45 SERIES WATERPROOF CONNECTOR',
-          value: 'RJ45 SERIES WATERPROOF CONNECTOR'
-        },
-        {
-          label: 'USB SERIES WATERPROOF CONNECTOR',
-          value: 'USB SERIES WATERPROOF CONNECTOR'
-        },
-        {
-          label: 'CIRCULAR SERIES WATERPROOF CONNECTOR',
-          value: 'CIRCULAR SERIES WATERPROOF CONNECTOR'
-        },
-        {
-          label: 'D-SUB SERIES WATERPROOF CONNECTOR',
-          value: 'D-SUB SERIES WATERPROOF CONNECTOR'
-        },
-        {
-          label: 'UENSOR9  SERIES WATERPROOF CONNECTOR',
-          value: 'UENSOR9  SERIES WATERPROOF CONNECTOR'
-        },
-        {
-          label: 'TYPE-C  SERIES WATERPROOF CONNECTOR',
-          value: 'TYPE-C  SERIES WATERPROOF CONNECTOR'
-        }
-      ],
-      tactSwitchOptions: [
-        { label: 'A1', value: 'A1' },
-        { label: 'A2', value: 'A2' },
-        { label: 'A5', value: 'A5' }
-      ],
-      slideSwitchOptions: [
-        { label: 'B1', value: 'B1' },
-        { label: 'B2', value: 'B2' }
-      ],
-      detectionSwitchOptions: [
-        { label: 'C1', value: 'C1' },
-        { label: 'C2', value: 'C2' }
-      ],
-      productCategoryOptions: [
-        {
-          label: '線材',
-          options: [
-            {
-              label: '工業線束',
-              value: 'industrialWiringOptions'
-            },
-            {
-              label: 'RF CABLE',
-              value: 'rfCableOptions'
-            },
-            {
-              label: '再生能源線束',
-              value: 'renewableEnergyHarnessOptions'
-            }
-          ]
-        },
-        {
-          label: '連接器',
-          options: [{ label: '防水連接器', value: 'connectorOptions' }]
-        },
-        {
-          label: '開關',
-          options: [
-            { label: '輕觸開關', value: 'tactSwitchOptions' },
-            { label: '滑動開關', value: 'slideSwitchOptions' },
-            { label: '偵測開關', value: 'detectionSwitchOptions' }
-          ]
-        }
-      ]
+      }
     }
   },
   async fetch() {
-    const { data } = await getOptions(this.$axios, {
-      'pagination[limit]': -1,
-      populate: '*'
-    })
-    this.optionsData = data
+    await Promise.all([this.getOptions(), this.getProductCategories()])
   },
   computed: {
+    productTypeOptions() {
+      return this.rawCategories.map((category) => {
+        return {
+          label: this.$_get(
+            category,
+            `attributes.name.${this.$i18n.localeProperties.dataKey}`
+          ),
+          options: this.$_get(
+            category,
+            `attributes.product_types.data`,
+            []
+          ).map((productType) => {
+            return {
+              label: this.$_get(
+                productType,
+                `attributes.name.${this.$i18n.localeProperties.dataKey}`
+              ),
+              value: this.$_get(productType, `attributes.key`)
+            }
+          })
+        }
+      })
+    },
+    selectedProductType() {
+      for (const productCategory of this.rawCategories) {
+        for (const productType of this.$_get(
+          productCategory,
+          'attributes.product_types.data',
+          []
+        )) {
+          if (
+            this.$_get(productType, `attributes.key`) === this.form.product_type
+          ) {
+            return productType
+          }
+        }
+      }
+      return []
+    },
+    productOptions() {
+      return this.$_get(
+        this.selectedProductType,
+        'attributes.products.data',
+        []
+      ).map((product) => {
+        return {
+          label: this.$_get(
+            product,
+            `attributes.name.${this.$i18n.localeProperties.dataKey}`
+          ),
+          value: this.$_get(
+            product,
+            `attributes.name.${this.$i18n.localeProperties.dataKey}`
+          )
+        }
+      })
+    },
     crumbs() {
       return [
         {
@@ -345,11 +269,11 @@ export default {
             })
           }
         ],
-        product_category: [
+        product_type: [
           {
             required: true,
             message: this.$t('validation.required', {
-              field: this.$t('contact_us.product_category')
+              field: this.$t('contact_us.product_type')
             })
           }
         ],
@@ -440,24 +364,54 @@ export default {
         ]
       }
     },
-    productOptions() {
-      return this?.[this.form.product_category] || []
-    },
     countryOptions() {
       const countries = this.countries[this.$i18n.locale] || {}
       return Object.entries(countries).map(([value, label]) => ({
         label,
-        value
+        value: label
       }))
     }
   },
   methods: {
+    async getOptions() {
+      const { data } = await getOptions(this.$axios, {
+        pagination: {
+          limit: -1
+        },
+        populate: '*'
+      })
+      this.optionsData = data
+    },
+    async getProductCategories() {
+      const { data } = await getProductCategories(this.$axios, {
+        pagination: {
+          limit: -1
+        },
+        sort: ['id:desc'],
+        populate: {
+          name: '*',
+          product_types: {
+            populate: {
+              name: '*',
+              products: {
+                populate: {
+                  name: '*'
+                }
+              }
+            }
+          }
+        }
+      })
+      this.rawCategories = data
+    },
     handleModalClose() {
-      this.$refs.form.resetFields()
+      if (!this.env.hasError) {
+        this.$refs.form.resetFields()
+      }
       this.env.hasError = false
     },
-    handleProductCategoryChange(val) {
-      this.form.product_category = val
+    handleProductTypeChange(val) {
+      this.form.product_type = val
       this.form.product = ''
     },
     handlePhoneInput(val) {
@@ -483,7 +437,14 @@ export default {
 
       try {
         this.env.submitLoading = true
-        await submitInquiryForm(this.$axios, { data: this.form })
+
+        const payload = this.$_cloneDeep(this.form)
+        payload.product_type = this.$_get(
+          this.selectedProductType,
+          `attributes.name.${this.$i18n.localeProperties.dataKey}`
+        )
+
+        await submitInquiryForm(this.$axios, { data: payload })
       } catch (err) {
         this.env.hasError = true
       } finally {
