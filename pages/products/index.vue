@@ -12,7 +12,7 @@
         </c-form-item>
       </c-form>
       <div v-if="categoryDescription" class="mb-8">
-        <p class="whitespace-pre-wrap">{{ categoryDescription }}</p>
+        <p class="whitespace-pre-wrap" v-text="categoryDescription" />
       </div>
       <c-tabs
         :value="selectedTypeKey"

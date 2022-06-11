@@ -4,36 +4,58 @@
       <bread-crumbs :items="crumbs" class="mb-8" />
       <div class="grid auto-cols-fr gap-6 md:grid-cols-2 md:gap-16">
         <product-images-card
-          class="h-[20rem] md:h-[30rem]"
+          class="h-[20rem] lg:h-[25rem] xl:h-[30rem] 2xl:h-[35rem]"
           :images="product.images"
         />
         <div class="flex flex-col justify-start">
-          <div class="flex-1">
+          <div class="mb-16">
             <h4 class="mb-6 font-medium">{{ product.name }}</h4>
-            <div class="mb-16 grid grid-cols-2 gap-x-12 gap-y-8">
-              <template v-for="productInfo in productInfoList">
-                <div
-                  v-if="productInfo.items && productInfo.items.length > 0"
-                  :key="productInfo.key"
-                >
-                  <div class="mb-2 font-medium text-slate-500">
-                    {{ productInfo.label }}
+            <template
+              v-if="
+                productInfoList.length &&
+                productInfoList.some(({ items }) => items && items.length > 0)
+              "
+            >
+              <div class="grid grid-cols-2 gap-x-12 gap-y-8">
+                <template v-for="productInfo in productInfoList">
+                  <div
+                    v-if="productInfo.items && productInfo.items.length > 0"
+                    :key="productInfo.key"
+                  >
+                    <div class="mb-2 font-medium text-slate-500">
+                      {{ productInfo.label }}
+                    </div>
+                    <ul class="list-inside list-disc space-y-1">
+                      <li
+                        v-for="item in productInfo.items"
+                        :key="item"
+                        class=""
+                      >
+                        {{ item }}
+                      </li>
+                    </ul>
                   </div>
-                  <ul class="list-inside list-disc space-y-1">
-                    <li v-for="item in productInfo.items" :key="item" class="">
-                      {{ item }}
-                    </li>
-                  </ul>
-                </div>
-              </template>
-            </div>
+                </template>
+              </div>
+            </template>
+            <template v-else-if="product.alt_properties_description">
+              <p
+                class="whitespace-pre-wrap"
+                v-text="product.alt_properties_description"
+              />
+            </template>
           </div>
           <div class="flex flex-wrap">
-            <c-button outline class="w-full md:w-auto">
+            <c-button
+              v-if="product.catalogue_file.src"
+              outline
+              class="w-full md:mr-4 md:w-auto"
+              @click="handleCatalogueClick"
+            >
               {{ $t('products.download_catalogue') }}
             </c-button>
             <c-button
-              class="mt-4 w-full flex-1 md:ml-4 md:mt-0 md:w-auto"
+              class="mt-4 w-full flex-1 md:mt-0 md:w-auto"
               icon="plus"
               :to="
                 localePath({
@@ -194,6 +216,22 @@ export default {
         specifications: this.getApiDataTranslation(
           this.rawData,
           'specifications'
+        ),
+        catalogue_file: {
+          alt: this.$_get(
+            this.rawData,
+            'attributes.catalogue_file.data.attributes.alternativeText'
+          ),
+          src: this.$toCDN(
+            this.$_get(
+              this.rawData,
+              'attributes.catalogue_file.data.attributes.url'
+            )
+          )
+        },
+        alt_properties_description: this.$_get(
+          this.rawData,
+          `attributes.alt_properties_description.${this.$i18n.localeProperties.dataKey}`
         )
       }
     },
@@ -238,6 +276,9 @@ export default {
     }
   },
   methods: {
+    handleCatalogueClick() {
+      window.open(this.product.catalogue_file.src, '_blank')
+    },
     getApiDataTranslation(data, attributeKey) {
       const attribute = data?.attributes?.[attributeKey]
       if (!attribute) return undefined
@@ -264,7 +305,9 @@ export default {
             'features',
             'images',
             'name',
-            'specifications'
+            'specifications',
+            'catalogue_file',
+            'alt_properties_description'
           ]
         }
       )

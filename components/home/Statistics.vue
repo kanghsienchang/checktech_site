@@ -4,7 +4,7 @@
       class="main-container grid items-center gap-10 md:grid-cols-3 md:gap-12"
     >
       <div class="statistics__heading text-center md:text-left">
-        <h3 class="whitespace-pre-wrap">{{ data.title }}</h3>
+        <h3 class="whitespace-pre-wrap" v-text="data.title" />
       </div>
       <div
         class="statistics__content justify-between space-y-10 md:col-span-2 md:flex md:space-y-0 md:space-x-12"

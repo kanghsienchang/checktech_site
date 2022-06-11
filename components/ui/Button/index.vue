@@ -1,6 +1,6 @@
 <template>
   <component
-    :is="to ? 'nuxt-link' : 'button'"
+    :is="anchor ? 'a' : to ? 'nuxt-link' : 'button'"
     :to="to"
     :class="[
       'btn',
@@ -35,6 +35,10 @@ export default {
     to: {
       type: [String, Object],
       default: null
+    },
+    anchor: {
+      type: Boolean,
+      default: false
     },
     color: {
       type: String,

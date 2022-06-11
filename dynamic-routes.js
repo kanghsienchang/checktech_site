@@ -39,6 +39,8 @@ export default async () => {
       images: '*',
       name: '*',
       specifications: '*',
+      catalogue_file: '*',
+      alt_properties_description: '*',
       related_products: {
         populate: ['name', 'images']
       }
