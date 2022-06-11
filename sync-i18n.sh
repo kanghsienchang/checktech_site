@@ -27,9 +27,9 @@ elif [[ "${TYPE}" = 'init' ]]; then
   echo "Cloning ${REPO_NAME}..."
   git clone ${REPO_URL} --branch ${BRANCH} --single-branch
   echo "${REPO_NAME} cloned"
-  echo "Creating symlink..."
-  ln -sf $PWD/${REPO_NAME}${REPO_FOLDER}/*.json ${DESTINATION_DIR}
-  echo "Symlink created"
+  echo "Copy translations..."
+  cp $PWD/${REPO_NAME}${REPO_FOLDER}/*.json ${DESTINATION_DIR}
+  echo "Translations copied"
 elif [[ "${TYPE}" = 'update' ]]; then
   # If no repo found, clone it
   if [[ ! -d "$PWD/${REPO_NAME}" ]]; then
@@ -39,6 +39,7 @@ elif [[ "${TYPE}" = 'update' ]]; then
   cd ${REPO_NAME}
   echo "Fetching newest ${REPO_NAME}..."
   git fetch --quiet
+  cp ${DESTINATION_DIR}/*.json $PWD/${REPO_NAME}${REPO_FOLDER}
   checkIfConflictedFiles
   # Check if there are uncommited changes
   if ! git diff-index --quiet HEAD --; then

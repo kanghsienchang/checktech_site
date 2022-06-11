@@ -1,1 +1,82 @@
-/Users/kanghsienchang/Documents/GitHub/checktech_site/checktech_i18n/site//zh_TW.json
+{
+  "common": {
+    "all": "全部",
+    "confirm": "確認",
+    "please_select": "請選擇",
+    "this_field": "此欄位",
+    "view_more": "查看更多"
+  },
+  "contact_us": {
+    "channel_to_know_us": "透過何種管道得知我們公司",
+    "city": "城市",
+    "company_name": "公司名稱",
+    "country": "國家",
+    "email": "電子郵件",
+    "full_name": "姓名",
+    "inquiry_details": "洽詢內容",
+    "inquiry_type": "洽詢項目",
+    "phone_no": "聯絡電話",
+    "product": "產品",
+    "product_type": "產品類別",
+    "submit_error": "送出失敗，請再試一次",
+    "submit_query": "送出洽詢",
+    "submit_success": "感謝您的洽詢。我們會盡快回复您"
+  },
+  "error": {
+    "internal_server_error": "伺服器發生錯誤",
+    "page_not_found": "找不到頁面",
+    "return_to_home_page": "回到首頁"
+  },
+  "footer": {
+    "cookie_policy": "Cookie政策",
+    "know_more": "了解更多",
+    "policies": "網站條款"
+  },
+  "home": {
+    "scroll": "Scroll",
+    "year_experience": "Year Experience"
+  },
+  "meta": {
+    "description": "測試大將官網",
+    "title": "大將科技"
+  },
+  "page": {
+    "contact_us": "聯絡我們",
+    "home": "首頁",
+    "products": "產品"
+  },
+  "products": {
+    "applications": "應用",
+    "description": "產品特色：",
+    "dimensions": "尺寸",
+    "features": "特徵",
+    "product_categories": "分類",
+    "specifications": "特點"
+  },
+  "route": {
+    "about_us": "關於大將",
+    "application": "產品應用",
+    "contact_us": "聯絡我們",
+    "esg": "ESG",
+    "products": "產品"
+  },
+  "service_map": {
+    "countries": {
+      "america": "美國",
+      "brazil": "巴西",
+      "china": "中國",
+      "holland": "荷蘭",
+      "hongkong": "香港",
+      "indonesia": "印尼",
+      "japan": "日本",
+      "malaysia": "馬來西亞",
+      "singapore": "新加坡",
+      "taiwan": "台灣",
+      "vietnam": "越南"
+    }
+  },
+  "validation": {
+    "email": "格式錯誤，正確格式為 aaa@bbb.ccc ",
+    "required": "{field}為必填欄位"
+  }
+}
