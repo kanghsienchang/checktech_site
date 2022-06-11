@@ -3,8 +3,9 @@
 TYPE=$1
 BRANCH=main
 REPO_URL=https://github.com/kanghsienchang/checktech_i18n.git
-REPO_FOLDER=/site/
+REPO_FOLDER=/site
 REPO_NAME=checktech_i18n
+REPO_DIR=${PWD}/${REPO_NAME}
 DESTINATION_DIR=${PWD}/i18n
 
 
@@ -20,7 +21,7 @@ if [[ "${TYPE}" = 'reset' ]]; then
   rm -rf ${REPO_NAME}
   rm -r ${DESTINATION_DIR}/*.json
 elif [[ "${TYPE}" = 'init' ]]; then
-  if [[ -d "$PWD/${REPO_NAME}" ]]; then
+  if [[ -d "$REPO_DIR" ]]; then
     echo "${REPO_NAME} already set up! If update does not work, please reset it."
     exit 0
   fi
@@ -28,18 +29,18 @@ elif [[ "${TYPE}" = 'init' ]]; then
   git clone ${REPO_URL} --branch ${BRANCH} --single-branch
   echo "${REPO_NAME} cloned"
   echo "Copy translations..."
-  cp $PWD/${REPO_NAME}${REPO_FOLDER}/*.json ${DESTINATION_DIR}
+  cp $REPO_DIR${REPO_FOLDER}/*.json ${DESTINATION_DIR}
   echo "Translations copied"
 elif [[ "${TYPE}" = 'update' ]]; then
   # If no repo found, clone it
-  if [[ ! -d "$PWD/${REPO_NAME}" ]]; then
+  if [[ ! -d "$REPO_DIR" ]]; then
     echo "Repo not yet setup, please initialize it!"
     exit 1
   fi
   cd ${REPO_NAME}
   echo "Fetching newest ${REPO_NAME}..."
   git fetch --quiet
-  cp ${DESTINATION_DIR}/*.json $PWD/${REPO_NAME}${REPO_FOLDER}
+  cp ${DESTINATION_DIR}/*.json $REPO_DIR${REPO_FOLDER}
   checkIfConflictedFiles
   # Check if there are uncommited changes
   if ! git diff-index --quiet HEAD --; then
@@ -54,6 +55,7 @@ elif [[ "${TYPE}" = 'update' ]]; then
     # If there are no changes, just merge
     echo "There are no changes, updating ${REPO_NAME}..."
     git merge
+    cp $REPO_DIR${REPO_FOLDER}/*.json ${DESTINATION_DIR}
   fi
   # Check if there are changes to push
   if [[ $(git rev-list --count '@{u}..HEAD') -gt 0 ]]; then

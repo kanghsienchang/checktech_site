@@ -1,5 +1,5 @@
 <template>
-  <div :key="$i18n.locale" class="default-layout flex flex-col">
+  <div :key="$i18n.locale" class="default-layout flex min-h-[100vh] flex-col">
     <nav-menu
       ref="navMenu"
       :on-transparent-bg="isHomePage"

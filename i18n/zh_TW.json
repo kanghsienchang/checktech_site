@@ -46,11 +46,14 @@
     "products": "產品"
   },
   "products": {
+    "add_inquiry": "洽詢此產品",
     "applications": "應用",
     "description": "產品特色：",
     "dimensions": "尺寸",
+    "download_catalogue": "型錄下載",
     "features": "特徵",
     "product_categories": "分類",
+    "similar_products": "相似產品",
     "specifications": "特點"
   },
   "route": {
@@ -76,7 +79,7 @@
     }
   },
   "validation": {
-    "email": "格式錯誤，正確格式為 aaa@bbb.ccc ",
+    "email": "格式錯誤，正確格式為 aaa@bbb.ccc",
     "required": "{field}為必填欄位"
   }
 }

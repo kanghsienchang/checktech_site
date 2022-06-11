@@ -93,8 +93,7 @@ export default {
   modules: [
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
-    '@nuxtjs/i18n',
-    '@nuxtjs/redirect-module'
+    '@nuxtjs/i18n'
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
@@ -105,14 +104,6 @@ export default {
   router: {
     trailingSlash: true
   },
-
-  redirect: [
-    {
-      from: '^.*(?<!/)$',
-      to: (from, req) => req.url + '/',
-      statusCode: 301
-    }
-  ],
 
   i18n: {
     locales: [

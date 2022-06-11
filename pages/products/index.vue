@@ -134,7 +134,9 @@ export default {
         name: product?.attributes?.name?.[this.$i18n.localeProperties.dataKey],
         key: product?.attributes?.key,
         image: {
-          src: product?.attributes?.images?.data?.[0]?.attributes?.url,
+          src: this.$toCDN(
+            product?.attributes?.images?.data?.[0]?.attributes?.url
+          ),
           alt: product?.attributes?.images?.data?.[0]?.attributes
             ?.alternativeText
         }

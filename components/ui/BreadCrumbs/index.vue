@@ -1,15 +1,20 @@
 <template>
-  <div class="breadcrumbs flex items-center space-x-2 md:space-x-3">
+  <div class="breadcrumbs flex flex-wrap items-center">
     <div
       v-for="(item, index) in items"
       :key="item.path"
-      class="breadcrumb flex items-center space-x-2 md:space-x-3"
+      class="breadcrumb flex max-w-full items-center overflow-hidden"
     >
+      <font-awesome-icon
+        v-if="index !== 0"
+        icon="angle-right"
+        class="text-slate-400"
+      />
       <component
-        :is="item.path ? 'nuxt-link' : 'span'"
+        :is="item.path ? 'nuxt-link' : 'div'"
         :to="item.path"
         :class="[
-          'flex items-center transition-colors hover:text-primary-500',
+          'flex flex-1 items-center overflow-hidden px-2.5 transition-colors first:pl-0 hover:text-primary-500',
           { 'pointer-events-none text-gray-400': index === items.length - 1 }
         ]"
       >
@@ -19,13 +24,10 @@
           :icon="item.icon"
           class="mr-2"
         />
-        <span>{{ item.label }}</span>
+        <span class="flex-1 overflow-hidden text-ellipsis whitespace-nowrap">
+          {{ item.label }}
+        </span>
       </component>
-      <font-awesome-icon
-        v-if="index !== items.length - 1"
-        icon="angle-right"
-        class="text-slate-400"
-      />
     </div>
     <!--<template v-for="(crumb, index) in crumbs">-->
     <!--  <font-awesome-icon-->

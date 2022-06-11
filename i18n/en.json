@@ -45,11 +45,14 @@
     "products": "Products"
   },
   "products": {
+    "add_inquiry": "Inquire Product",
     "applications": "Applications",
     "description": "Speciality:",
     "dimensions": "Dimensions",
+    "download_catalogue": "Download Catalogue",
     "features": "Features",
     "product_categories": "Categories",
+    "similar_products": "Similar Products",
     "specifications": "Specifications"
   },
   "route": {

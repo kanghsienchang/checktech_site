@@ -16,7 +16,12 @@
     :disabled="disabled || loading"
     @click.prevent="$emit('click')"
   >
-    <font-awesome-icon v-if="loading" icon="circle-notch" spin class="mr-2" />
+    <font-awesome-icon
+      v-if="loading || icon"
+      :icon="loading ? 'circle-notch' : icon"
+      :spin="loading"
+      class="mr-2"
+    />
     <span>
       <slot />
     </span>
@@ -58,6 +63,10 @@ export default {
     disabled: {
       type: Boolean,
       default: false
+    },
+    icon: {
+      type: String,
+      default: ''
     }
   }
 }

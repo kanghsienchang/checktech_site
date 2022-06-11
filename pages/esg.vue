@@ -88,9 +88,11 @@ export default {
     esg() {
       return {
         header_image: {
-          src: this.$_get(
-            this.rawData,
-            'attributes.header_image.data.attributes.url'
+          src: this.$toCDN(
+            this.$_get(
+              this.rawData,
+              'attributes.header_image.data.attributes.url'
+            )
           ),
           alt: this.$_get(
             this.rawData,
@@ -121,9 +123,11 @@ export default {
             )
           })) || [],
         points_image_top_left: {
-          src: this.$_get(
-            this.rawData,
-            'attributes.points_image_top_left.data.attributes.url'
+          src: this.$toCDN(
+            this.$_get(
+              this.rawData,
+              'attributes.points_image_top_left.data.attributes.url'
+            )
           ),
           alt: this.$_get(
             this.rawData,
@@ -131,9 +135,11 @@ export default {
           )
         },
         points_image_top_right: {
-          src: this.$_get(
-            this.rawData,
-            'attributes.points_image_top_right.data.attributes.url'
+          src: this.$toCDN(
+            this.$_get(
+              this.rawData,
+              'attributes.points_image_top_right.data.attributes.url'
+            )
           ),
           alt: this.$_get(
             this.rawData,
@@ -141,9 +147,11 @@ export default {
           )
         },
         points_image_bottom_left: {
-          src: this.$_get(
-            this.rawData,
-            'attributes.points_image_bottom_left.data.attributes.url'
+          src: this.$toCDN(
+            this.$_get(
+              this.rawData,
+              'attributes.points_image_bottom_left.data.attributes.url'
+            )
           ),
           alt: this.$_get(
             this.rawData,
@@ -151,9 +159,11 @@ export default {
           )
         },
         points_image_bottom_right: {
-          src: this.$_get(
-            this.rawData,
-            'attributes.points_image_bottom_right.data.attributes.url'
+          src: this.$toCDN(
+            this.$_get(
+              this.rawData,
+              'attributes.points_image_bottom_right.data.attributes.url'
+            )
           ),
           alt: this.$_get(
             this.rawData,

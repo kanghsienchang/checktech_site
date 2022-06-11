@@ -28,9 +28,22 @@
               </template>
             </div>
           </div>
-          <div class="flex">
-            <c-button outline>型錄下載</c-button>
-            <c-button class="ml-4 flex-1">＋加入洽詢</c-button>
+          <div class="flex flex-wrap">
+            <c-button outline class="w-full md:w-auto">
+              {{ $t('products.download_catalogue') }}
+            </c-button>
+            <c-button
+              class="mt-4 w-full flex-1 md:ml-4 md:mt-0 md:w-auto"
+              icon="plus"
+              :to="
+                localePath({
+                  path: '/contact-us',
+                  query: { product: $route.params.key }
+                })
+              "
+            >
+              {{ $t('products.add_inquiry') }}
+            </c-button>
           </div>
         </div>
       </div>
@@ -48,7 +61,9 @@
       </div>
     </div>
     <div v-if="relatedProducts.length" class="main-container mt-10 mb-14">
-      <div class="mb-6 text-xl font-medium">相似產品</div>
+      <div class="mb-6 text-xl font-medium">
+        {{ $t('products.similar_products') }}
+      </div>
       <related-product-list :related-products="relatedProducts" />
     </div>
   </div>
@@ -171,7 +186,7 @@ export default {
         images: this.rawData?.attributes?.images?.data?.map((image) => {
           return {
             alt: image?.attributes?.alternativeText,
-            src: image?.attributes?.url
+            src: this.$toCDN(image?.attributes?.url)
           }
         }),
         name: this.getApiDataTranslation(this.rawData, 'name'),
@@ -187,7 +202,9 @@ export default {
         name: product?.attributes?.name?.[this.$i18n.localeProperties.dataKey],
         key: product?.attributes?.key,
         image: {
-          src: product?.attributes?.images?.data?.[0]?.attributes?.url,
+          src: this.$toCDN(
+            product?.attributes?.images?.data?.[0]?.attributes?.url
+          ),
           alt: product?.attributes?.images?.data?.[0]?.attributes
             ?.alternativeText
         }

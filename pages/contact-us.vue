@@ -5,7 +5,7 @@
       <h4
         class="linear-primary mb-6 inline-block bg-clip-text text-transparent"
       >
-        聯絡我們
+        {{ $t('route.contact_us') }}
       </h4>
       <c-form
         ref="form"
@@ -174,6 +174,7 @@ export default {
   },
   async fetch() {
     await Promise.all([this.getOptions(), this.getProductCategories()])
+    this.selectProductTypeAndProductFromQuery()
   },
   computed: {
     productTypeOptions() {
@@ -373,6 +374,33 @@ export default {
     }
   },
   methods: {
+    selectProductTypeAndProductFromQuery() {
+      if (!this.$route.query?.product) return
+      for (const productCategory of this.rawCategories) {
+        for (const productType of this.$_get(
+          productCategory,
+          'attributes.product_types.data',
+          []
+        )) {
+          for (const product of this.$_get(
+            productType,
+            'attributes.products.data'
+          )) {
+            if (
+              this.$_get(product, `attributes.key`) ===
+              this.$route.query.product
+            ) {
+              this.form.product_type = this.$_get(productType, `attributes.key`)
+              this.form.product = this.$_get(
+                product,
+                `attributes.name.${this.$i18n.localeProperties.dataKey}`
+              )
+              return
+            }
+          }
+        }
+      }
+    },
     async getOptions() {
       const { data } = await getOptions(this.$axios, {
         pagination: {
