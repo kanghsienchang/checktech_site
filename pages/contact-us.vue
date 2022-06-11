@@ -143,6 +143,50 @@ export default {
     CFormItem,
     CForm
   },
+  async asyncData({ $axios }) {
+    const fetchProductCategories = async () => {
+      const { data } = await getProductCategories($axios, {
+        pagination: {
+          limit: -1
+        },
+        sort: ['id:desc'],
+        populate: {
+          name: '*',
+          product_types: {
+            populate: {
+              name: '*',
+              products: {
+                populate: {
+                  name: '*'
+                }
+              }
+            }
+          }
+        }
+      })
+      return data
+    }
+
+    const fetchOptions = async () => {
+      const { data } = await getOptions($axios, {
+        pagination: {
+          limit: -1
+        },
+        populate: '*'
+      })
+      return data
+    }
+
+    const [optionsData, rawCategories] = await Promise.all([
+      fetchOptions(),
+      fetchProductCategories()
+    ])
+
+    return {
+      rawCategories,
+      optionsData
+    }
+  },
   data() {
     return {
       env: {
@@ -171,10 +215,6 @@ export default {
         inquiry_details: ''
       }
     }
-  },
-  async fetch() {
-    await Promise.all([this.getOptions(), this.getProductCategories()])
-    this.selectProductTypeAndProductFromQuery()
   },
   computed: {
     productTypeOptions() {
@@ -373,6 +413,9 @@ export default {
       }))
     }
   },
+  mounted() {
+    this.selectProductTypeAndProductFromQuery()
+  },
   methods: {
     selectProductTypeAndProductFromQuery() {
       if (!this.$route.query?.product) return
@@ -400,37 +443,6 @@ export default {
           }
         }
       }
-    },
-    async getOptions() {
-      const { data } = await getOptions(this.$axios, {
-        pagination: {
-          limit: -1
-        },
-        populate: '*'
-      })
-      this.optionsData = data
-    },
-    async getProductCategories() {
-      const { data } = await getProductCategories(this.$axios, {
-        pagination: {
-          limit: -1
-        },
-        sort: ['id:desc'],
-        populate: {
-          name: '*',
-          product_types: {
-            populate: {
-              name: '*',
-              products: {
-                populate: {
-                  name: '*'
-                }
-              }
-            }
-          }
-        }
-      })
-      this.rawCategories = data
     },
     handleModalClose() {
       if (!this.env.hasError) {
