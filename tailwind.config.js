@@ -68,6 +68,7 @@ module.exports = {
   },
   plugins: [
     require('@tailwindcss/forms'),
+    require('@tailwindcss/typography'),
     function ({ addBase, theme }) {
       // function extractColorVars(colorObj, colorGroup = '') {
       //   return Object.keys(colorObj).reduce((vars, colorKey) => {

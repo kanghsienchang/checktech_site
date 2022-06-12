@@ -33,7 +33,6 @@
     "return_to_home_page": "回到首頁"
   },
   "footer": {
-    "cookie_policy": "Cookie政策",
     "know_more": "了解更多",
     "policies": "網站條款"
   },
@@ -65,7 +64,9 @@
     "about_us": "關於大將",
     "application": "產品應用",
     "contact_us": "聯絡我們",
+    "cookie_policy": "Cookie 政策",
     "esg": "企業社會責任",
+    "privacy_policy": "隱私權政策",
     "products": "產品"
   },
   "service_map": {

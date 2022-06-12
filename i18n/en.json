@@ -33,7 +33,6 @@
     "return_to_home_page": "RETURN TO HOME PAGE"
   },
   "footer": {
-    "cookie_policy": "Cookie Policy",
     "know_more": "More",
     "policies": "Policies"
   },
@@ -65,7 +64,9 @@
     "about_us": "About CheckTech",
     "application": "Applications",
     "contact_us": "Contact Us",
+    "cookie_policy": "Cookie Policy",
     "esg": "ESG",
+    "privacy_policy": "Privacy Policy",
     "products": "Products"
   },
   "service_map": {

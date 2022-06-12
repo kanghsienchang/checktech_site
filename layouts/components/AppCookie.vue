@@ -10,14 +10,13 @@
         >
           {{ $t('cookie.agree') }}
         </c-button>
-        <a
+        <nuxt-link
           class="app-cookie__link"
-          target="_blank"
           aria-label="cookie policy"
-          rel="noopener noreferrer"
+          :to="localePath({ name: 'cookie-policy' })"
         >
           {{ $t('cookie.more_info') }}
-        </a>
+        </nuxt-link>
       </div>
     </div>
   </div>

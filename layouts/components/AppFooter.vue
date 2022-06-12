@@ -61,7 +61,7 @@
             >
               <font-awesome-icon
                 :icon="resolveSocialIcon(social.type)"
-                size="3x"
+                size="2x"
               />
             </a>
           </li>
@@ -71,14 +71,27 @@
         <div>
           <div class="footer__title">{{ $t('footer.know_more') }}</div>
           <ul>
-            <li class="footer-item">{{ $t('route.about_us') }}</li>
+            <li class="footer-item">
+              <nuxt-link :to="localePath({ name: 'about' })">
+                {{ $t('route.about_us') }}
+              </nuxt-link>
+            </li>
           </ul>
         </div>
       </div>
       <div>
         <div class="footer__title">{{ $t('footer.policies') }}</div>
         <ul>
-          <li class="footer-item">{{ $t('footer.cookie_policy') }}</li>
+          <li class="footer-item">
+            <nuxt-link :to="localePath({ name: 'cookie-policy' })">
+              {{ $t('route.cookie_policy') }}
+            </nuxt-link>
+          </li>
+          <li class="footer-item">
+            <nuxt-link :to="localePath({ name: 'privacy-policy' })">
+              {{ $t('route.privacy_policy') }}
+            </nuxt-link>
+          </li>
         </ul>
       </div>
     </div>
