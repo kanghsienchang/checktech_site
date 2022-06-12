@@ -50,6 +50,21 @@
               台北市104中山區中山北路3段30號9F-2
             </a>
           </li>
+          <li class="footer-item mt-4 flex space-x-3">
+            <a
+              v-for="social in socials"
+              :key="social.type"
+              :href="social.url"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex opacity-[0.85]"
+            >
+              <font-awesome-icon
+                :icon="resolveSocialIcon(social.type)"
+                size="3x"
+              />
+            </a>
+          </li>
         </ul>
       </div>
       <div>
@@ -72,7 +87,29 @@
 
 <script>
 export default {
-  name: 'AppFooter'
+  name: 'AppFooter',
+  props: {
+    socials: {
+      type: Array,
+      default: () => []
+    }
+  },
+  methods: {
+    resolveSocialIcon(type) {
+      switch (type) {
+        case 'facebook':
+          return 'fa-brands fa-facebook-square'
+        case 'line':
+          return 'fa-brands fa-line'
+        case 'linkedin':
+          return 'fa-brands fa-linkedin'
+        case 'whatsapp':
+          return 'fa-brands fa-whatsapp-square'
+        default:
+          return ''
+      }
+    }
+  }
 }
 </script>
 

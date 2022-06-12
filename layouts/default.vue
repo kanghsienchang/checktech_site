@@ -10,7 +10,11 @@
     <div :class="['content-wrapper flex flex-1', { 'mt-16': !isHomePage }]">
       <nuxt />
     </div>
-    <app-footer ref="footer" />
+    <app-footer ref="footer" :socials="socials" />
+    <affix-items :socials="socials" class="hidden md:block" />
+    <client-only>
+      <app-cookie />
+    </client-only>
   </div>
 </template>
 
@@ -18,17 +22,21 @@
 import NavMenu from '~/layouts/components/NavMenu'
 import AppFooter from '~/layouts/components/AppFooter'
 import { getProductCategories } from '~/api/products'
+import { getSocials } from '~/api/socials'
+import AffixItems from '~/layouts/components/AffixItems'
+import AppCookie from '~/layouts/components/AppCookie'
 export default {
   name: 'DefaultLayout',
-  components: { AppFooter, NavMenu },
+  components: { AppCookie, AffixItems, AppFooter, NavMenu },
   data() {
     return {
       resizeFunction: null,
-      rawProductCategories: []
+      rawProductCategories: [],
+      rawSocials: []
     }
   },
   async fetch() {
-    await this.getProductCategories()
+    await Promise.all([this.getProductCategories(), this.getSocials()])
   },
   head() {
     const i18nHead = this.$nuxtI18nHead({ addSeoAttributes: true })
@@ -83,6 +91,12 @@ export default {
     }
   },
   computed: {
+    socials() {
+      return this.rawSocials.map((social) => ({
+        type: this.$_get(social, 'attributes.type'),
+        url: this.$_get(social, 'attributes.url')
+      }))
+    },
     fullUrl() {
       return `${process.env.NUXT_WEB_BASE_URL}${this.$route.fullPath}`
     },
@@ -125,6 +139,12 @@ export default {
     clearTimeout(this.resizeFunction)
   },
   methods: {
+    async getSocials() {
+      const { data } = await getSocials(this.$axios, {
+        sort: ['order:asc']
+      })
+      this.rawSocials = data
+    },
     resizeHandler() {
       clearTimeout(this.resizeFunction)
       this.resizeFunction = setTimeout(() => {

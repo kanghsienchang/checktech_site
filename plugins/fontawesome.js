@@ -28,6 +28,13 @@ import {
   faPlus
 } from '@fortawesome/free-solid-svg-icons'
 
+import {
+  faFacebookSquare,
+  faLine,
+  faLinkedin,
+  faWhatsappSquare
+} from '@fortawesome/free-brands-svg-icons'
+
 config.autoAddCss = false
 
 library.add(
@@ -53,7 +60,11 @@ library.add(
   faCircleCheck,
   faCircle,
   faXmark,
-  faPlus
+  faPlus,
+  faFacebookSquare,
+  faLine,
+  faLinkedin,
+  faWhatsappSquare
 )
 
 Vue.component('FontAwesomeIcon', FontAwesomeIcon)

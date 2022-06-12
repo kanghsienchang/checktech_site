@@ -70,6 +70,7 @@ export default {
     { src: '~/plugins/utils.js' },
     { src: '~/plugins/swiper.js', mode: 'client' },
     { src: '~/plugins/lazy-load.js', mode: 'client' },
+    { src: '~/plugins/persisted-state.js', mode: 'client' },
     // { src: '~/plugins/router-i18n.js' },
     { src: '~/plugins/gsap.js', mode: 'client' }
   ],

@@ -6,7 +6,8 @@ const breakpoints = Object.keys(defaultTheme.screens).reduce(
 
 export const state = () => ({
   windowWidth: 1280,
-  windowHeight: 0
+  windowHeight: 0,
+  cookieAgree: false
 })
 
 export const getters = {
@@ -24,5 +25,8 @@ export const mutations = {
   },
   setWindowHeight(state, height) {
     state.windowHeight = height
+  },
+  setCookieAgree(state, bool) {
+    state.cookieAgree = bool
   }
 }

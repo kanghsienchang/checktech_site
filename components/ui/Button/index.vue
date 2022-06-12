@@ -98,6 +98,10 @@ export default {
     @apply text-white;
   }
 
+  &--sm {
+    @apply px-4 py-2 text-sm;
+  }
+
   &--lg {
     @apply px-6 py-3 text-lg;
   }

@@ -1,85 +1,90 @@
 {
-    "common": {
-        "all": "All",
-        "confirm": "Confirm",
-        "please_select": "Please select",
-        "this_field": "This field",
-        "view_more": "View more"
-    },
-    "contact_us": {
-        "channel_to_know_us": "How did you hear about us",
-        "city": "City",
-        "company_name": "Company name",
-        "country": "Country",
-        "email": "Email",
-        "full_name": "Full name",
-        "inquiry_details": "Inquiry details",
-        "inquiry_type": "Inquiry type",
-        "phone_no": "Phone No.",
-        "product": "Product",
-        "product_type": "Product type",
-        "submit_error": "Something went wrong! Please try again",
-        "submit_query": "Submit Query",
-        "submit_success": "Thank you for your inquiry. We will get back to you as soon as possible."
-    },
-    "error": {
-        "internal_server_error": "INTERNAL SERVER ERROR",
-        "page_not_found": "PAGE NOT FOUND",
-        "return_to_home_page": "RETURN TO HOME PAGE"
-    },
-    "footer": {
-        "cookie_policy": "Cookie Policy",
-        "know_more": "More",
-        "policies": "Policies"
-    },
-    "home": {
-        "scroll": "Scroll",
-        "year_experience": "Year Experience"
-    },
-    "meta": {
-        "title": "Check Technology Co., LTD",
-        "description": "CheckTech. was established in May 2016. Since then, the company has been committed to the agency of electronic components and the research and development, manufacturing, and sales of OEM and ODM."
-    },
-    "page": {
-        "contact_us": "Contact Us",
-        "home": "Home",
-        "products": "Products"
-    },
-    "products": {
-        "add_inquiry": "Inquire Product",
-        "applications": "Applications",
-        "description": "Description:",
-        "dimensions": "Dimensions",
-        "download_catalogue": "Download Catalogue",
-        "features": "Features",
-        "product_categories": "Categories",
-        "similar_products": "Similar Products",
-        "specifications": "Specifications"
-    },
-    "route": {
-        "about_us": "About CheckTech",
-        "application": "Applications",
-        "contact_us": "Contact Us",
-        "esg": "ESG",
-        "products": "Products"
-    },
-    "service_map": {
-        "countries": {
-            "america": "America",
-            "brazil": "Brazil",
-            "china": "China",
-            "holland": "Netherlands",
-            "hongkong": "Hong Kong",
-            "indonesia": "Indonesia",
-            "japan": "Japan",
-            "malaysia": "Malaysia",
-            "singapore": "Singapore",
-            "taiwan": "Taiwan",
-            "vietnam": "Vietnam"
-        }
-    },
-    "validation": {
-        "email": "The correct format is aaa@bbb.ccc",
-        "required": "{field} is required"
+  "common": {
+    "all": "All",
+    "confirm": "Confirm",
+    "please_select": "Please select",
+    "this_field": "This field",
+    "view_more": "View more"
+  },
+  "contact_us": {
+    "channel_to_know_us": "How did you hear about us",
+    "city": "City",
+    "company_name": "Company name",
+    "country": "Country",
+    "email": "Email",
+    "full_name": "Full name",
+    "inquiry_details": "Inquiry details",
+    "inquiry_type": "Inquiry type",
+    "phone_no": "Phone No.",
+    "product": "Product",
+    "product_type": "Product type",
+    "submit_error": "Something went wrong! Please try again",
+    "submit_query": "Submit Query",
+    "submit_success": "Thank you for your inquiry. We will get back to you as soon as possible."
+  },
+  "cookie": {
+    "agree": "Agree",
+    "content": "We use cookies to improve user experience and analyze website traffic. By clicking “Accept“, you agree to our website's cookie use as described in our Cookie Policy.",
+    "more_info": "Learn more"
+  },
+  "error": {
+    "internal_server_error": "INTERNAL SERVER ERROR",
+    "page_not_found": "PAGE NOT FOUND",
+    "return_to_home_page": "RETURN TO HOME PAGE"
+  },
+  "footer": {
+    "cookie_policy": "Cookie Policy",
+    "know_more": "More",
+    "policies": "Policies"
+  },
+  "home": {
+    "scroll": "Scroll",
+    "year_experience": "Year Experience"
+  },
+  "meta": {
+    "description": "CheckTech. was established in May 2016. Since then, the company has been committed to the agency of electronic components and the research and development, manufacturing, and sales of OEM and ODM.",
+    "title": "Check Technology Co., LTD"
+  },
+  "page": {
+    "contact_us": "Contact Us",
+    "home": "Home",
+    "products": "Products"
+  },
+  "products": {
+    "add_inquiry": "Inquire Product",
+    "applications": "Applications",
+    "description": "Description:",
+    "dimensions": "Dimensions",
+    "download_catalogue": "Download Catalogue",
+    "features": "Features",
+    "product_categories": "Categories",
+    "similar_products": "Similar Products",
+    "specifications": "Specifications"
+  },
+  "route": {
+    "about_us": "About CheckTech",
+    "application": "Applications",
+    "contact_us": "Contact Us",
+    "esg": "ESG",
+    "products": "Products"
+  },
+  "service_map": {
+    "countries": {
+      "america": "America",
+      "brazil": "Brazil",
+      "china": "China",
+      "holland": "Netherlands",
+      "hongkong": "Hong Kong",
+      "indonesia": "Indonesia",
+      "japan": "Japan",
+      "malaysia": "Malaysia",
+      "singapore": "Singapore",
+      "taiwan": "Taiwan",
+      "vietnam": "Vietnam"
     }
+  },
+  "validation": {
+    "email": "The correct format is aaa@bbb.ccc",
+    "required": "{field} is required"
+  }
 }
