@@ -253,7 +253,7 @@ export default {
       }
       const { data } = await getProducts(this.$axios, {
         populate: ['name', 'images'],
-        sort: ['id:desc'],
+        sort: ['key:asc'],
         filters
       })
       this.products = data
