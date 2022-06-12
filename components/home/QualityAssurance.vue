@@ -1,7 +1,7 @@
 <template>
   <div class="quality-assurance my-16 md:my-20">
-    <div class="main-container flex flex-col gap-12 md:flex-row">
-      <div class="quality-assurance__content md:w-1/2">
+    <div class="main-container flex flex-col gap-12 lg:flex-row">
+      <div class="quality-assurance__content lg:w-1/2">
         <h2 class="mb-3">{{ data.title_1 }}</h2>
         <h4 class="mb-6">{{ data.title_2 }}</h4>
         <div>
@@ -17,7 +17,7 @@
           </div>
         </div>
       </div>
-      <div class="quality-assurance__image relative flex flex-wrap md:w-1/2">
+      <div class="quality-assurance__image relative flex flex-wrap lg:w-1/2">
         <div
           class="dotted-bg absolute top-[3rem] right-[3rem] -z-10 h-32 w-32 bg-[length:0.75rem_0.75rem] opacity-75"
         />
@@ -63,7 +63,7 @@ export default {
         scrollTrigger: {
           markers: this.$showScrollMarker,
           trigger: '.quality-assurance',
-          start: 'top+=300px bottom'
+          start: 'top+=200px bottom'
         }
       })
       .from('.quality-assurance__image', {

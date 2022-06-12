@@ -13,8 +13,8 @@
         </div>
       </div>
     </div>
-    <div class="main-container-padded">
-      <bread-crumbs :items="crumbs" class="mb-8" />
+    <div class="main-container">
+      <bread-crumbs :items="crumbs" class="my-12" />
       <div
         v-for="(application, index) in applicationData.items"
         :key="index"

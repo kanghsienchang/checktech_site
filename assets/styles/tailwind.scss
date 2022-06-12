@@ -45,6 +45,8 @@
     -ms-interpolation-mode: nearest-neighbor; /* IE (non-standard property) */
   }
 
+  img:not([src]) { @apply opacity-0; }
+
   figure img {
     @apply w-full max-w-full h-auto;
   }

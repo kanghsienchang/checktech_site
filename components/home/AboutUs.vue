@@ -1,6 +1,6 @@
 <template>
   <div class="about-us my-16 md:my-20">
-    <div class="main-container grid gap-10 md:grid-cols-2 md:gap-12">
+    <div class="main-container grid gap-10 md:grid-cols-2 md:gap-8 lg:gap-12">
       <div class="about-us__image relative flex space-x-4">
         <div class="flex w-1/2 flex-col space-y-4">
           <div class="ml-auto h-full w-[calc(100%-1.5rem)]">

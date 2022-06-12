@@ -63,13 +63,18 @@ import BreadCrumbs from '~/components/ui/BreadCrumbs'
 export default {
   name: 'ESG',
   components: { BreadCrumbs },
+  async asyncData({ $axios }) {
+    const { data: rawData } = await getESG($axios, {
+      populate: 'deep,3'
+    })
+    return {
+      rawData
+    }
+  },
   data() {
     return {
       rawData: null
     }
-  },
-  async fetch() {
-    await this.getEsg()
   },
   computed: {
     crumbs() {
@@ -171,14 +176,6 @@ export default {
           )
         }
       }
-    }
-  },
-  methods: {
-    async getEsg() {
-      const { data } = await getESG(this.$axios, {
-        populate: 'deep,3'
-      })
-      this.rawData = data
     }
   }
 }

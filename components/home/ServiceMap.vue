@@ -125,7 +125,7 @@ export default {
         scrollTrigger: {
           markers: this.$showScrollMarker,
           trigger: '.service-map',
-          start: 'top+=300px bottom'
+          start: 'top+=200px bottom'
         }
       })
       .from('.service-map__heading', { opacity: 0, duration: 0.7, y: 30 })

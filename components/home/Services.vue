@@ -60,7 +60,7 @@ export default {
         scrollTrigger: {
           markers: this.$showScrollMarker,
           trigger: '.feature-and-services',
-          start: 'top+=300px bottom'
+          start: 'top+=200px bottom'
         }
       })
       .from('.feature-and-services__content', {

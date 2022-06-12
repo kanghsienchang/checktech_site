@@ -25,17 +25,18 @@
             'h-[5rem]': onTransparentBg && !navBarOpen && !navStickTop
           }
         ]"
+        @click.native="navBarOpen = false"
       >
         <img :src="logoImg" alt="CheckTech" class="h-full" />
       </nuxt-link>
       <div
-        class="cursor-pointer p-1 pr-0 md:hidden"
+        class="cursor-pointer p-1 pr-0 lg:hidden"
         @click="navBarOpen = !navBarOpen"
       >
         <font-awesome-icon v-if="!navBarOpen" icon="bars" size="xl" />
         <font-awesome-icon v-else icon="xmark" size="xl" />
       </div>
-      <div class="hidden md:flex md:items-center">
+      <div class="hidden lg:flex lg:items-center">
         <app-menu mode="horizontal" router>
           <template v-for="menuItem in menu">
             <app-submenu
@@ -93,7 +94,7 @@
         </c-button>
       </div>
     </div>
-    <div v-show="navBarOpen" class="main-container mt-2 md:hidden">
+    <div v-show="navBarOpen" class="main-container mt-2 lg:hidden">
       <app-menu router mode="vertical">
         <template v-for="menuItem in menu">
           <app-submenu
@@ -147,6 +148,7 @@
         class="mt-6 w-full"
         outline
         :to="localePath({ name: 'contact-us' })"
+        @click.native="navBarOpen = false"
       >
         {{ $t('route.contact_us') }}
       </c-button>
@@ -189,7 +191,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(['md']),
+    ...mapGetters(['lg']),
     logoImg() {
       return this.onTransparentBg && !this.navBarOpen && !this.navStickTop
         ? '/images/logo-white.png'
@@ -200,7 +202,7 @@ export default {
         {
           key: 'about-us',
           label: this.$t('route.about_us'),
-          link: ''
+          link: this.localePath({ name: 'about' })
         },
         {
           key: 'products',
@@ -249,7 +251,7 @@ export default {
     }
   },
   watch: {
-    md() {
+    lg() {
       this.navBarOpen = false
     },
     scrollTriggerOptions: {

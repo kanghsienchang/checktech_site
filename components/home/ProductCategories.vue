@@ -5,7 +5,7 @@
         <h2 class="mb-3">{{ data.title_1 }}</h2>
         <h4 class="mb-6">{{ data.title_2 }}</h4>
       </div>
-      <div class="grid gap-10 md:grid-cols-2 md:gap-12 lg:grid-cols-3">
+      <div class="grid gap-10 md:grid-cols-2 md:gap-8 lg:grid-cols-3 lg:gap-12">
         <nuxt-link
           v-for="(category, index) of data.items"
           :key="index"
@@ -51,7 +51,7 @@ export default {
         scrollTrigger: {
           markers: this.$showScrollMarker,
           trigger: '.product-categories',
-          start: 'top+=300px bottom'
+          start: 'top+=200px bottom'
         }
       })
       .from('.product-categories__heading', {
