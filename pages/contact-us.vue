@@ -88,6 +88,7 @@
               {{ $t('contact_us.submit_query') }}
             </c-button>
           </c-form-item>
+          <honey-pot ref="honeypot" />
         </div>
       </c-form>
       <c-modal
@@ -131,9 +132,11 @@ import { getOptions } from '~/api/inquiryFormOptions'
 import { submitInquiryForm } from '~/api/inquiryForm'
 import CModal from '~/components/ui/Modal'
 import { getProductCategories } from '~/api/products'
+import HoneyPot from '~/components/ui/HoneyPot'
 export default {
   name: 'ContactUs',
   components: {
+    HoneyPot,
     CModal,
     BreadCrumbs,
     CButton,
@@ -474,6 +477,7 @@ export default {
       } catch (error) {
         return
       }
+      if (!this.$refs.honeypot.validate()) return
 
       try {
         this.env.submitLoading = true

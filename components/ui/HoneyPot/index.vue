@@ -1,0 +1,28 @@
+<template>
+  <label
+    style="
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: -1;
+      width: 0;
+      height: 0;
+      opacity: 0;
+    "
+  >
+    <span>Name</span>
+    <input v-model="value" autocomplete="off" tabindex="-1" type="text" />
+  </label>
+</template>
+
+<script>
+export default {
+  name: 'HoneyPot',
+  data: () => ({ value: '' }),
+  methods: {
+    validate() {
+      return !this.value
+    }
+  }
+}
+</script>
