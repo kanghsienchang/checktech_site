@@ -23,7 +23,7 @@
         <h3 class="mb-6">{{ application.title }}</h3>
         <div class="relative grid gap-12 md:grid-cols-2">
           <div>
-            <img v-lazy="application.image.src" :alt="application.image.alt" />
+            <img :src="application.image.src" :alt="application.image.alt" />
           </div>
           <div
             class="top-[8rem] self-start justify-self-start rounded-md border bg-primary-100 p-6 shadow-md md:sticky"

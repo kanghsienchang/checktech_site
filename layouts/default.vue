@@ -11,7 +11,7 @@
       <nuxt />
     </div>
     <app-footer ref="footer" :socials="socials" />
-    <affix-items :socials="socials" class="hidden md:block" />
+    <affix-items :socials="socials" />
     <client-only>
       <app-cookie />
     </client-only>
