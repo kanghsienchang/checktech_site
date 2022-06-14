@@ -72,7 +72,8 @@ export default {
     { src: '~/plugins/lazy-load.js', mode: 'client' },
     { src: '~/plugins/persisted-state.js', mode: 'client' },
     // { src: '~/plugins/router-i18n.js' },
-    { src: '~/plugins/gsap.js', mode: 'client' }
+    { src: '~/plugins/gsap.js', mode: 'client' },
+    { src: '~/plugins/gtm.js', mode: 'client' }
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -94,8 +95,7 @@ export default {
   modules: [
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
-    '@nuxtjs/i18n',
-    '@nuxtjs/gtm'
+    '@nuxtjs/i18n'
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
@@ -105,12 +105,6 @@ export default {
 
   router: {
     trailingSlash: true
-  },
-
-  gtm: {
-    id: process.env.NUXT_GTM_ID,
-    pageTracking: true,
-    respectDoNotTrack: false
   },
 
   i18n: {
