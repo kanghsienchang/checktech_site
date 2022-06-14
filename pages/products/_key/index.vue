@@ -1,7 +1,7 @@
 <template>
-  <div class="product-detail mt-8">
-    <div class="main-container mb-12">
-      <bread-crumbs :items="crumbs" class="mb-8" />
+  <div class="product-detail">
+    <div class="main-container">
+      <bread-crumbs :items="crumbs" class="my-8" />
       <div class="grid auto-cols-fr gap-6 md:grid-cols-2 md:gap-16">
         <product-images-card
           class="h-[20rem] lg:h-[25rem] xl:h-[30rem] 2xl:h-[35rem]"
@@ -25,15 +25,14 @@
                     <div class="mb-2 font-medium text-slate-500">
                       {{ productInfo.label }}
                     </div>
-                    <ul class="list-inside list-disc space-y-1">
-                      <li
+                    <c-list class="space-y-1" type="bullet">
+                      <c-list-item
                         v-for="item in productInfo.items"
                         :key="item"
-                        class=""
                       >
                         {{ item }}
-                      </li>
-                    </ul>
+                      </c-list-item>
+                    </c-list>
                   </div>
                 </template>
               </div>
@@ -70,16 +69,13 @@
         </div>
       </div>
     </div>
-    <div class="bg-slate-100">
+    <div class="mt-14 bg-slate-100">
       <div class="main-container py-10 md:py-14">
         <div class="mb-6 text-xl font-medium">
           {{ $t('products.description') }}
         </div>
         <!--eslint-disable vue/no-v-html-->
-        <div
-          class="whitespace-pre-wrap"
-          v-html="renderMarkdown(product.description)"
-        />
+        <div class="whitespace-pre-wrap" v-html="product.description" />
       </div>
     </div>
     <div v-if="relatedProducts.length" class="main-container mt-10 mb-14">
@@ -92,16 +88,23 @@
 </template>
 
 <script>
-import MarkdownIt from 'markdown-it'
 import BreadCrumbs from '~/components/ui/BreadCrumbs'
 import { getProductDetail, getProducts } from '~/api/products'
 import CButton from '~/components/ui/Button'
 import ProductImagesCard from '~/components/products/ProductImagesCard'
 import RelatedProductList from '~/components/products/RelatedProductList'
-const md = new MarkdownIt('default')
+import CList from '~/components/ui/List'
+import CListItem from '~/components/ui/ListItem'
 export default {
   name: 'ProductDetail',
-  components: { RelatedProductList, ProductImagesCard, CButton, BreadCrumbs },
+  components: {
+    CListItem,
+    CList,
+    RelatedProductList,
+    ProductImagesCard,
+    CButton,
+    BreadCrumbs
+  },
   // async asyncData({ $axios, params }) {
   //   const { data: rawData } = await getProductDetail($axios, params.key, {
   //     populate: [
@@ -159,12 +162,12 @@ export default {
         {
           hid: 'description',
           property: 'description',
-          content: this.product.description.replace(/[\n\r\s\t]+/g, '')
+          content: this.product.description.replace(/<[^>]+>/g, '')
         },
         {
           hid: 'og:description',
           property: 'og:description',
-          content: this.product.description.replace(/[\n\r\s\t]+/g, '')
+          content: this.product.description.replace(/<[^>]+>/g, '')
         },
         {
           hid: 'og:image',
@@ -289,9 +292,6 @@ export default {
       } else {
         return attribute[this.$i18n.localeProperties.dataKey]
       }
-    },
-    renderMarkdown(val) {
-      return md.render(val)
     },
     async getProductDetail() {
       const { data } = await getProductDetail(

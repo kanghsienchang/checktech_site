@@ -5,12 +5,12 @@
       class="bg-image-overlay-30 bg-cover bg-center bg-no-repeat"
     >
       <div class="main-container">
-        <div class="py-32 text-white md:w-1/3">
+        <div class="py-32 text-white lg:w-8/12 xl:w-5/12">
           <h1 class="mb-6 text-inherit">{{ aboutData.header.title }}</h1>
         </div>
       </div>
     </div>
-    <div class="main-container mt-12 mb-16">
+    <div class="main-container mt-12 mb-12">
       <bread-crumbs :items="crumbs" />
     </div>
     <div class="main-container mb-20 md:mb-32">
@@ -44,7 +44,7 @@
         <div
           v-for="(service, index) in aboutData.services"
           :key="index"
-          class="flex flex-col items-center px-2"
+          class="flex w-80 flex-col items-center px-2"
         >
           <!--eslint-disable vue/no-v-html-->
           <div
@@ -72,14 +72,13 @@
             {{ aboutData.features.title }}
           </h4>
           <p
-            class="mb-4 whitespace-pre-wrap"
+            class="mb-6 whitespace-pre-wrap"
             v-text="aboutData.features.description_1"
           />
-          <c-list type="check" class="mb-4 flex flex-wrap md:w-1/2">
+          <c-list type="check" class="mb-6 inline-grid grid-cols-2 gap-6">
             <c-list-item
               v-for="(item, index) in aboutData.features.items"
               :key="index"
-              class="w-1/2 !py-2"
             >
               {{ item }}
             </c-list-item>
@@ -101,11 +100,10 @@
             class="mb-4 whitespace-pre-wrap"
             v-text="aboutData.quality.description"
           />
-          <c-list type="check">
+          <c-list type="check" class="space-y-3">
             <c-list-item
               v-for="(item, index) in aboutData.quality.items"
               :key="index"
-              class="!py-2"
             >
               {{ item }}
             </c-list-item>

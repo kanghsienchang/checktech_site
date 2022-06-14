@@ -2,10 +2,10 @@
   <div class="">
     <div
       v-lazy:background-image="applicationData.header.image.src"
-      class="bg-image-overlay-30 bg-cover bg-center bg-no-repeat"
+      class="bg-image-overlay-40 bg-cover bg-center bg-no-repeat"
     >
       <div class="main-container">
-        <div class="py-28 text-white md:w-1/3">
+        <div class="py-28 text-white lg:w-8/12 xl:w-5/12">
           <h1 class="mb-6 text-inherit">{{ applicationData.header.title }}</h1>
           <p class="leading-[1.8]">
             {{ applicationData.header.description }}

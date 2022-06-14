@@ -9,12 +9,12 @@
       class="absolute top-0 right-0 h-6 w-24 translate-y-7 -translate-x-2 -skew-y-1 -skew-x-2 bg-blue-400/70 md:w-52"
     />
     <div
-      class="main-container flex flex-col justify-between space-y-10 md:flex-row md:space-y-0 md:space-x-10"
+      class="main-container grid items-start gap-16 md:grid-cols-2 xl:grid-cols-4"
     >
       <div
         v-for="(feature, index) in data.items"
         :key="index"
-        class="features__feature flex flex-col space-y-4 md:w-52"
+        class="features__feature flex flex-col items-center justify-center space-y-4"
       >
         <div
           class="flex h-14 w-14 items-center justify-center rounded-md bg-primary-100"
@@ -25,8 +25,8 @@
             size="xl"
           />
         </div>
-        <h5>{{ feature.title }}</h5>
-        <p>
+        <h5 class="text-center">{{ feature.title }}</h5>
+        <p class="text-center">
           {{ feature.description }}
         </p>
       </div>

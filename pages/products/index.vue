@@ -1,6 +1,6 @@
 <template>
-  <div class="products main-container-padded">
-    <bread-crumbs :items="crumbs" class="mb-8" />
+  <div class="products main-container">
+    <bread-crumbs :items="crumbs" class="my-8" />
     <div>
       <c-form ref="productCategory" class="max-w-xs">
         <c-form-item :label="$t('products.product_categories')">

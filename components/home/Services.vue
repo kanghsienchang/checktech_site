@@ -13,14 +13,14 @@
       }"
     >
       <div class="main-container relative z-20 py-28 text-white md:py-32">
-        <div class="feature-and-services__content w-80">
+        <div class="feature-and-services__content md:w-2/3 xl:w-1/2">
           <h2
             class="mb-4 bg-none bg-clip-content text-white before:bg-white before:bg-none"
           >
             {{ data.title_1 }}
           </h2>
           <h4 class="mb-6 text-white">{{ data.title_2 }}</h4>
-          <list type="check" class="grid auto-cols-max grid-cols-2 gap-4">
+          <list type="check" class="inline-grid grid-cols-2 gap-4">
             <list-item v-for="(label, index) of data.items" :key="index">
               <template #icon>
                 <font-awesome-icon icon="circle-arrow-right" />

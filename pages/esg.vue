@@ -5,7 +5,7 @@
       class="flex items-center bg-cover bg-left bg-no-repeat text-white"
     >
       <div class="main-container py-20 md:py-32">
-        <div class="sm:w-10/12 md:w-8/12 lg:w-6/12 xl:w-5/12">
+        <div class="sm:w-10/12 lg:w-8/12 xl:w-5/12">
           <h1 class="mb-6 text-inherit">{{ esg.header_title_1 }}</h1>
           <h4 class="mb-6 text-inherit">{{ esg.header_title_2 }}</h4>
           <p class="leading-[1.8]">{{ esg.header_description }}</p>

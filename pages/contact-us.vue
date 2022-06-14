@@ -1,6 +1,6 @@
 <template>
-  <div class="contact-us main-container-padded">
-    <bread-crumbs :items="crumbs" class="mb-8" />
+  <div class="contact-us main-container mb-10">
+    <bread-crumbs :items="crumbs" class="my-8" />
     <div class="mx-auto max-w-screen-lg">
       <h4
         class="linear-primary mb-6 inline-block bg-clip-text text-transparent"

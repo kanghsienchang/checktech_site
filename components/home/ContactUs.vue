@@ -4,7 +4,7 @@
       class="main-container flex flex-col items-center justify-center space-y-6 text-center"
     >
       <h3
-        class="bg-gradient-to-r from-primary-500 to-purple-600 bg-clip-text text-transparent"
+        class="bg-gradient-to-r from-primary-500 to-purple-600 bg-clip-text py-1 text-transparent"
       >
         {{ data.title }}
       </h3>

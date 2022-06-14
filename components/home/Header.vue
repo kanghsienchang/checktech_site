@@ -10,27 +10,31 @@
       muted
     />
     <div class="absolute inset-0 bg-black/[0.4]" />
-    <div
-      class="header__content main-container absolute inset-0 z-10 flex flex-col items-start justify-center text-white"
-    >
-      <div class="header__top">
-        <h1 class="text-current">{{ data.title_1 }}</h1>
-        <h1 class="mt-3 text-current">{{ data.title_2 }}</h1>
-      </div>
-      <p class="header__middle mt-6 text-base lg:text-lg">
-        {{ data.description }}
-      </p>
-      <div class="header__bottom mt-6">
-        <c-button
-          :to="localePath('contact-us')"
-          color="white"
-          size="lg"
-          pill
-          translate-on-hover
-          outline
+    <div class="header__content absolute inset-0 z-10">
+      <div class="main-container h-full">
+        <div
+          class="flex h-full flex-col items-start justify-center text-white xl:w-1/2"
         >
-          {{ $t('route.contact_us') }}
-        </c-button>
+          <div class="header__top">
+            <h1 class="tracking-wider text-current">{{ data.title_1 }}</h1>
+            <h1 class="mt-3 tracking-wider text-current">{{ data.title_2 }}</h1>
+          </div>
+          <p class="header__middle mt-10 text-base tracking-wide lg:text-lg">
+            {{ data.description }}
+          </p>
+          <div class="header__bottom mt-10">
+            <c-button
+              :to="localePath('contact-us')"
+              color="white"
+              size="lg"
+              pill
+              translate-on-hover
+              outline
+            >
+              {{ $t('route.contact_us') }}
+            </c-button>
+          </div>
+        </div>
       </div>
     </div>
     <div
