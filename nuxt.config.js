@@ -94,7 +94,8 @@ export default {
   modules: [
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
-    '@nuxtjs/i18n'
+    '@nuxtjs/i18n',
+    '@nuxtjs/gtm'
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
@@ -104,6 +105,12 @@ export default {
 
   router: {
     trailingSlash: true
+  },
+
+  gtm: {
+    id: process.env.NUXT_GTM_ID,
+    pageTracking: true,
+    respectDoNotTrack: false
   },
 
   i18n: {
