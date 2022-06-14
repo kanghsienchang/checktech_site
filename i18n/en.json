@@ -1,4 +1,7 @@
 {
+  "applications": {
+    "components_used": "This product consists of the following components"
+  },
   "common": {
     "all": "All",
     "confirm": "Confirm",

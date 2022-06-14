@@ -20,10 +20,25 @@
         :key="index"
         class="mb-20"
       >
-        <h4 class="mb-6">{{ application.title }}</h4>
-        <div class="flex">
-          <div class="md:w-1/2">
+        <h3 class="mb-6">{{ application.title }}</h3>
+        <div class="relative grid gap-12 md:grid-cols-2">
+          <div>
             <img v-lazy="application.image.src" :alt="application.image.alt" />
+          </div>
+          <div
+            class="top-[8rem] self-start justify-self-start rounded-md border bg-primary-100 p-6 shadow-md md:sticky"
+          >
+            <div class="text-lg">{{ $t('applications.components_used') }}:</div>
+            <c-list type="bullet" class="mt-2 space-y-1">
+              <c-list-item
+                v-for="(
+                  component, componentIndex
+                ) in application.components_used"
+                :key="componentIndex"
+              >
+                {{ component }}
+              </c-list-item>
+            </c-list>
           </div>
         </div>
       </div>
@@ -34,9 +49,11 @@
 <script>
 import BreadCrumbs from '~/components/ui/BreadCrumbs'
 import { getApplication } from '~/api/application'
+import CList from '~/components/ui/List'
+import CListItem from '~/components/ui/ListItem'
 export default {
   name: 'Applications',
-  components: { BreadCrumbs },
+  components: { CListItem, CList, BreadCrumbs },
   data() {
     return {
       rawData: null
@@ -96,6 +113,10 @@ export default {
             description: this.$_get(
               item,
               `description.${this.$i18n.localeProperties.dataKey}`
+            ),
+            components_used: this.$_get(item, `components_used`, []).map(
+              (component) =>
+                this.$_get(component, this.$i18n.localeProperties.dataKey)
             )
           })
         )

@@ -1,4 +1,7 @@
 {
+  "applications": {
+    "components_used": "此設備使用到大將科技的產品種類為"
+  },
   "common": {
     "all": "全部",
     "confirm": "確認",
