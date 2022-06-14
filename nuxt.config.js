@@ -1,5 +1,4 @@
 import dynamicRoutes from './dynamic-routes'
-const isDev = process.env.NODE_ENV === 'development'
 export default {
   // Target: https://go.nuxtjs.dev/config-target
   target: 'static',
@@ -13,45 +12,43 @@ export default {
   loading: false,
 
   // Global page headers: https://go.nuxtjs.dev/config-head
-  head() {
-    return {
-      meta: [
-        { charset: 'utf-8' },
-        { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-        { name: 'format-detection', content: 'telephone=no' }
-      ],
-      link: [
-        {
-          rel: 'apple-touch-icon',
-          sizes: '180x180',
-          type: 'image/png',
-          href: '/favicon-180.png'
-        },
-        {
-          rel: 'apple-touch-icon',
-          sizes: '32x32',
-          type: 'image/png',
-          href: '/favicon-32.png'
-        },
-        {
-          rel: 'apple-touch-icon',
-          sizes: '16x16',
-          type: 'image/png',
-          href: '/favicon-16.png'
-        },
-        { rel: 'shortcut icon', href: '/favicon.ico' },
-        { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
-        {
-          rel: 'preconnect',
-          href: 'https://fonts.gstatic.com',
-          crossorigin: ''
-        },
-        {
-          rel: 'stylesheet',
-          href: 'https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700;900&display=swap'
-        }
-      ]
-    }
+  head: {
+    meta: [
+      { charset: 'utf-8' },
+      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+      { name: 'format-detection', content: 'telephone=no' }
+    ],
+    link: [
+      {
+        rel: 'apple-touch-icon',
+        sizes: '180x180',
+        type: 'image/png',
+        href: '/favicon-180.png'
+      },
+      {
+        rel: 'apple-touch-icon',
+        sizes: '32x32',
+        type: 'image/png',
+        href: '/favicon-32.png'
+      },
+      {
+        rel: 'apple-touch-icon',
+        sizes: '16x16',
+        type: 'image/png',
+        href: '/favicon-16.png'
+      },
+      { rel: 'shortcut icon', href: '/favicon.ico' },
+      { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
+      {
+        rel: 'preconnect',
+        href: 'https://fonts.gstatic.com',
+        crossorigin: ''
+      },
+      {
+        rel: 'stylesheet',
+        href: 'https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700;900&display=swap'
+      }
+    ]
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
@@ -71,9 +68,7 @@ export default {
     { src: '~/plugins/swiper.js', mode: 'client' },
     { src: '~/plugins/lazy-load.js', mode: 'client' },
     { src: '~/plugins/persisted-state.js', mode: 'client' },
-    // { src: '~/plugins/router-i18n.js' },
-    { src: '~/plugins/gsap.js', mode: 'client' },
-    { src: '~/plugins/gtm.js' }
+    { src: '~/plugins/gsap.js', mode: 'client' }
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -87,15 +82,14 @@ export default {
     '@nuxtjs/device',
     '@nuxtjs/svg',
     '@nuxtjs/dotenv'
-    // '@nuxtjs/netlify-files'
-    // '@nuxtjs/router'
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
-    '@nuxtjs/i18n'
+    '@nuxtjs/i18n',
+    '@nuxtjs/gtm'
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
@@ -105,6 +99,12 @@ export default {
 
   router: {
     trailingSlash: true
+  },
+
+  gtm: {
+    id: process.env.NUXT_GTM_ID,
+    pageTracking: true,
+    respectDoNotTrack: false
   },
 
   i18n: {

@@ -27,6 +27,9 @@ axiosInstance.interceptors.response.use(
 const localePrefixes = ['tw', 'en']
 
 export default async () => {
+  if (process.env.NUXT_GENERATE_FROM_API !== 'true') {
+    return []
+  }
   const { data: products } = await getProducts(axiosInstance, {
     pagination: {
       limit: -1
