@@ -89,7 +89,8 @@ export default {
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
     '@nuxtjs/i18n',
-    '@nuxtjs/gtm'
+    '@nuxtjs/gtm',
+    '@nuxtjs/sitemap'
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
@@ -105,6 +106,11 @@ export default {
     id: process.env.NUXT_GTM_ID,
     pageTracking: true,
     respectDoNotTrack: false
+  },
+
+  sitemap: {
+    hostname: process.env.NUXT_WEB_BASE_URL,
+    i18n: true
   },
 
   i18n: {
