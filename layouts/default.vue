@@ -71,12 +71,12 @@ export default {
         {
           hid: 'og:image',
           property: 'og:image',
-          content: '/images/logo-share.jpeg'
+          content: this.ogImageUrl
         },
         {
           hid: 'twitter:image',
           name: 'twitter:image',
-          content: '/images/logo-share.jpeg'
+          content: this.ogImageUrl
         },
         ...i18nHead.meta
       ],
@@ -101,6 +101,9 @@ export default {
     },
     fullUrl() {
       return `${process.env.NUXT_WEB_BASE_URL}${this.$route.fullPath}`
+    },
+    ogImageUrl() {
+      return `${process.env.NUXT_WEB_BASE_URL}/images/logo-share.jpeg`
     },
     isHomePage() {
       return (
