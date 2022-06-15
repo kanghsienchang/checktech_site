@@ -3,7 +3,7 @@
     <collapse-transition easing="ease-out" :duration="200">
       <div
         v-show="socialOpened"
-        class="flex flex-col items-center justify-center space-y-4"
+        class="flex select-none flex-col items-center justify-center space-y-4"
       >
         <a
           v-for="social in socials"
@@ -22,7 +22,7 @@
       </div>
     </collapse-transition>
     <div
-      class="contact-button mt-4 flex h-12 w-12 cursor-pointer items-center justify-center rounded-full bg-blue-400 text-white md:h-14 md:w-14"
+      class="contact-button mt-4 flex h-12 w-12 cursor-pointer select-none items-center justify-center rounded-full bg-blue-400 text-white md:h-14 md:w-14"
       @click="socialOpened = !socialOpened"
     >
       <font-awesome-icon v-if="socialOpened" icon="times" size="xl" />
