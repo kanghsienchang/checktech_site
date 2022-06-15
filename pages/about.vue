@@ -113,7 +113,7 @@
           <img
             v-lazy="aboutData.quality.image.src"
             :alt="aboutData.quality.image.alt"
-            class="max-h-full max-h-full w-full"
+            class="max-h-full max-h-full w-full border shadow-sm"
           />
         </div>
       </div>
@@ -286,12 +286,12 @@ export default {
             src: this.$toCDN(
               this.$_get(
                 this.rawData,
-                'attributes.quality_image.data.attributes.url'
+                `attributes.quality_image.${this.$i18n.localeProperties.dataKey}.data.attributes.url`
               )
             ),
             alt: this.$_get(
               this.rawData,
-              'attributes.quality_image.data.attributes.alternativeText'
+              `attributes.quality_image.${this.$i18n.localeProperties.dataKey}.data.attributes.alternativeText`
             )
           }
         },
