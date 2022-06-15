@@ -71,12 +71,12 @@ export default {
         {
           hid: 'og:image',
           property: 'og:image',
-          content: '/images/logo-share.png'
+          content: '/images/logo-share.jpeg'
         },
         {
           hid: 'twitter:image',
           name: 'twitter:image',
-          content: '/images/logo-share.png'
+          content: '/images/logo-share.jpeg'
         },
         ...i18nHead.meta
       ],
