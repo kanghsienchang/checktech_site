@@ -103,7 +103,7 @@ export default {
       return `${process.env.NUXT_WEB_BASE_URL}${this.$route.fullPath}`
     },
     ogImageUrl() {
-      return `${process.env.NUXT_WEB_BASE_URL}/images/logo-share.jpeg`
+      return `${process.env.NUXT_WEB_BASE_URL}/images/logo-sharing.jpeg`
     },
     isHomePage() {
       return (
