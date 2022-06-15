@@ -58,7 +58,7 @@ export default {
         scrollTrigger: {
           markers: this.$showScrollMarker,
           trigger: '.statistics',
-          start: 'top+=200px bottom'
+          start: 'top+=250px bottom'
         },
         val: stat.value,
         duration: 1.5,

@@ -63,16 +63,16 @@ export default {
         scrollTrigger: {
           markers: this.$showScrollMarker,
           trigger: '.quality-assurance',
-          start: 'top+=200px bottom'
+          start: 'top+=250px bottom'
         }
       })
-      .from('.quality-assurance__image', {
+      .from('.quality-assurance__content', {
         duration: 0.7,
         opacity: 0,
         y: 30
       })
       .from(
-        '.quality-assurance__content',
+        '.quality-assurance__image',
         {
           duration: 0.7,
           opacity: 0,

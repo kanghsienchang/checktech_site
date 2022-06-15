@@ -12,7 +12,9 @@
         clipPath: 'polygon(0 1rem,100% 0, 100% calc(100% - 1rem),0 100%)'
       }"
     >
-      <div class="main-container relative z-20 py-28 text-white md:py-32">
+      <div
+        class="main-container relative z-20 overflow-x-hidden py-28 text-white md:py-32"
+      >
         <div class="feature-and-services__content md:w-2/3 xl:w-1/2">
           <h2
             class="mb-4 bg-none bg-clip-content text-white before:bg-white before:bg-none"

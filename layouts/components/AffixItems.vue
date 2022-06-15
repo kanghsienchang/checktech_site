@@ -11,7 +11,7 @@
           :href="social.url"
           target="_blank"
           rel="noopener noreferrer"
-          class="block h-12 w-12 drop-shadow-xl"
+          class="block h-12 w-12 drop-shadow-xl md:h-14 md:w-14"
         >
           <img
             :src="`/images/socials/${social.type}.png`"
@@ -22,7 +22,7 @@
       </div>
     </collapse-transition>
     <div
-      class="contact-button mt-4 flex h-12 w-12 cursor-pointer items-center justify-center rounded-full bg-blue-400 text-white"
+      class="contact-button mt-4 flex h-12 w-12 cursor-pointer items-center justify-center rounded-full bg-blue-400 text-white md:h-14 md:w-14"
       @click="socialOpened = !socialOpened"
     >
       <font-awesome-icon v-if="socialOpened" icon="times" size="xl" />
