@@ -74,7 +74,7 @@ export default {
         scrollTrigger: {
           markers: this.$showScrollMarker,
           trigger: '.about-us',
-          start: 'top+=300px bottom'
+          start: 'top+=150px bottom'
         }
       })
       .from('.about-us__image', {

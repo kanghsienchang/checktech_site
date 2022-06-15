@@ -11,7 +11,7 @@
       <nuxt />
     </div>
     <app-footer ref="footer" :socials="socials" />
-    <affix-items :socials="socials" />
+    <affix-items v-if="socials.length" :socials="socials" />
     <client-only>
       <app-cookie />
     </client-only>
@@ -71,12 +71,12 @@ export default {
         {
           hid: 'og:image',
           property: 'og:image',
-          content: '/images/logo.png'
+          content: '/images/logo-share.png'
         },
         {
           hid: 'twitter:image',
           name: 'twitter:image',
-          content: '/images/logo.png'
+          content: '/images/logo-share.png'
         },
         ...i18nHead.meta
       ],
@@ -92,10 +92,12 @@ export default {
   },
   computed: {
     socials() {
-      return this.rawSocials.map((social) => ({
-        type: this.$_get(social, 'attributes.type'),
-        url: this.$_get(social, 'attributes.url')
-      }))
+      return this.rawSocials
+        .filter((social) => !!this.$_get(social, 'attributes.url'))
+        .map((social) => ({
+          type: this.$_get(social, 'attributes.type'),
+          url: this.$_get(social, 'attributes.url')
+        }))
     },
     fullUrl() {
       return `${process.env.NUXT_WEB_BASE_URL}${this.$route.fullPath}`
