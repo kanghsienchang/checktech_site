@@ -95,7 +95,7 @@ export default {
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
-    baseURL: process.env.NUXT_API_BASE_URL
+    baseURL: process.env.NUXT_ENV_API_BASE_URL
   },
 
   router: {
@@ -109,7 +109,7 @@ export default {
   },
 
   sitemap: {
-    hostname: process.env.NUXT_WEB_BASE_URL,
+    hostname: process.env.NUXT_ENV_WEB_BASE_URL,
     i18n: true
   },
 

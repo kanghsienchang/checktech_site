@@ -2,7 +2,7 @@ import axios from 'axios'
 import qs from 'qs'
 import { getProducts } from './api/products'
 const axiosInstance = axios.create({
-  baseURL: process.env.NUXT_API_BASE_URL
+  baseURL: process.env.NUXT_ENV_API_BASE_URL
 })
 
 axiosInstance.interceptors.request.use(
