@@ -110,7 +110,8 @@ export default {
 
   sitemap: {
     hostname: process.env.NUXT_ENV_WEB_BASE_URL,
-    i18n: true
+    i18n: true,
+    lastmod: new Date().toISOString()
   },
 
   i18n: {
